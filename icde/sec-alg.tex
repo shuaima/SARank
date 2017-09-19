@@ -148,7 +148,7 @@ Hence, the efficiency of block-wise algorithm \twprscc is mainly affected by $|E
 \begin{center}
 \caption{\small Statistics of citation/venue graphs and Web graphs~\cite{LeskovecLDM09}}
 \label{tab-batch}
-\begin{small}
+%\begin{small}
 \vspace{-.5ex}
 \begin{tabular}{|c|c|c|c|c|}
 \hline
@@ -163,19 +163,19 @@ web-BS  &  685,230 & 7,600,595 & \multicolumn{1}{c|}{334,857} & \multicolumn{1}{
 web-G  & 875,713 & 5,105,039 & \multicolumn{1}{c|}{434,818} & \multicolumn{1}{c|}{66.98\%} \\  %\hline
 \hline
 \end{tabular}
-\end{small}
+%\end{small}
 \end{center}
 \vspace{-5ex}
 \end{table}
 %%%%%%%%%%%%%%%%%%%
 
 
-It is well-known that article citations obey a natural temporal order, \ie an article only cites those published earlier, and it is really rare for the mutual citations between two articles published in the same time. That is, $|E_i|$ is essentially small for the citation graphs of scholarly articles.
-%
+\stitle{Observation.} It is well-known that article citations obey a natural temporal order, \ie an article only cites those published earlier, and it is really rare for the mutual citations between two articles published in the same time. That is, $|E_i|$ is essentially small for the citation graphs of scholarly articles.
+
 To verify this observation, we also collect the statistics of citation graphs, venue graphs and Web graphs (shown in Table~\ref{tab-batch}), where Web graphs are extracted from berkely.edu and stanford.edu domains in 2002 and from the Google programming contest in 2002, respectively~\cite{LeskovecLDM09}.
-Due to the existence of the ``bow tie'' structure and the giant \scc in Web graphs~\cite{BroderKMRRSTW00}, the edge ratios $|E_i|/|E|$ are greater than 59\% for both Web graphs. In contrast, the \sccs in citation and venue graphs are quite small as a result of the temporal order of citation, and $|E_i|/|E|$ is less than 3\% for all tested citation and venue graphs.
+Due to the existence of the ``bow tie'' structure and the giant \scc in Web graphs~\cite{BroderKMRRSTW00}, the edge ratios $|E_i|/|E|$ are greater than 59\% for Web graphs. In contrast, the \sccs in citation and venue graphs are quite small as a result of the temporal order of citation, and $|E_i|/|E|$ is less than 3\% for all tested citation and venue graphs.
 %
-This specific structure in scholarly data has long been ignored in the literature, which has a large impact on the running time. Taking $t=100$ for example, algorithm \twprscc needs to scan through $3|E|$ and $4|E|$ edges on citation and venue graphs, respectively, while over $59|E|$ edges on Web graphs.
+This specific structure in scholarly data has been ignored in the literature, and has a positive impact on computations. Taking $t=100$ for example, algorithm \twprscc needs to scan $3|E|$ and $4|E|$ edges on citation and venue graphs, respectively, but over $59|E|$ edges on Web graphs.
 
 
 By Corollary \ref{prop-prscc}, Lemma \ref{prop-venue-time-complexity} and the  above analysis of our block-wise algorithm, we have informally established Claim~\ref{thm-prestige}.

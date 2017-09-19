@@ -107,6 +107,7 @@ which obviously holds (1) for  $E'\cup E'_\Delta$ as $O$ and $\Delta O$ are topo
 {\sl Input:\/} \= An update $\Delta$ = $\Delta V\cup\Delta E$, TWPageRank vector $PR$ of $G$,\\
 \hspace{5ex}   and the  topological order $O$ of the block-wise graph $G'$.\\
 {\sl Output:\/} TWPageRank vector $PR^+$ of the updated graph $G^+$. \\
+\\
 \bcc \hspace{1.5ex}\=  $G_C'$ := the block-wise graph of $G_C$; \\
 %\ \  $E_{CB}'$ := edges from $G_C'$ to $G'$\\
 \icc\> $\Delta O$ := topological order of $G_C'$; \ \ $O^+$ := $\Delta O/O$; \\
@@ -129,7 +130,7 @@ which obviously holds (1) for  $E'\cup E'_\Delta$ as $O$ and $\Delta O$ are topo
 \end{minipage}
 }
 \end{center}
-\vspace{-2ex}
+\vspace{-1ex}
 \caption{\small Algorithm~\inctwprscc for incremental TWPageRank} \label{alg-inctwprscc}
 \vspace{-3ex}
 \end{figure}
@@ -207,10 +208,10 @@ Figure~\ref{fig-inc-division} illustrates an example of affected and unaffected 
 \begin{figure}[tb!]
 \centering
 \includegraphics[scale=0.7]{fig/General_framework_peak.eps}
-\vspace{-2ex}
+\vspace{-1ex}
 \caption{\small An example of incremental TWPageRank computation}
 \label{fig-inc-division}
-\vspace{-4ex}
+\vspace{-3ex}
 \end{figure}
 
 \begin{example} \label{eg-layer-dag}
@@ -268,8 +269,8 @@ All these make \inctwprscc faster than \twprscc even though they have very simil
 \begin{center}
 \caption{\small Statistics of affected/unaffected areas given a yearly update, \ie articles of 2011 on \aan and 2015 on \aminer and \magdata, respectively.}
 \label{tab-inc}
-\begin{small}
-\vspace{-.5ex}
+%\begin{small}
+%\vspace{-.5ex}
 \eat{
 \begin{tabular}{|c|c|c|}
 \hline
@@ -286,7 +287,7 @@ All these make \inctwprscc faster than \twprscc even though they have very simil
  \hline
 \end{tabular}
 }
-\begin{tabular}{|r|c c c|c c c|}
+\begin{tabular}{|c|c c c|c c c|}
 \hline
  & \multicolumn{3}{c|}{\bf Citation graphs on}   & \multicolumn{3}{c|}{\bf Venue graphs on}    \\
 \raisebox{1ex}[0pt]{\bf Statis.} & \aan & \aminer & \magdata & \aan & \aminer & \magdata \\
@@ -301,9 +302,9 @@ $|E_B|$ & 59.8\% & 59.3\% & 65.5\% & 88.6\% & 92.3\% & 92.6\% \\
 $|E_{CB}|$ & 10.4\% & \ 7.2\% & \ 7.0\% & 10.0\% & \ 7.3\% & \ 7.1\% \\
 $|E_C|$ & \ 0.3\% & \ 0.9\% & \ 0.1\% & \ 0.2\% & \ 0.2\% & \ 0.1\% \\ \hline
 \end{tabular}
-\end{small}
+%\end{small}
 \end{center}
-\vspace{-6ex}
+\vspace{-5ex}
 \end{table}
 %%%%%%%%%%%%%%%%%%%
 
