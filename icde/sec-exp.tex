@@ -562,9 +562,9 @@ factor $\lambda$}
 
 
 \etitle{Exp-4.4}.
-\marked{To evaluate the impacts of our TWPageRank, we compared our \ensemblerank with \drank, an alternative of \ensemblerank by removing the peak time in  Eq.~(\ref{eq-infl-weights}) of  TWPageRank, \ie $w(u,v)=e^{\sigma(T_u-T_v)}$. % with a directly exponentially decayed impact weights without peak times, \ie , .
+To evaluate the impacts of our TWPageRank, we compared our \ensemblerank with \drank, an alternative of \ensemblerank by removing the peak time in  Eq.~(\ref{eq-infl-weights}) of  TWPageRank, \ie $w(u,v)=e^{\sigma(T_u-T_v)}$. % with a directly exponentially decayed impact weights without peak times, \ie , .
 %The two algorithms produce the same popularity while different prestige.
-To better understand the impacts, we varied the importance weighting factor $\lambda$ from 0.1 to 1. Note that the ranking results are the same when $\lambda=0$ due to the same popularity computation. The results are reported in Fig.~\ref{exp-drank}, where the numbers represent the improvement of \PairAcc by \ensemblerank over the one by \drank.}
+To better understand the impacts, we varied the importance weighting factor $\lambda$ from 0.1 to 1. Note that the ranking results are the same when $\lambda=0$ due to the same popularity computation. The results are reported in Fig.~\ref{exp-drank}, where the numbers represent the improvement of \PairAcc by \ensemblerank over the one by \drank.
 
 
 When varying $\lambda$, the \PairAcc of \ensemblerank is better than the one of \drank in most cases, which shows the superiority of the TWPageRank than exploiting exponentially decayed weights directly without introducing the peak time.
