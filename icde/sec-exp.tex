@@ -70,10 +70,9 @@ To alleviate the issue of citation missing of \aminer, we added citations by tit
 
 
 \stitle{Accuracy metric and ground-truth}.
-We adopted the {\em pairwise accuracy} introduced by Microsoft~\cite{Richardson06:BPR,wsdmcup} to evaluate the ranking quality, \ie the fraction of times that a ranking agrees with the correct ranking orders of scholarly article pairs.
-We constructed two sets of ground-truth importance orders of article pairs with \recom and \fcita.
+We adopted the {\em pairwise accuracy} introduced by Microsoft~\cite{Richardson06:BPR,wsdmcup} to evaluate the ranking quality, \ie the fraction of times that a ranking agrees with the correct ranking orders of scholarly article pairs:
 
-\eat{
+
 \vspace{-1ex}
 \begin{small}
 \begin{equation}
@@ -82,8 +81,9 @@ We constructed two sets of ground-truth importance orders of article pairs with 
 %\PairAcc=(\#\mbox{ of agreed pairs}) / (\# \mbox{ of all pairs}).
 \end{equation}
 \end{small}
-\vspace{-3ex}
-}
+\vspace{-2ex}
+
+We constructed two sets of ground-truth importance orders of article pairs with \recom and \fcita.
 
 
 \noindent
@@ -99,9 +99,10 @@ generated (2133, 966, 1972) scholarly article pairs on (\aan, \aminer, \magdata)
 \noindent 
 (2) \fcita assumes that scholarly articles with more citations are of higher importance.
 %
-However, the number of all citations is obviously biased to old articles. Some work adopts the number of future citations~\cite{Wang13AAAI,Wang16TIST,Li08TSRanking}, which is also not appropriate since this gives an estimation of impacts of articles in the near future, not at the concerned time. Differently, we propose to use the number of past and future citations, where past and future periods span the same length of time such that the number of citations within the two periods reveals the importance of articles at the conerned time.
+However, the number of entire citations is obviously biased to old articles. Some work adopts the number of future citations~\cite{Wang13AAAI,Wang16TIST,Li08TSRanking}, which is also not appropriate since this only estimates of future impacts of articles, not at the concerned time. For a fair ranking benchmark, we propose to use both past and future citations with the same period of time \wrt\ the concerned time, such that the number of citations within these two periods reveals the importance of articles at the concerned time.
 %
-We hence divided each dataset into two parts by a splitting year where the data before the splitting year (exclusive) were used for ranking and the remaining data as well as the most recent part of ranking data which spans the same time as the remaining data were used to count the numbers of past and future citations.
+We hence divided each dataset into two parts with a splitting (concerned) time such that (a) the data before the splitting time is used for ranking model, (b) the remain part of data is used to collect future citations, and (c) the most recent part of the data for ranking model with the same time span as the future citations is used to collect past citations.
+%
 %
 Moreover, articles in the same pair were required to be in similar research fields, by utilizing the Fields-Of-Study information on \magdata~\cite{Sinha15:MAG}, and published in the same year, similar to~\cite{Wang16TIST}.
 We used all pairs (around 50,000) for \aan, and randomly chose 300,000 pairs for both \aminer and \magdata.
@@ -142,7 +143,7 @@ We compared our approach with three competitive methods: \pagerank~\cite{Brin98:
 All algorithms were implemented with Microsoft Visual C++.
 %Parameters.
 For all algorithms, (a) the damping parameter $d$ and the iteration threshold $\epsilon$ were fixed to 0.85 and $10^{-8}$, respectively,
-(b) \marked{the default splitting years were selected such that the ranking data accounted for around 75\% of all, which were 2008 on \aan and 2012 on both \aminer and \magdata,} and,
+(b) the default splitting years were selected such that the part of data for ranking model accounted for around 75\% of the entire data, which were 2008 on \aan and 2012 on both \aminer and \magdata, and,
 (c) for the sake of fairness, aggregating parameters of \futurerank, \hhgrank and \ensemblerank were tuned at the granularity of 0.1 and the best results were reported.
 %
 Moreover, $\rho$ was set to -0.2 for \futurerank following~\cite{sayyadi09}, and the time decaying factor $\sigma$ and the importance weighting factor $\lambda$ were set to -1 and 0.5  by default for \ensemblerank.
@@ -156,8 +157,8 @@ When quantity measures are evaluated, the test was repeated over 5 times and the
 \label{tab-result}
 \begin{center}
 \caption{\small Accuracy tests with \recom}
-\begin{small}
-\vspace{-.5ex}
+%\begin{small}
+%\vspace{-.5ex}
 \begin{tabular}{|c|c|c|c|c|}
 \hline
 {\bf Datasets}   &  \hspace{1ex}\pagerank\hspace{1ex}     & \hspace{1ex}\futurerank\hspace{1ex}  &  \hspace{1ex}\hhgrank\hspace{1ex}  &   \hspace{1ex}\ensemblerank\hspace{1ex}    \\
@@ -166,10 +167,10 @@ When quantity measures are evaluated, the test was repeated over 5 times and the
 \aminer  & $0.651$   & $0.729$   & $0.730$     & {\bf 0.778}      \\ %\hline
 \magdata  & $0.615$   & $0.655$   & $0.658$     & {\bf 0.680}      \\ \hline
 \end{tabular}
-\vspace{-.5ex}
-\end{small}
+%\vspace{-.5ex}
+%\end{small}
 \end{center}
-\vspace{-5ex}
+\vspace{-4ex}
 \end{table}
 %%%%%%%%%%%%%%%%%%%
 
