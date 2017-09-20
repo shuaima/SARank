@@ -17,7 +17,7 @@ set xtics ("1" 0, "2" 1, "3" 2, "4" 3, "5" 4, "6" 5, "7" 6)
 #set logscale y
 set ylabel "PairAcc" offset 1.5
 #set xlabel "difference of future citation count ({/Symbol \263})"
-set xlabel "difference of future citation counts" offset 0, 0.5
+set xlabel "difference of citation counts" offset 0, 0.5
 
 set key vertical samplen 1.8 spacing 1.0 at graph 0.98, 0.45
 #set key horizontal font ",13" 
