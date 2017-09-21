@@ -1,16 +1,18 @@
 \section{Introduction}
 \label{sec-intro}
 
-Query independent ranking of scholarly articles has drawn significant attentions from both academia~\cite{Garfield471,ChenXMR07,Zhou07-CoRank,ShenAAAI16,Liang16AAAI,Jiang12-MRank,Waltman2014,TanLMGSW16} and industry~\cite{sem-scholar,g-scholar,Sinha15:MAG}.
+Query independent ranking of scholarly articles has drawn significant attentions from both academia~\cite{Garfield471,Hirsch15112005,Liang16AAAI,Jiang12-MRank,Waltman2014,Wang16TIST,Ng11KDD,Li08TSRanking,
+Wang13AAAI,sayyadi09,WalkerXKM07,TanLMGSW16} and industry~\cite{g-scholar,Sinha15:MAG,sem-scholar}.
 Generally speaking, a ranking is {\em a function that assigns each item a numerical score}. Query independent ranking aims to give a static ranking based on the scholarly  data only, and is independent of how well articles match a specific query. Such a ranking plays a key role in literature recommendation systems, especially in the {\em cold start} scenario.
 
-In the academia, the most popular approaches have witnessed a shift from citation-count analysis~\cite{Garfield471,Hirsch15112005} to graph analysis~\cite{ChenXMR07,Zhou07-CoRank,Jiang12-MRank,Waltman2014}, as graph-based methods further leverage the global or local structure of bibliographic networks and  the interactions among heterogeneous entities, and, hence, are typically more appropriate.
+In the academia, the most popular approaches have witnessed a shift from citation-count analysis~\cite{Garfield471,Hirsch15112005} to graph analysis~\cite{Liang16AAAI,Jiang12-MRank,Waltman2014,Wang16TIST,Ng11KDD,Li08TSRanking,Wang13AAAI,sayyadi09,WalkerXKM07}, as graph-based methods further leverage the global or local structure of bibliographic networks and  the interactions among heterogeneous entities, and, hence, are typically more appropriate.
 %
-Efforts have also been made from the industry. Google Scholar~\cite{g-scholar} aims to rank articles in the way researchers do, weighing the full text, where they were published, who they were written by, as well as how often and how recently they have been cited; Microsoft Academic~\cite{ms-academic} considers how often and to which a publication is cited to determine the ranking; And
+Efforts have also been made from the industry. Google Scholar~\cite{g-scholar} aims to rank articles in the way researchers do, weighing the full text, where they were published, who they were written by, as well as how often and how recently they have been cited; Microsoft Academic~\cite{Sinha15:MAG} considers how often and to which a publication is cited to determine the ranking; And
 Semantic Scholar~\cite{sem-scholar} proposes to use the citation velocity, which is a weighted average number of article citations in the last three years.
 
 
-%, \eg Google Scholar~\cite{g-scholar}, Semantic Scholar~\cite{sem-scholar} and Microsoft Academic~\cite{Sinha15:MAG}
+% Zhou07-CoRank,
+% from citation-count analysis~\cite{Garfield471,Hirsch15112005}
 % https://scholar.google.com/intl/zh-CN/scholar/about.html
 % http://academic.research.microsoft.com/About/Help.htm
 % https://www.semanticscholar.org/faq#citation-velocity
@@ -27,7 +29,7 @@ Newly published articles are very likely to have increasing impacts in the next 
 Finally, academic data is dynamic and continuously growing. Indeed, the number of articles in \magdata has exceeded 126 million, and keeps increasing at around 5.7 million per year~\cite{Sinha15:MAG}. This may cause certain long-term biases into data, \eg the number of citations increases significantly over time~\cite{BornmannM15}, which should be properly considered for scholarly article ranking.
 
 
-Query independent ranking of scholarly articles remains challenging~\cite{wsdmcup}, although there exists quite a bit of work on scholarly article ranking, \eg~\cite{Garfield471,ChenXMR07,Zhou07-CoRank,ShenAAAI16,Liang16AAAI,Jiang12-MRank,Waltman2014}.
+Query independent ranking of scholarly articles remains challenging~\cite{wsdmcup}, although there exists quite a bit of work on scholarly article ranking, \eg~\cite{Garfield471,Liang16AAAI,Jiang12-MRank,Waltman2014}.
 Most previous work exploits the time-dependent information of scholarly data in the form of exponential decay~\cite{Li08TSRanking,Wang13AAAI,sayyadi09,WalkerXKM07}, which fails to capture the diverse citation patterns of individual articles~\cite{Chakraborty15}.
 Further, to our knowledge, little concern has been paid to dynamic scholarly article ranking except \cite{GhoshKHLL11} with a strong and impractical assumption that there are no citations between papers published in the same years.
 %\marked{Finally, the bias caused by the dynamic nature of data has never been exploited in scholarly article ranking}.
