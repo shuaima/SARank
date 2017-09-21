@@ -473,6 +473,42 @@ The running time varies (11.3\%, 8.6\%) on average only on (\aminer, \magdata), 
 %%%%%%%%%%%%%%%%%%%
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[tb!]
+%\vspace{1ex}
+\addtolength{\subfigcapskip}{-1ex}
+\begin{center}
+\subfigure[{\scriptsize \aan with \recom}]{\label{exp-aan-recom-drank}
+\includegraphics[scale=0.36]{./exp/AAN_TWPageRank_recom.eps}}
+\hfill
+%\hspace{\graphmarginexpapp}
+\subfigure[{\scriptsize \aminer with \recom}]{\label{exp-aminer-recom-drank}
+\includegraphics[scale=0.36]{./exp/AMiner_TWPageRank_recom.eps}}
+\hfill
+%\hspace{\graphmarginexpapp}
+\subfigure[{\scriptsize \magdata with \recom}]{\label{exp-mag-recom-drank}
+\includegraphics[scale=0.36]{./exp/MAG_TWPageRank_recom.eps}}
+\\%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{-.5ex}
+\subfigure[{\scriptsize \aan with \fcita}]{\label{exp-aan-fcita-drank}
+\includegraphics[scale=0.36]{./exp/AAN_TWPageRank_fcita.eps}}
+\hfill
+%\hspace{\graphmarginexpapp}
+\subfigure[{\scriptsize \aminer with \fcita}]{\label{exp-aminer-fcita-drank}
+\includegraphics[scale=0.36]{./exp/AMiner_TWPageRank_fcita.eps}}
+\hfill
+%\hspace{\graphmarginexpapp}
+\subfigure[{\scriptsize \magdata with \fcita}]{\label{exp-mag-fcita-drank}
+\includegraphics[scale=0.36]{./exp/MAG_TWPageRank_fcita.eps}}
+\end{center}
+\vspace{-1.5ex}
+\caption{\small Impacts of TWPageRank on accuracy: varying importance weighting
+factor $\lambda$}
+\label{exp-drank}
+\vspace{-2ex}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \etitle{Exp-4.2}.
 %\stitle{Exp-4.2}.
 To evaluate the impacts of importance weighting factor $\lambda$, we varied $\lambda$ from 0 to 1.
@@ -522,41 +558,7 @@ Indeed, \ensemblerank is very robust to parameters $\alpha$ and $\beta$.
 of  parameters $\alpha$ and $\beta$.
 } %%%%%%%% brief version of Exp-4.3
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure*}[tb!]
-%\vspace{1ex}
-\addtolength{\subfigcapskip}{-1ex}
-\begin{center}
-\subfigure[{\scriptsize \aan with \recom}]{\label{exp-aan-recom-drank}
-\includegraphics[scale=0.36]{./exp/AAN_TWPageRank_recom.eps}}
-\hfill
-%\hspace{\graphmarginexpapp}
-\subfigure[{\scriptsize \aminer with \recom}]{\label{exp-aminer-recom-drank}
-\includegraphics[scale=0.36]{./exp/AMiner_TWPageRank_recom.eps}}
-\hfill
-%\hspace{\graphmarginexpapp}
-\subfigure[{\scriptsize \magdata with \recom}]{\label{exp-mag-recom-drank}
-\includegraphics[scale=0.36]{./exp/MAG_TWPageRank_recom.eps}}
-\\%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{-.5ex}
-\subfigure[{\scriptsize \aan with \fcita}]{\label{exp-aan-fcita-drank}
-\includegraphics[scale=0.36]{./exp/AAN_TWPageRank_fcita.eps}}
-\hfill
-%\hspace{\graphmarginexpapp}
-\subfigure[{\scriptsize \aminer with \fcita}]{\label{exp-aminer-fcita-drank}
-\includegraphics[scale=0.36]{./exp/AMiner_TWPageRank_fcita.eps}}
-\hfill
-%\hspace{\graphmarginexpapp}
-\subfigure[{\scriptsize \magdata with \fcita}]{\label{exp-mag-fcita-drank}
-\includegraphics[scale=0.36]{./exp/MAG_TWPageRank_fcita.eps}}
-\end{center}
-\vspace{-1.5ex}
-\caption{\small Impacts of TWPageRank on accuracy: varying importance weighting
-factor $\lambda$}
-\label{exp-drank}
-\vspace{-2ex}
-\end{figure*}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \newcommand{\drank}{\kw{DRank}}
 
