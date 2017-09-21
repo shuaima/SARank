@@ -66,7 +66,7 @@ Consider a citation or venue graph $G(V, E)$, its TWPageRank vector $PR$ and the
 
 
 \stitle{Auxiliary data structure maintenance}.
-Two auxiliary data structures in the batch algorithm~\twprscc need to be maintained : (a) on the block-wise graph,  a mapping that, given a node of graph $G$, returns the index of the \scc to which it belongs, and (b) the topological order of the nodes in the block-wise graph.
+Two auxiliary data structures in the batch algorithm~\twprscc need to be maintained: (a) the block-wise graph and  a mapping that, given a node of graph $G$, returns the index of the \scc to which it belongs, and (b) the topological order of the nodes in the block-wise graph.
 %
 Observe that these auxiliary data structures can be easily maintained as follows.
 
@@ -111,7 +111,7 @@ which obviously holds (1) for  $E'\cup E'_\Delta$ as $O$ and $\Delta O$ are topo
 \bcc \hspace{1.5ex}\=  $G_C'$ := the block-wise graph of $G_C$; \\
 %\ \  $E_{CB}'$ := edges from $G_C'$ to $G'$\\
 \icc\> $\Delta O$ := topological order of $G_C'$; \ \ $O^+$ := $\Delta O/O$; \\
-\icc\> label \sccs of $G_C$ as $C$ and \sccs of $G$ with outgoing edges \\ \hspace{2.5ex}  having  weight changes as $B$,  the remaining \sccs of $G$ as $A$\\
+\icc\> label \sccs of $G_C$ as $C$, \sccs of $G$ with outgoing edges having \\ \hspace{2.5ex}    weight changes as $B$, and the remaining \sccs of $G$ as $A$;\\
 \icc\>  \For each node $v'$ following $O^+$ \Do\\
 \icc\>\hspace{2.5ex}\= $scc$ := the corresponding \scc of $v'$; \\
 %\icc\>\>\If impact weight of $(v,w)$ is changed where $v\in scc$ \Then \\
@@ -219,7 +219,7 @@ Figure~\ref{fig-inc-division} illustrates an example of incremental TWPageRank c
 %
 It is obvious that the update $\Delta$ has no impacts on the SCCs of $G$, and $O^+$ defined earlier is a valid topological order of $G^+{'}$.
 %
-The original graph $G$ is then partitioned into affected and unaffected areas, and subgraphs $G_A$, $G_B$ and $G_C$ are associated with node sets $V_A$, $V_B$ and $\Delta V$, respectively. Here edge weight on $(y, x)$ changes due to the change of the citation peak time of node $x$, and, hence, node $y$ as well as all nodes reachable from $y$ are included in $G_B$.
+The original graph $G$ is then partitioned into affected and unaffected areas, and subgraphs $G_A$, $G_B$ and $G_C$ are associated with node sets $V_A$, $V_B$ and $\Delta V$, respectively. Here edge weight on $(y, x)$ changes due to the change of the peak time of node $x$, and, hence, node $y$ as well as all nodes reachable from $y$ are included in $G_B$.
 %
 When updating the TWPageRank scores, following $O^+$, scores of nodes in $G_C$, $G_B$ and $G_A$ are computed by iterations from scratch, by iterations with Eq.~(\ref{eq-inc-prscc}) using the existing TWPageRank vector and by scaling, respectively.
 \end{example}
@@ -241,7 +241,7 @@ Assume a topological order $v_1'/\dots/v_{l}'$ of the block-wise graph $G^+{'}$ 
 
 
 Observe that (a) a topological order of $G'_C$ can be computed in $O(|V_C|+|E_C|+|E_{CB}|)$ time,
-(b) updating the TWPageRank scores of nodes in subgraphs $G_B$ and $G_C$ costs $O(|V_B\cup V_C|+|E_{B,a}\cup E_{C,a}\cup E_{CB}|)+t^+|E_{B,i}\cup E_{C,i}|)$ time, and , finally, (c) updating the scores of nodes in $G_A$ costs $O(|V_A|)$ time. From these, the following holds.
+(b) updating the TWPageRank scores of nodes in subgraphs $G_B$ and $G_C$ costs $O(|V_B\cup V_C|+|E_{B,a}\cup E_{C,a}\cup E_{CB}|)+t^+|E_{B,i}\cup E_{C,i}|)$ time, and, finally, (c) updating the scores of nodes in $G_A$ costs $O(|V_A|)$ time. From these, the following holds.
 
 
 \begin{prop} \label{lemma-inc-citation-comp}
@@ -254,9 +254,9 @@ Given an update $\Delta$ = $\Delta V\cup\Delta E$ of citation or venue graph $G(
 
 By Propositions~\ref{prop-converg} \& \ref{lemma-inc-topo} and Theorem \ref{lemma-subgraphA}, one can easily verify the correctness of algorithm \inctwprscc.
 %
-Note that  a) algorithm \inctwprscc computes \sccs and derives the topological order based  on $\Delta$ only, instead of $G^{+}$,
-b) it skips edges in $E_A\cup E_{AB}$ when updating the scores of nodes in $G_A$ and $G_B$, and
-c) the number $t^+$ is very likely smaller than the number $t$ of \twprscc when updating scores of nodes in $G_B$.
+Note that  (a) algorithm \inctwprscc computes \sccs and derives the topological order based  on $\Delta$ only, instead of $G^{+}$,
+(b) it skips edges in $E_A\cup E_{AB}$ when updating the scores of nodes in $G_A$ and $G_B$, and
+(c) the number $t^+$ is very likely smaller than the number $t$ of \twprscc when updating scores of nodes in $G_B$.
 %
 All these make \inctwprscc faster than \twprscc even though they have very similar time complexity.
 %, as will also been shown by the experimental study,

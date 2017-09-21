@@ -55,7 +55,7 @@ It contains 3.14 million articles, 1.74 million authors, 11,619 venues and 6.38 
 It contains around 127 million articles, 115 million authors, 24,024 venues and 529 million citations.
 %Please refer to~\cite{Sinha15:MAG} for more details about \magdata.
 
-To alleviate the issue of citation missing in \aminer, we added citations by title matching  based on \magdata, and the finally total number of citations is 14.26 million. These datasets were further cleaned by deleting self-citations and citations from old articles to new ones, which accounted for (0.1\%, 0.8\%, 0.4\%) of the total citations on (\aan, \aminer, \magdata), respectively.
+To alleviate the issue of citation missing in \aminer, we added citations by title matching  based on \magdata, and finally the  total number of citations is 14.26 million. These datasets were further cleaned by deleting self-citations and citations from old articles to new ones, which accounted for (0.1\%, 0.8\%, 0.4\%) of the total citations on (\aan, \aminer, \magdata), respectively.
 %from old articles to more recent ones
 %These datasets were further cleaned by detecting citation cycles and removing those edges violating the temporal order if any.
 
@@ -104,7 +104,7 @@ However, the number of entire citations is obviously biased to old articles. Som
 We hence divided each dataset into two parts with a splitting (concerned) time such that (a) the data before the splitting time is used for ranking model, (b) the remaining part of data is used to collect future citations, and (c) the most recent part of the data for ranking model with the same time span as the future citations is used to collect past citations.
 %
 %
-Moreover, articles in the same pair were required to be in similar research fields, by utilizing the Fields-Of-Study information on \magdata~\cite{Sinha15:MAG}, and published in the same year, similar to~\cite{Wang16TIST}.
+Moreover, articles in the same pairs were required to be in similar research fields, by utilizing the Fields-Of-Study information on \magdata~\cite{Sinha15:MAG}, and published in the same years, similar to~\cite{Wang16TIST}.
 We used all pairs (around 50,000) for \aan, and randomly chose 300,000 pairs for both \aminer and \magdata.
 
 \eat{

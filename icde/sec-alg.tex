@@ -49,7 +49,7 @@ We next show Claim~\ref{thm-prestige} by introducing and analyzing such a block-
 %the directed and acyclic structure of the  can improve the efficiency of PageRank computation~\cite{Berkhin05,ObjectRank04}.
 
 \stitle{Block-wise algorithm~\twprscc}.  It takes as input a citation or venue graph $G$ and an iteration threshold $\epsilon$, and returns the TWPageRank vector of $G$.
-Moreover, to process an \scc instead of the entire graph, the edges of the citation or venue graph $G(V, E)$ are partitioned into the sets $E_i$ and $E_a$ of edges inside and across \sccs  such that $E_i\cap E_a = \emptyset$ and $E = E_i \cup E_a$.  The update rule in Eq.~(\ref{eq-twpr-update})  is revised accordingly to treat $E_i$ and $E_a$ separately as follows.
+To process an \scc instead of the entire graph, the edges of the citation or venue graph $G(V, E)$ are partitioned into the sets $E_i$ and $E_a$ of edges inside and across \sccs  such that $E_i\cap E_a = \emptyset$ and $E = E_i \cup E_a$.  The update rule in Eq.~(\ref{eq-twpr-update})  is revised accordingly to treat $E_i$ and $E_a$ separately as follows.
 
 \vspace{-1ex}
 \begin{scriptsize}
@@ -109,7 +109,7 @@ The vector $PR$ returned by~\twprscc converges such that $||PR-PR^*||_1 < \epsil
 \end{cor}
 
 \begin{proofSketch}
-We first prove that the sum of changes after another iteration from $PR$, \ie $||d M^T PR + (1-d)e/n-PR||_1$, is smaller than $\epsilon$, and then prove that $||PR^*-PR||_1$ is smaller than the sum of changes. %(see~\cite {ERank-full} for details). % since $\epsilon > ||PR^+-PR||_1 = ||d\cdot M^T \cdot (PR-PR^*)||_1 + ||PR-PR^*||_1$.
+We first prove that the sum of changes after another iteration from $PR$, \ie $||d M^T PR + (1-d)e/n-PR||_1$, is smaller than $\epsilon$, and then prove that $||PR^*-PR||_1$ is smaller than the sum of changes computed earlier. %(see~\cite {ERank-full} for details). % since $\epsilon > ||PR^+-PR||_1 = ||d\cdot M^T \cdot (PR-PR^*)||_1 + ||PR-PR^*||_1$.
 \end{proofSketch}
 
 
@@ -172,10 +172,10 @@ web-G  & 875,713 & 5,105,039 & \multicolumn{1}{c|}{434,818} & \multicolumn{1}{c|
 
 \stitle{Observation.} It is well-known that article citations obey a natural temporal order, \ie an article only cites those published earlier, and it is really rare for the mutual citations between two articles published in the same time. That is, $|E_i|$ is essentially small for the citation graphs of scholarly articles.
 
-To verify this observation, we also collect the statistics of citation graphs, venue graphs and Web graphs (shown in Table~\ref{tab-batch}), where Web graphs are extracted from berkely.edu and stanford.edu domains in 2002 and from the Google programming contest in 2002, respectively~\cite{LeskovecLDM09}.
-Due to the existence of the ``bow tie'' structure and the giant \scc in Web graphs~\cite{BroderKMRRSTW00}, the edge ratios $|E_i|/|E|$ are greater than 59\% for Web graphs. In contrast, the \sccs in citation and venue graphs are quite small as a result of the temporal order of citation, and $|E_i|/|E|$ is less than 3\% for all tested citation and venue graphs.
+To verify this observation, we also collect the statistics of citation graphs, venue graphs and Web graphs (illustrated in Table~\ref{tab-batch}), where Web graphs are extracted from berkely.edu and stanford.edu domains in 2002 and from the Google programming contest in 2002, respectively~\cite{LeskovecLDM09}.
+Due to the existence of the ``bow tie'' structure and the giant \scc in Web graphs~\cite{BroderKMRRSTW00}, the edge ratios $|E_i|/|E|$ are greater than 59\% for Web graphs. In contrast, the \sccs in citation and venue graphs are quite small as a result of the temporal order of citations, and $|E_i|/|E|$ is less than 3\% for all tested citation and venue graphs.
 %
-This specific structure in scholarly data has been ignored in the literature, and has a positive impact on computations. Taking $t=100$ for example, algorithm \twprscc needs to scan $3|E|$ and $4|E|$ edges on citation and venue graphs, respectively, but over $59|E|$ edges on Web graphs.
+This specific structure in scholarly data has been long ignored in the past literature, which indeed has a positive impact on computations. Taking $t=100$ for example, algorithm \twprscc needs to scan $3|E|$ and $4|E|$ edges on citation and venue graphs, respectively, but over $59|E|$ edges on Web graphs.
 
 
 By Corollary \ref{prop-prscc}, Lemma \ref{prop-venue-time-complexity} and the  above analysis of our block-wise algorithm, we have informally established Claim~\ref{thm-prestige}.
