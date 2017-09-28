@@ -83,14 +83,14 @@ We adopted the {\em pairwise accuracy} introduced by Microsoft~\cite{Richardson0
 \end{small}
 \vspace{-2ex}
 
-We constructed two sets of ground-truth importance orders of article pairs with \recom and \fcita.
+We constructed two sets of ground-truth importance orders of article pairs, referred to as  \recom and \fcita.
 
 
 \noindent
 (1) \recom assumes that scholarly articles with more recommendations are of higher importance.
 %
 %evaluates the importance of scholarly articles by the numbers of recommendations (from textbooks and/or university course reading lists).
-We used the numbers of recommendations of 93 articles on \aan~\cite{Liang16AAAI}, %which are recommended by 2 to 10 times,
+We used the number of recommendations of 93 articles on \aan~\cite{Liang16AAAI}, %which are recommended by 2 to 10 times,
 and, by exact title matching, %then matched articles in \aminer and \magdata with titles.  Finally, we
 generated (2133, 966, 1972) scholarly article pairs on (\aan, \aminer, \magdata), respectively.
 %These articles were further matched into \aminer and \magdata through titles, which generated 966 and 1,972 article pairs for \aminer and \magdata, respectively.
@@ -156,7 +156,7 @@ When quantity measures are evaluated, the test was repeated over 5 times and the
 %\vspace{-2ex}
 \label{tab-result}
 \begin{center}
-\caption{\small Accuracy tests with \recom}
+\caption{\small Accuracy evaluation with \recom}
 %\begin{small}
 %\vspace{-.5ex}
 \begin{tabular}{|c|c|c|c|c|}
@@ -339,7 +339,7 @@ When varying $T_p$, the \PairAcc of all algorithms increases with the increment 
 \etitle{Exp-2.3}.
 %\stitle{Exp-2.3}.
 To evaluate the effectiveness of ranking \wrt\ {\em the difference of past and future citations},
-we varied the difference $dif$ of past and future citation counts from 1 to 7, while fixed $Y_s$ to default values of three datasets and $T_i=+\infty$. The results of \PairAcc are reported in Figs.~\ref{exp-aan-fcdiff}, \ref{exp-aminer-fcdiff} and \ref{exp-mag-fcdiff}.
+we varied the difference $dif$ of past and future citation counts from 1 to 7, while fixed $Y_s$ to default values of three datasets and $T_p=+\infty$. The results of \PairAcc are reported in Figs.~\ref{exp-aan-fcdiff}, \ref{exp-aminer-fcdiff} and \ref{exp-mag-fcdiff}.
 
 When varying $dif$, the \PairAcc of all algorithms increases with the increment of $dif$, since scholarly article pairs with larger $dif$ are easier to rank. Moreover, \ensemblerank consistently ranks better than all competitors, regardless of easy or difficult article pairs. Indeed, \ensemblerank improves the \PairAcc over (\pagerank, \futurerank, \hhgrank) by (12.0\%, 3.0\%, 3.2\%) on \aan, (14.0\%, 6.5\%, 4.6\%) on \aminer, and (13.4\%, 6.0\%, 2.4\%) on \magdata, on average, respectively.
 
@@ -418,7 +418,7 @@ In our tests we adopted a yearly update policy due the limitation of  available 
 
 \stitle{Exp-4: Impacts of parameters}.
 %\subsubsection{Exp-4: Impacts of parameters}.
-In the last set of tests, we evaluated the impacts of time decaying factor $\sigma$, importance weighting factor $\lambda$, aggregating parameters $\alpha$ and $\beta$, and the TWPageRank. We fixed these parameters as well as $Y_s$ to their default values, used the TWPageRank proposed in this work by default, and tested the \PairAcc with the entire \recom and \fcita (\ie $T_i=+\infty$, $dif=1$).
+In the last set of tests, we evaluated the impacts of time decaying factor $\sigma$, importance weighting factor $\lambda$, aggregating parameters $\alpha$ and $\beta$, and the TWPageRank. We fixed these parameters as well as $Y_s$ to their default values, used the TWPageRank proposed in this work by default, and tested the \PairAcc with the entire \recom and \fcita (\ie $T_p=+\infty$, $dif=1$).
 
 %We present main results only and more details are available in~\cite{SARank-full}.
 
@@ -448,7 +448,7 @@ The running time varies (11.3\%, 8.6\%) on average only on (\aminer, \magdata), 
 \begin{table}[tb!]
 %\vspace{-2ex}
 \begin{center}
-\caption{\small Accuracy tests using different components with \recom (rows 2--4) and \fcita (rows 5--7).}
+\caption{\small Accuracy evaluation using different components with \recom (rows 2--4) and \fcita (rows 5--7).}
 \label{tab-recom}
 %\begin{small}
 %\vspace{-.5ex}
