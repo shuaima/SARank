@@ -1,7 +1,7 @@
 \section{Experimental Study}
 \label{sec-exp}
 
-In this section, we present an extensive experimental study of our approach \ensemblerank, compared with competitive methods.
+In this section, we present an extensive experimental study of our approach \ensemblerank, compared with three competitive methods.
 Using three real-life scholarly datasets (\aan, \aminer and \magdata) and two sets of ground-truth (\recom and \fcita), we conducted four sets of experiments to evaluate: (1) the effectiveness of \ensemblerank,
 %two sets of benchmark article pairs (\recom and \fcita) ranked by numbers of recommendations and future citations,
 (2) the efficiency of our batch algorithm \batensemble and incremental algorithm \incensemble, and (3) the impacts of parameters. %\ie time decaying factor $\sigma$, importance weighting factor $\lambda$ and aggregating parameters $\alpha$ and $\beta$.
@@ -83,7 +83,7 @@ We adopted the {\em pairwise accuracy} introduced by Microsoft~\cite{Richardson0
 \end{small}
 \vspace{-2ex}
 
-We constructed two sets of ground-truth importance orders of article pairs, referred to as  \recom and \fcita.
+We constructed two sets of ground-truth importance ranking orders of article pairs, referred to as  \recom and \fcita.
 
 
 \noindent
@@ -101,7 +101,7 @@ generated (2133, 966, 1972) scholarly article pairs on (\aan, \aminer, \magdata)
 %
 However, the number of entire citations is obviously biased to old articles. Some work adopts the number of future citations~\cite{Wang13AAAI,Wang16TIST,Li08TSRanking}, which is also not appropriate since this only estimates future impacts of articles, not at the concerned time. For a fair ranking benchmark, we propose to use both past and future citations with the same period of time \wrt\ the concerned time, such that the number of citations within these two periods reveals the importance of articles at the concerned time.
 %
-We hence divided each dataset into two parts with a splitting (concerned) time such that (a) the data before the splitting time is used for ranking model, (b) the remaining part of data is used to collect future citations, and (c) the most recent part of the data for ranking model with the same time span as the future citations is used to collect past citations.
+We hence divide each dataset into two parts with a splitting (concerned) time such that (a) the data before the splitting time is used for ranking model, (b) the remaining part of data is used to collect future citations, and (c) the most recent part of the data for ranking model with the same time span as the future citations is used to collect past citations.
 %
 %
 Moreover, articles in the same pairs were required to be in similar research fields, by utilizing the Fields-Of-Study information on \magdata~\cite{Sinha15:MAG}, and published in the same years, similar to~\cite{Wang16TIST}.
@@ -143,13 +143,13 @@ We compared our approach with three competitive methods: \pagerank~\cite{Brin98:
 All algorithms were implemented with Microsoft Visual C++.
 %Parameters.
 For all algorithms, (a) the damping parameter $d$ and the iteration threshold $\epsilon$ were fixed to 0.85 and $10^{-8}$, respectively,
-(b) the default splitting years were selected such that the part of data for ranking model accounted for around 75\% of the entire data, which were 2008 on \aan and 2012 on both \aminer and \magdata, and,
+(b) the default splitting years (time) were selected such that the part of data for ranking model accounted for around 75\% of the entire data, which were 2008 on \aan and 2012 on both \aminer and \magdata, and,
 (c) for the sake of fairness, aggregating parameters of \futurerank, \hhgrank and \ensemblerank were tuned at the granularity of 0.1 and the best results were reported.
 %
 Moreover, $\rho$ was set to -0.2 for \futurerank following~\cite{sayyadi09}, and the time decaying factor $\sigma$ and the importance weighting factor $\lambda$ were set to -1 and 0.5  by default for \ensemblerank.
 
 All experiments were conducted on a PC with 2 Intel Xeon E5--2630 2.4GHz CPUs and 64 GB of memory, running 64 bit Windows 7 professional system. The usage of virtual memory was forbidden. %in all of our tests.
-When quantity measures are evaluated, the test was repeated over 5 times and the average results are reported.
+When quantity measures were evaluated, the test was repeated over 5 times and the average is reported.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table}[t!]
@@ -369,7 +369,7 @@ For TWPageRank computation, algorithm \inctwprscc is on average (1.9, 3.8) and (
 For scholarly article ranking, algorithm \incensemble is on average (1.7, 3.1, 2.8, 117) and (2.0, 3.0, 4.4, 245) times faster than (\batensemble, \powensemble, \futurerank, \hhgrank) on \aminer and \magdata, respectively.
 
 %\etitle{Remarks}.
-In our tests we adopted a yearly update policy due the limitation of  available time information. In practice our algorithms may bring more efficiency benefits since the ranking is usually more frequent, such that the data updates are smaller and the unaffected area is very likely much larger.
+In our tests we adopted a yearly update policy due the limitation of  available time information. In practice our algorithms may bring more efficiency benefits since the update is usually more frequent, such that the data updates are smaller and the unaffected area is very likely much larger.
 
 %algorithm \batensemble is on average (1.3, 2.5, 348) times faster than (\powensemble, \futurerank, \hhgrank), respectively. And algorithm \incensemble further improves the efficiency by 22\% on average, compared with \batensemble.
 
@@ -538,7 +538,7 @@ The optimal \PairAcc is obtained within a single region, rather than a complex c
 Moreover, the \PairAcc keeps at a high level within a certain ($\alpha$, $\beta$) combination space around the optimal region, as shown in Fig.~\ref{exp-ab}.
 %For instance, consider a square of length 0.3, which covers 8.5\% of the parameter combination space. The fraction of parameters such that the \PairAcc is no worse than 1\% of the corresponding \PairAcc with marker $*$ is (73\%, 94\%) on \aan, (96\%, 87\%) on \aminer and (83\%, 95\%) on \magdata, using (\recom, \fcita), respectively.
 %
-Further, the optimal parameters on the same sets of ground-truth are very similar for (\aan, \aminer and \magdata), indicating that the setting of $\alpha$ and $\beta$ can be easily transferred across different datasets.
+Further, the optimal parameters on the same set of ground-truth are very similar for (\aan, \aminer and \magdata), indicating that the setting of $\alpha$ and $\beta$ can be easily transferred across different datasets.
 To conclude, \ensemblerank is very robust to parameters $\alpha$ and $\beta$, and it is quite flexible for choosing proper values of parameters $\alpha$ and $\beta$.
 
 Moreover, this enables to verify the effectiveness of importance assembling from different components, whose results are reported in Table~IV, in which letters C, V and A stand for citation, venue and author components, respectively.
@@ -570,7 +570,7 @@ To better understand the impacts, we varied the importance weighting factor $\la
 
 
 When varying $\lambda$, the \PairAcc of \ensemblerank is better than the one of \drank in most cases, which shows the superiority of the TWPageRank than exploiting exponentially decayed weights directly without introducing the peak time.
-The \PairAcc difference of these two algorithms is higher on \recom than on \fcita, since the two algorithms are just using citation information to predict past and future citations with \fcita.
+The \PairAcc difference of these two algorithms is higher with \recom than with \fcita, since the two algorithms are just using citation information to predict past and future citations with \fcita.
 Moreover, algorithm \ensemblerank is consistently better than \drank when $0.5 \le \lambda \le 0.9$.
 %, which, with \recom and \fcita, improves the \PairAcc by (2.88\%, 3.91\%, 3.90\%) and (0.55\%, 0.50\%, 0.22\%) on (\aan, \aminer, \magdata) on average, respectively.
 The improvement decreases with the decrease of $\lambda$ as the popularity dominates the ranking with small $\lambda$, and in some cases, \drank outperforms \ensemblerank. %as the prestige and popularity orders of article pairs are more diverse for \drank than \ensemblerank.
