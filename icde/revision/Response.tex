@@ -1,0 +1,191 @@
+\documentclass{letter}
+\usepackage{geometry}
+
+% duan
+\usepackage{xspace}
+
+\geometry{left=2.0cm, right=2.0cm, top=2.5cm, bottom=2.5cm}
+\newcommand{\ie}{\emph{i.e.,}\xspace}
+\newcommand{\eg}{\emph{e.g.,}\xspace}
+\newcommand{\wrt}{\emph{w.r.t.}\xspace}
+\newcommand{\aka}{\emph{a.k.a.}\xspace}
+\newcommand{\kwlog}{\emph{w.l.o.g.}\xspace}
+\newcommand{\etal}{\emph{et al.}\xspace}
+\newcommand{\sstab}{\rule{0pt}{8pt}\\[-2.4ex]}
+
+
+
+\begin{document}
+
+Prof. xxx,\\
+Editor-in-Chief,\\
+%IEEE Transactions on Knowledge and Data Engineering\\
+
+Dear Prof. xxx,
+
+%Attached please find a revised version of our submission to IEEE Transactions on Knowledge and Data Engineering, \emph{An Ensemble Approach to Link Prediction}.
+
+%The paper has been substantially revised according to the referees＊ comments. In particular, (1) we have added an example to explain the procedure of the top-$(\epsilon, k)$ prediction, (2) we have compared the suggested Resource Allocation (RA) algorithm in the experimental study, (3) we have added an accuracy comparison with varied hop distances of our methods and BIGCLAM in the experimental study, (4) we have compared our methods with the state-of-the-art methods when $k$ is fixed to the number of links in the ground truth data and reported the accuracy results together with the 95\% confidence intervals in Appendixes A\&B of the supplementary material for the lack of space, (5) we have implemented and evaluated the ensemble-enabled approach with Adamic/Adar (AA) and RA in Appendix C of the supplementary material, and (6) we have also taken this opportunity to rewrite several parts of the paper to improve the presentation.
+
+We would like to thank all the referees for their thorough reading of our paper and for their valuable comments.
+
+Below please find our responses to the comments by the referees.
+
+%******************* reviewer 1 ***********************************************
+\line(1,0){500}
+
+\textbf{Response to the comments of Referee 1.}
+
+\textbf{[R1W1]} \emph{Formula 7 in SARank still needs parameters, which are not easy to set.}
+
+We have added this survey in the related work (Section 5). Thanks!
+
+\textbf{[R1W2]} \emph{The extension of this method to query dependent ranking or other heterogeneous information network should be discussed.}
+
+Yes, we have discussed the complexities of AA and RA when we introduce them in Section 4.1. Moreover, $O(n^2)$ typically refers to the number of possible links in our paper.
+
+
+\textbf{[R1D1]} \emph{In the time-weighted pagerank algorithm, the impacts are encoded into the edge weight. How about changing the values on nodes?}
+
+We have added Example 1 (Section 2.1) to illustrate the procedure for
+top-$(\epsilon, k)$ prediction searching. Thanks for the suggestion!
+
+
+\textbf{[R1D2]} \emph{This paper has an important observation that ※the impact of an article tends to decay with time after the peak time only.§ However, I cannot see that from Figure 1. It is better to add some references to support the claim.}
+
+We have explained the setting of the parameter $\theta$ in the second last paragraph of Section 3.6, and removed Proposition 2. Thanks for the suggestion!
+
+
+
+\textbf{[R1D3]} \emph{How to determine the peak time for the PeakMul pattern?}
+
+The snowball sampling has been introduced in the graph sampling
+survey [4] in our references. Indeed, the edge bagging method
+is different from the snowball sampling because the edge bagging only
+selects a random adjacent node when the sampled node set is growing.
+Hence, we did not cite the recommended paper directly due to space limitations (as you may notice, we already provide a supplementary material).  Thanks!
+
+
+[4] N. K. Ahmed, J. Neville, and R. Kompella. Network sampling: From
+static to streaming graphs. Transactions on Knowledge Discovery from
+Data (TKDD), 8(2):7:1每7:56, 2014.
+
+
+\textbf{[R1D4]} \emph{For large scholar graph, such as MAG, it is better to use the distributed graph processing framework to improve the scalability of the method}
+
+We focus on predicting future links that split by timestamps (the datasets that we used have timestamps of edge arrivals) rather than missing links
+that selected randomly from the network as the testing set [17][24]. Hence, we believe these methods are not comparable.
+
+
+\textbf{[R1D5]} \emph{TWPageRank works better on the scholar graphs than the general web graph. is it due to that the citation graph is an directed acyclic graph?}
+
+We have added
+the link predictability work [30] in the related work (Section 5), and the survey papers [17]\&[31].
+
+[17] M. A. Hasan and M. J. Zaki. A survey of link prediction in social
+networks. In Social Network Data Analytics, 2011.
+
+[30] L. L\"{u}, L. Pan, T. Zhou, Y. Zhang, and H. Stanley. Toward link
+predictablility of complex networks. PNAS, 118(8):2325每2330, 2015.
+
+[31] L. L\"{u} and T. Zhou. Link prediction in complex networks: A survey.
+Physica A, pages 1150每1170, 2011.
+
+\textbf{[R1D6]} \emph{MAG is used before description in Page 1.
+Some cells in Table 1 have two values, while others have one value. The meaning should be given explicitly}
+
+Yes, we have added RA as a comparison algorithm in the experimental study. However,
+we did not adopt the other algorithms for comparison since the complexities of these
+algorithms are at least $O(n^2)$ and they cannot work on large
+networks with millions of nodes. Thanks for the suggestion!
+
+
+%******************* reviewer 2 ***********************************************
+\line(1,0){500}
+
+\textbf{Response to the comments of Referee 2.}
+
+\textbf{[R2W1]} \emph{While practically the paper makes a good case about the particular application domain and its contributions there, the paper lacks technical depth.}
+
+We have added the accuracy test with the 95\% confidence intervals when $k$ is fixed
+to its default value and the number of links in the ground truth data (R2C2).
+Due to space limitations, we choose to report these experimental results in the Appendix B
+of the supplementary material, in which the results justify the effectiveness of our methods compared with the state-of-the-art methods.
+Thanks for the suggestion!
+
+
+\textbf{[R2W2]} \emph{Presentation could improve a bit since the paper has too much notation making it hard to read/follow.}
+
+We agree that small changes of the value $k$ may lead to different conclusions.
+This is why we tested the impact of varying $k$ in the experimental study.
+
+Similar to [35][39] that do not use the number of links in the
+ground truth data for testing accuracy, we keep the results using default values for $k$ in the experimental study.
+However, we further tested the ensemble-enabled approach with $k$ fixed to the number of links in
+the ground truth data. Due to space limitations, we choose to report these experimental results in the Appendix A
+of the supplementary material, in which the results justify the effectiveness and efficiency of our methods compared with the state-of-the-art methods.
+Thanks for the suggestion!
+
+It is worth mentioning that the datasets used in our experiments
+are more much sparser than the one used in [S1], which means that it
+is more difficult to predict links on our datasets. As a result, the top-$k$
+precision on our datasets, when $k$ is fixed to the number of links in the
+ground truth data, is too low to be useful in practice.
+
+
+
+[S1] Y. Yang, R. N. Lichtenwalter, and N. V. Chawla. Evaluating link prediction
+methods. Knowl Inf Syst, 45:751每782, 2015.
+
+[35] D. Song, D. Meyer, and D. Tao. Top-k link recommendation in social
+networks. In ICDM, 2015.
+
+[39] R. West, A. Paranjape, and J. Leskovec. Mining missing hyperlinks from
+human navigation traces: A case study of wikipedia. In WWW, 2015.
+
+
+
+\textbf{[R2D1]} \emph{There seem to be two "contradictory" sides to this paper. From one side, this is a great "applications" paper where existing techniques and some good intuition is used to get better results into an existing (practical) problem. From a purely research and technical perspective, the paper is on the weak side. Pagerank and (incremental) versions of it already exist and the paper makes little contributions there. The claim (made twice) in the related work section that "Different from previous work" this paper focuses on citations statistics doesn't hold water. The fact that the authors are considering a different application domain is not a contribution compared to past (incremental) pagerank papers. Unless there is a better claim to be made about the algorithmic side of the paper, as things stand, the paper makes minimal technical contributions.}
+
+We have added an accuracy comparison of our methods and
+BIGCLAM with varied hop distances in Section 4.2.4. The results show
+that all these methods are more accurate in predicting 2 or 3 hop distance
+links, and they are not good at predicting links with large hop distances.
+This is a general limitation of most (if not all) existing methods, which deserves  a full treatment in the future.
+
+Thanks for helping us to identify the limitation of our method!
+
+
+\textbf{[R2D2]} \emph{The abstract starts with the sentence "Ranking query independent scholarly articles is a critical and challenging task, due to the heterogeneous, evolving and dynamic nature of entities involved in scholarly articles". If three types of data (articles, authors and venues) that are updated (maybe) weekly is considered challenging in terms of heterogeneity and dynamicity then one must wonder what one can say about real-life scenarios with thousands of data types where hundreds/thousands of new items are inserted daily (consider any online merchant system) and were ranking is important (recommendations). In summary, this sentence should go. Not to mention that the task is not really "critical".}
+
+We have added a remark in the end of Section 3.6 such that our ensemble-enabled approach
+is a general method for decomposing the large network link prediction
+problem into smaller subproblems, which is not limited to NMF, and may be applied to other link prediction methods such as AA and RA.
+
+We have revised the bagging+ and bagging methods by replacing NMF with AA and RA, respectively, and  we evaluated and reported their performance
+in the Appendix C of the supplementary material. Our preliminary results indeed show that the
+ensemble-enabled AA and RA are very promising, though more sophisticated sampling techniques are needed for achieving better performances.  Thanks for this great comment!
+
+
+\textbf{[R2D3]} \emph{On page 4, you say "However, the resulting author citation graph to compute the prestige is typically too large to handle". This is a questionable statement. Maybe it is too large to handle "on a PC with 2 Intel Xeon E5每2630 2.4GHz CPUs and 64 GB of memory" but approaches like PageRank has been used for web-scale data so unless there is something that I am missing, this statement should also go (or explained better).}
+
+%******************* reviewer 3 ***********************************************
+\line(1,0){500}
+
+\textbf{Response to the comments of Referee 3.}
+
+
+\textbf{[R3C1]} \emph{The section could be preceded by clearly noting
+the two challenges (prediction/training complexity) in large networks,
+and how separate tools are used to handle each.}
+
+The parameters are designed to fit variety ranking with different demands. For example, the ground-truth RECOM prefer venue component while PFCTN prefer citation component. Furthermore, our parameters are quite flexible to choose in a certain range for suiting different ranking which we have discussed in Exp-4.3.
+
+
+\line(1,0){500}
+
+Your sincerely,
+
+Shuai Ma, Chen Gong, Renjun Hu, Dongsheng Luo, Chunming Hu, Jinpeng Huai
+
+\end{document}
