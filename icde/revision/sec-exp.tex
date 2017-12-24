@@ -299,6 +299,7 @@ The \PairAcc of \pagerank is much lower than the one of other algorithms, indica
 In the second set of tests, we used ground-truth \fcita to evaluate the effectiveness.
 %All algorithms produced results based on articles in ranking data.
 Aggregating parameters were selected as follows: $(\alpha, \beta, \gamma)$ = $(0.7, 0.1, 0.2)$ for \futurerank, $(a_{i1}, a_{i2}, a_{i3})$ = $(0.3, 0.6, 0.1)$ for \hhgrank ($i\in[1, 3]$), and $(\alpha, \beta)$ = $(0.8, 0.1)$ for \ensemblerank.
+\markedb{Note that with \fcita the selected $(\alpha, \beta)$ for \ensemblerank are quite different from the ones with \recom.} 
 %Here the citation component contributed most in \ensemblerank, since \fcita is based on citation information.
 To evaluate the effectiveness of ranking in different scenarios, we varied three factors in our tests: the splitting year $Y_s$, the number $T_p$ of published years of articles, and the difference $dif$ of past and future citation counts.
 %

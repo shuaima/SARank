@@ -2,6 +2,8 @@
 \label{sec-model}
 
 In this section, we first present Time-Weighted PageRank for evaluating  the importance of entities, defined as a combination of the prestige and popularity, and then introduce our ranking model \ensemblerank that assembles the importance of articles, venues and authors involved in scholarly articles.
+%
+\markedb{Before going into details, we would like to point out that although this work focuses on query independent ranking, it can also be used for query dependent ranking. Our ranking can serve as an indicator of the importance of items, and, given a specific query, it can either be directly used to rank a subset of relevant items or combine with any relevance scores.}
 
 %It further assembles the importance of heterogeneous entities involved to rank scholarly articles.
 %The model is based on PageRank~\cite{Brin98:PageRank}, which was initially designed for web pages and widely applied to many other tasks, including article ranking~\cite{Li08TSRanking,Richardson06:BPR,sayyadi09,Zhou07-CoRank}.
@@ -49,7 +51,7 @@ Moreover, considering that articles might reach their citation peaks in differen
 \centering
 \includegraphics[scale=0.48]{fig/yearly-references.eps}
 \vspace{-1ex}
-\caption{\small Citation statistics of scholarly articles that reports the (logscale) percentage of the number of citations of each year \wrt\ the total number of citations on \aan, \aminer and \magdata, respectively.}
+\caption{\small Citation statistics of scholarly articles that reports the {\em logscale percentage of the number of citations of each year} \wrt\ the total number of citations on \aan, \aminer and \magdata, respectively.}
 \label{fig-reference}
 \vspace{-3ex}
 \end{figure}
@@ -126,9 +128,14 @@ We then have $\rho(d\cdot M^T) \le ||d\cdot M^T||_1 \le d < 1$, as the spectral 
 
 %\stitle{Remarks}. Note that Eq.~(\ref{eq-twpr}) is indeed a general update rule of Weighted PageRank~\cite{Xing04:WPR,Ding11}, and the name of Time-Weighted PageRank comes from the use of time information of citations in the initial impact weight  $w(u,v)$ of Eq.~(\ref{eq-infl-weights}).
 
-
-
 \vspace{-1ex}
+\stitle{Remarks}. 
+\markedb{
+The goal of our TWPageRank is to change the values, \ie importance, on nodes. One may wonder why not directly change node values. However, it is difficult to handle as importance does not have a clear and closed-form definition and it may also cause problems for convergence.
+To our knowledge, there is no related work on changing node weights and it is yet unclear how to handle it. Finally, we set the weight of edges to achieve the goal since importance is essentially propagable through edges and it is also fair for all nodes.
+}
+
+
 \subsection{Ranking with Importance Assembling}
 \label{subsec-ensemble}
 
@@ -220,7 +227,9 @@ The author component computes the importance of authors with their published art
 %
 Similar to the venue component, we evaluate the importance of each author, and compute the average importance of the authors of an article as its {\em author importance score}.
 
-However, the resulting author citation graph to compute the prestige is typically too large to handle. Hence, we evaluate the prestige of an author, by using the average prestige of all articles published by the author. Similar to the venue component, the popularity of an author is also defined as the average popularity of her/his published articles. Finally, the prestige and popularity are combined to derive the importance in the same way as the citation component.
+%However, the resulting author citation graph to compute the prestige is typically too large to handle. 
+\markedb{To evaluate the importance of each author, an author citation graph needs firstly to be constructed such that (a) a node represents an author, and (b) a direct edge $(s,t)$ denotes that there exist articles published by author $s$ citing articles published by author $t$. It is not hard to image that the number of edges in the author citation graph is much larger than the number in the citation graph, which reaches xxx on \magdata. Handing such a graph is computationally expensive. }
+Hence, we evaluate the prestige of an author, by using the average prestige of all articles published by the author. Similar to the venue component, the popularity of an author is also defined as the average popularity of her/his published articles. Finally, the prestige and popularity are combined to derive the importance in the same way as the citation component.
 
 %, which can be directly obtained from the citation component,
 %to evaluate the authority of that author.
@@ -236,7 +245,7 @@ Recall that articles in our data are also associated with affiliation informatio
 %{\label{subsec-eerank}}
 
 
-\stitle{Ranking with importance assembling}. The aforementioned importance is finally assembled to produce the final ranking, as illustrated in Fig.~\ref{fig-rankmodel}. Before assembling, each component is properly scaled such that the average importance scores of citations, venues and authors are the same.  Let the scaled importance scores of article $v$ be $R_c(v)$, $R_v(v)$, and $R_a(v)$ from the citation, venue and author components, respectively. 
+\stitle{Ranking with importance assembling}. The aforementioned importance is finally assembled to produce the final ranking, as illustrated in Fig.~\ref{fig-rankmodel}. Before assembling, each component is properly scaled such that the average importance scores of citations, venues and authors are the same.  Let the scaled importance scores of article $v$ be $R_c(v)$, $R_v(v)$, and $R_a(v)$ from the citation, venue and author components, respectively.
 
 The final ranking score $R(v)$ of an article $v$ is aggregated as follows:
 
@@ -246,10 +255,15 @@ The final ranking score $R(v)$ of an article $v$ is aggregated as follows:
 R(v) =  \alpha R_c(v) + \beta R_v(v) + (1 - \alpha - \beta) R_a(v).
 \end{equation}
 \end{small}
-\noindent Here aggregating parameters $\alpha$ and $\beta$ and value $(1 - \alpha - \beta)$ regularize the contributions of the citation, venue and author information. Intuitively, these parameters indicate the intensity of the correlation between the importance of scholarly articles and the specific information.
+\noindent Here aggregating parameters $\alpha$ and $\beta$ and value $(1 - \alpha - \beta)$ regularize the contributions of the citation, venue and author information.
+%
+\markedb{
+By this, our model is able to fit to the various ranking scenarios in real-life applications, which hardly can be covered with one set of parameters. As will be shown in the experiments, our model performs well in two reasonable ranking scenarios by selecting quite different aggregating parameters, and, moreover, these parameters are indeed quite flexible to choose within a certain range, \ie $[0,1]$. }
+%Intuitively, these parameters indicate the intensity of the correlation between the importance of scholarly articles and the specific information. 
 
 
 \stitle{Remarks}. This work follows the graph-based formalization, and further develops efficient batch and incremental algorithms based on graphs for scholarly article ranking (Sections~\ref{sec-alg} \& \ref{sec-incAlg}). However, it is also possible to learn a discriminative model that directly optimizes certain loss functions for ranking, similar to \cite{Richardson06:BPR} for ranking Web pages.
+
 
 %\subsection{Framework}
 %\label{subsec-framework}
