@@ -51,7 +51,7 @@ We discuss the necessity and the selection of parameters right after Eq. (7) (le
 
 \textbf{[R1W2]} \emph{The extension of this method to query dependent ranking or other heterogeneous information network should be discussed.}
 
-This work focuses on query independent ranking because of its wide application in modern scholarly search engines such as Google Scholar, Semantic Scholar and Microsoft Academic Search. 
+This work focuses on query independent ranking because of its wide application in modern scholarly search engines such as Google Scholar, Semantic Scholar and Microsoft Academic Search.
 %
 We discuss the extension of query dependent ranking in the revised paper (left column, page 2), that our ranking can serve as an indicator of the importance of items, and, given a specific query, it can either be directly used to rank a subset of relevant items or combine with any relevance scores for ranking.
 %
@@ -60,14 +60,14 @@ The extension in other heterogeneous information networks is currently unclear, 
 
 \textbf{[R1D1]} \emph{In the time-weighted pagerank algorithm, the impacts are encoded into the edge weight. How about changing the values on nodes?}
 
-We clarify the reasons of not changing values on nodes at the revised version (left column, page 3). 
+We clarify the reasons of not changing values on nodes at the revised version (left column, page 3).
 The goal of our TWPageRank is to change the values, \ie importance, on nodes. One may wonder why not directly change node values. However, it is difficult to handle as importance does not have a clear and closed-form definition and it may also cause problems for convergence.
 To our knowledge, there is no related work on changing node weights and it is yet unclear how to handle it. Finally, we set the weight of edges to achieve the goal since importance is essentially propagable through edges and it is also fair for all nodes.
 
 
 \textbf{[R1D2]} \emph{This paper has an important observation that ¡°the impact of an article tends to decay with time after the peak time only.¡± However, I cannot see that from Figure 1. It is better to add some references to support the claim.}
 
-Figure 1 shows the logscale number of citations which grows exponentially with time 
+Figure 1 shows the logscale number of citations which grows exponentially with time
 %(due to the exponential growth of volume of  scientific publications)
 (which is highlighted in the revised version), instead of numbers of citations (\ie impacts) of individual articles.
 \marked{We add references [x,y] to support our observation.}
@@ -89,7 +89,7 @@ Yes, we agree that distributed processing is an important while independent prob
 
 \textbf{[R1D5]} \emph{TWPageRank works better on the scholar graphs than the general web graph. is it due to that the citation graph is an directed acyclic graph?}
 
-Yes. This work does not assume the DAG structure of scholar graphs, where cycles are allowed to exist (Observation, left column, page 5). 
+Yes. This work does not assume the DAG structure of scholar graphs, where cycles are allowed to exist (Observation, left column, page 5).
 Compared to general web graphs, the computation of TWPageRank on scholarly graphs is more efficient as a result of the temporal order of citations, which gives less SCC edge ratio shown in Table I (page 5). In addition, we further design incremental algorithms based on the temporal order, which also makes the computation more efficient. We have highlighted the statements about temporal order in the revised version.
 
 \textbf{[R1D6]} \emph{MAG is used before description in Page 1. Some cells in Table 1 have two values, while others have one value. The meaning should be given explicitly}
@@ -116,9 +116,9 @@ Yes, we have gone over the paper and improved the presentation to make it more u
 
 \textbf{[R2D1]} \emph{There seem to be two ``contradictory" sides to this paper. From one side, this is a great ``applications" paper where existing techniques and some good intuition is used to get better results into an existing (practical) problem. From a purely research and technical perspective, the paper is on the weak side. Pagerank and (incremental) versions of it already exist and the paper makes little contributions there. The claim (made twice) in the related work section that "Different from previous work" this paper focuses on citations statistics doesn't hold water. The fact that the authors are considering a different application domain is not a contribution compared to past (incremental) pagerank papers. Unless there is a better claim to be made about the algorithmic side of the paper, as things stand, the paper makes minimal technical contributions.}
 
-We thank the reviewer for appreciating the practice merit of our work which is drawn from an important and practical problem. 
+We thank the reviewer for appreciating the practice merit of our work which is drawn from an important and practical problem.
 %
-And we believe this paper also stands from research and technique perspective. To our knowledge, incremental algorithms of time-weighted PageRank has not gained enough attentions. Furthermore, the only existing dynamic scholarly article ranking solution [22] is based on a impractical assumption that there is no citations between articles of the same year. Therefore, we have designed the incremental time-weighted PageRank algorithm for scholarly article ranking which has its unique features.  To conclude, we are not simply applying existing techniques into a different domain. 
+And we believe this paper also stands from research and technique perspective. To our knowledge, incremental algorithms of time-weighted PageRank has not gained enough attentions. Furthermore, the only existing dynamic scholarly article ranking solution [22] is based on a impractical assumption that there is no citations between articles of the same year. Therefore, we have designed the incremental time-weighted PageRank algorithm for scholarly article ranking which has its unique features.  To conclude, we are not simply applying existing techniques into a different domain.
 %
 We have further clarified \marked{our contributions in Introduction} and claimed the technique difference of our algorithm in Related Work.
 
@@ -146,7 +146,7 @@ Yes, we agree that more examples (especially on how to generate components from 
 
 \textbf{[R3W2\&D4]} \emph{The memory cost of the algorithms is better to be reported in the experiments.}
 
-We have added the memory cost in experiment Exp-x.x. Thanks for the suggestion!
+We have added the memory cost of our algorithm which uses 49.4GB when using data before 2017 in experiment Exp-x.x. Thanks for the suggestion!
 
 \textbf{[R3D1]} \emph{Although the authors have a detailed introduction about the growing data, detailed figures about the data are recommended in the introduction.}
 
