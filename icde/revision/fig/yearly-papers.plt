@@ -12,9 +12,9 @@ set xr [1995:2015]
 #set xr [1999:2015]
 set xtics ("1995" 1995, "1997" 1997, "1999" 1999, "2001" 2001, "2003" 2003, "2005" 2005, "2007" 2007, "2009" 2009, "2011" 2011, "2013" 2013, "2015" 2015) offset -0.6, -1.2 rotate by 45
 
-set yr [0:100]
-set ytics ("0" 0, "25" 25, "50" 50, "75" 75, "100" 100)
-#set logscale y 3
+set yr [9:100]
+set ytics ("9" 9, "16" 16, "27" 27, "50" 50, "100" 100)
+set logscale y 3
 
 #set ylabel "(log) # of yearly-references" offset 1.3
 set ylabel "% of papers" offset 1.3
