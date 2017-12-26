@@ -141,7 +141,7 @@ We have downgraded the tone and changed it into ``practical and difficult". Than
 
 \textbf{[R2D3]} \emph{On page 4, you say "However, the resulting author citation graph to compute the prestige is typically too large to handle". This is a questionable statement. Maybe it is too large to handle "on a PC with 2 Intel Xeon E5¨C2630 2.4GHz CPUs and 64 GB of memory" but approaches like PageRank has been used for web-scale data so unless there is something that I am missing, this statement should also go (or explained better).}
 
-We have removed the sentence and explained the statement better. Moreover specifically, we add the details of the generation of the author citation graph and \marked{the size of the graph} which makes it computationally expensive (Author Component, left column, page 3).
+We have removed the sentence and explained the statement better. Moreover specifically, we add the details of the generation of the author citation graph \marked{with and 115 billion edges 7.12 billion edges} which makes it computationally expensive (Author Component, left column, page 3).
 
 %******************* reviewer 3 ***********************************************
 \line(1,0){500}
@@ -155,7 +155,7 @@ Yes, we agree that more examples (especially on how to generate components from 
 
 \textbf{[R3W2\&D4]} \emph{The memory cost of the algorithms is better to be reported in the experiments.}
 
-\marked{We have added the memory cost in experiment Exp-3. Indeed, the memory cost of (PRank, FRank, SARank) is (12.65GB, 16.42GB, 49.42GB) while set the $Y_s=2015$ on MAG, respectively, and the memory cost of HRank is while set the the $Y_s=2014$ on MAG. }
+\marked{We have added the memory cost in experiment Exp-3. Indeed, the memory cost of (PRank, FRank, SARank) is (12.65GB, 16.42GB, 49.42GB) while set the $Y_s=2015$ on MAG, respectively, and the memory cost of HRank is while set the $Y_s=2014$ on MAG. }
 
 \textbf{[R3D1]} \emph{Although the authors have a detailed introduction about the growing data, detailed figures about the data are recommended in the introduction.}
 
