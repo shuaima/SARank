@@ -49,13 +49,17 @@ Moreover, considering that articles might reach their citation peaks in differen
 
 \begin{figure}
 \centering
-\includegraphics[scale=0.48]{fig/yearly-references.eps}
-\vspace{-1ex}
-\caption{\small Citation statistics of scholarly articles that reports the {\em logscale percentage of the number of citations of each year} \wrt\ the total number of citations on \aan, \aminer and \magdata, respectively.}
-\label{fig-reference}
+\hspace{-4ex}
+\subfigure{\label{fig-paper}
+\includegraphics[scale=0.41]{fig/yearly-papers.eps}}
+\hspace{-4ex}
+\subfigure{\label{fig-citation}
+\includegraphics[scale=0.41]{fig/yearly-references.eps}}
+\caption{\small Statistics of scholarly articles that reports the {\em logscale percentage of the number of papers (left) and citations (right) of each year} \wrt\ the total number of papers and citations on \aan, \aminer and \magdata, respectively.}
+\label{fig-data-analysis}
 \vspace{-3ex}
 \end{figure}
-
+%[{\scriptsize a}] [{\scriptsize b}]
 
 Based on the above discussion, we propose TWPageRank that evaluates the prestige of nodes (\eg scholarly articles) in a directed graph, such that each node is attached with time information. It differs from PageRank by weighing the influence propagation using the {\em impact weights on edges}, which represent the relative amounts of time-dependent prestige that should be propagated from the edge sources to targets.
 %
@@ -75,7 +79,7 @@ By default, Eq.~(\ref{eq-infl-weights}) uses years as its time granularity. Note
 For the sake of completeness, we further set $w(u,v)$ to $0$ if there does not exist an edge from $u$ to $v$ in the graph.
 
 
-For scholarly article ranking, $T_u$ is the publication time of article $u$ and $Peak_v$ should be ideally set to the time when article $v$ has the highest impact. Basically, it could simply be the year when article $v$ obtains the largest number of citations. However, recent work reveals that the volume of scientific publications as well as the number of citations grow exponentially with time~\cite{Dong2017KDD,BornmannM15}. We also collect and report the citation statistics on three scholarly datasets in Fig.~\ref{fig-reference}, which verifies the exponential distribution. Hence, we adopt the {\em scaled} number of citations $\Psi_v^{(t)}=\Phi_v^{(t)} / \log Z^{(t)}$ such that $\Phi_v^{(t)}$ and $Z^{(t)}$ are the number of citations of article $v$ at year $t$ and the total number of citations at year $t$, respectively. The peak time $Peak_v$ is the time that maximizes $\Psi_v^{(t)}$.
+For scholarly article ranking, $T_u$ is the publication time of article $u$ and $Peak_v$ should be ideally set to the time when article $v$ has the highest impact. Basically, it could simply be the year when article $v$ obtains the largest number of citations. However, recent work reveals that the volume of scientific publications and the number of citations grow exponentially with time~\cite{Dong2017KDD,BornmannM15}. We also collect and report the volume and citation statistics on three scholarly datasets in Fig.~\ref{fig-data-analysis}, which verifies the exponential distribution. Hence, we adopt the {\em scaled} number of citations $\Psi_v^{(t)}=\Phi_v^{(t)} / \log Z^{(t)}$ such that $\Phi_v^{(t)}$ and $Z^{(t)}$ are the number of citations of article $v$ at year $t$ and the total number of citations at year $t$, respectively. The peak time $Peak_v$ is the time that maximizes $\Psi_v^{(t)}$.
 %(\aan, \aminer and \magdata)
 % since scholarly data is dynamic and continuously growing
 %, and the increased number of references of each article over time
@@ -228,7 +232,7 @@ The author component computes the importance of authors with their published art
 Similar to the venue component, we evaluate the importance of each author, and compute the average importance of the authors of an article as its {\em author importance score}.
 
 %However, the resulting author citation graph to compute the prestige is typically too large to handle.
-\markedb{To evaluate the importance of each author, an author citation graph needs firstly to be constructed such that (a) a node represents an author, and (b) a direct edge $(s,t)$ denotes that there exist articles published by author $s$ citing articles published by author $t$. It is not hard to image that the number of edges in the author citation graph is much larger than the number in the citation graph, which reaches to 4.5 billion on \magdata. Handing such a graph is computationally expensive. }
+\markedb{To do this, an author citation graph needs to be constructed such that (a) a node represents an author, and (b) a direct edge $(s,t)$ denotes that there exist articles of author $s$ citing articles of author $t$. It is not hard to image that the number of edges in the author citation graph is much larger than the number in the citation graph, which reaches to 7.12  billion on the largest \magdata (\ie the memory cost of storage only is 57GB). It is computationally expensive to compute prestige of authors with TWPageRank on that graph.}
 Hence, we evaluate the prestige of an author, by using the average prestige of all articles published by the author. Similar to the venue component, the popularity of an author is also defined as the average popularity of her/his published articles. Finally, the prestige and popularity are combined to derive the importance in the same way as the citation component.
 
 %, which can be directly obtained from the citation component,

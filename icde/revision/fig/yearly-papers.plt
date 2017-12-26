@@ -1,6 +1,6 @@
 set terminal postscript portrait enhanced color "Times-Roman" 14
 set output "yearly-papers.eps"
-set size 0.7, 0.22
+set size 0.65, 0.22
 set grid
 set grid noxtics back linewidth 0.1
 set border
@@ -12,8 +12,8 @@ set xr [1995:2015]
 #set xr [1999:2015]
 set xtics ("1995" 1995, "1997" 1997, "1999" 1999, "2001" 2001, "2003" 2003, "2005" 2005, "2007" 2007, "2009" 2009, "2011" 2011, "2013" 2013, "2015" 2015) offset -0.6, -1.2 rotate by 45
 
-set yr [0.33:9]
-set ytics ("0.33" 0.33, "1.0" 1, "3.0" 3, "9.0" 9)
+set yr [0.3:27]
+set ytics ("0.3" 0.3, "1.0" 1, "3.0" 3, "9.0" 9, "27" 27)
 set logscale y 3
 
 #set ylabel "(log) # of yearly-references" offset 1.3

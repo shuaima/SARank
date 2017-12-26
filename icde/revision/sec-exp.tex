@@ -299,7 +299,7 @@ The \PairAcc of \pagerank is much lower than the one of other algorithms, indica
 In the second set of tests, we used ground-truth \fcita to evaluate the effectiveness.
 %All algorithms produced results based on articles in ranking data.
 Aggregating parameters were selected as follows: $(\alpha, \beta, \gamma)$ = $(0.7, 0.1, 0.2)$ for \futurerank, $(a_{i1}, a_{i2}, a_{i3})$ = $(0.3, 0.6, 0.1)$ for \hhgrank ($i\in[1, 3]$), and $(\alpha, \beta)$ = $(0.8, 0.1)$ for \ensemblerank.
-\markedb{Note that with \fcita the selected $(\alpha, \beta)$ for \ensemblerank are quite different from the ones with \recom.} 
+\markedb{Note that with \fcita the selected $(\alpha, \beta)$ for \ensemblerank are quite different from the ones with \recom.}
 %Here the citation component contributed most in \ensemblerank, since \fcita is based on citation information.
 To evaluate the effectiveness of ranking in different scenarios, we varied three factors in our tests: the splitting year $Y_s$, the number $T_p$ of published years of articles, and the difference $dif$ of past and future citation counts.
 %
@@ -368,6 +368,8 @@ consistently run faster than all competitors, especially with less update data.
 For TWPageRank computation, algorithm \inctwprscc is on average (1.9, 3.8) and (2.5, 4.1) times faster than (\twprscc, \powtwprscc) on \aminer and \magdata, respectively.
 %
 For scholarly article ranking, algorithm \incensemble is on average (1.7, 3.1, 2.8, 117) and (2.0, 3.0, 4.4, 245) times faster than (\batensemble, \powensemble, \futurerank, \hhgrank) on \aminer and \magdata, respectively.
+
+\markedb{The memory cost is an important factor of efficiency. We thus collect the memory use on the largest \magdata that (\futurerank, \ensemblerank) cost (16.42GB, 49.42GB) memory when $Y_s=2015$, and \hhgrank costs 61.37GB when $Y_s=2014$. Interestingly, our \ensemblerank model costs more memory than \futurerank due to its model complexity, while it is more efficient with our batch and incremental algorithms.}
 
 %\etitle{Remarks}.
 In our tests we adopted a yearly update policy due the limitation of  available time information. In practice our algorithms may bring more efficiency benefits since the update is usually more frequent, such that the data updates are smaller and the unaffected area is very likely much larger.
