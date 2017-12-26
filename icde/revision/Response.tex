@@ -30,9 +30,9 @@
 
 Dear Reviewers,
 
-This is the response letter concerning the revised version of our submission to IEEE International Conference on Data Engineering 2018, \emph{Query Independent Scholarly Article Ranking}.
+This is the response letter regarding the revised version of our submission to IEEE International Conference on Data Engineering 2018, \emph{Query Independent Scholarly Article Ranking}.
 
-The paper has been substantially revised according to the referees¡¯ comments. In particular, (1) we have further clarified our contributions, (2) we have explained the author component better, (3) we have added figures to show the statistics of data, (4) we have reported the memory cost in experience, (5) we have added related work of time delaying problem, and (6) we have also taken this opportunity to rewrite several parts of the paper to improve the presentation.
+The paper has been substantially revised according to the referees¡¯ comments. In particular, we have (1) further clarified our contributions (Section I), (2) added figures to show the statistics of data (3) explained the author component better,  (4) reported the memory cost in experiments, (5) added related work of time delaying problem, and (6) taken this opportunity to rewrite several parts of our paper to improve the presentation.
 
 We would like to thank all the referees for their thorough reading of our paper and for their valuable comments.
 
@@ -45,7 +45,7 @@ Below please find our detailed responses to the comments by the referees.
 
 \textbf{[R1W1]} \emph{Formula 7 in SARank still needs parameters, which are not easy to set.}
 
-We discuss the necessity and the selection of parameters right after Eq. (7) (left column, page 4). More specifically, these parameters enable our model to fit to the various ranking scenarios in real-life applications, which hardly can be covered with one set of parameters. As be shown in the experiments, our model performs well in two reasonable ranking scenarios (with \recom and \fcita) by selecting quite different aggregating parameters, and, moreover, these parameters are indeed quite flexible to choose within a certain range, \ie $[0,1]$, as a) the optimal \PairAcc is obtained within a single region, b) the \PairAcc keeps at a high level within a certain ($\alpha$, $\beta$) combination space around the optimal region, and c) the optimal parameters on the same set of ground-truth are very similar across different datasets.
+We discuss the necessity and the selection of parameters right after Eq. (7) (left column, page 4). More specifically, these parameters enable our model to fit to the various ranking scenarios in real-life applications, which hardly can be covered with one set of parameters. As be shown in the experiments, our model performs well in two reasonable ranking scenarios (with \recom and \fcita) by using quite different aggregating parameters, and, moreover, these parameters are indeed quite flexible to choose within a certain range, \ie $[0,1]$, as a) the optimal \PairAcc is obtained within a single region, b) the \PairAcc keeps at a high level within a certain ($\alpha$, $\beta$) combination space around the optimal region, and c) the optimal parameters on the same set of ground-truth are very similar across different datasets (please also refer to Exp-4.3).
 
 %The parameters are designed to fit variety ranking with different demands. For example, the ground-truth RECOM prefer venue component while PFCTN prefer citation component. Furthermore, our parameters are quite flexible to choose in a certain range for suiting different ranking which we have discussed in Exp-4.3.
 
@@ -60,23 +60,24 @@ The extension in other heterogeneous information networks is currently unclear, 
 
 \textbf{[R1D1]} \emph{In the time-weighted pagerank algorithm, the impacts are encoded into the edge weight. How about changing the values on nodes?}
 
-We clarify the reasons of not changing values on nodes at the revised version (left column, page 3).
-The goal of our TWPageRank is to change the values, \ie importance, on nodes. One may wonder why not directly change node values. However, it is difficult to handle as importance does not have a clear and closed-form definition and it may also cause problems for convergence.
-To our knowledge, there is no related work on changing node weights and it is yet unclear how to handle it. Finally, we set the weight of edges to achieve the goal since importance is essentially propagable through edges and it is also fair for all nodes.
+We clarify the reasons of not changing values on nodes at the revised version (Remarks, left column, page 3). 
+The goal of our TWPageRank is to change node values, \ie importance.
+%One may wonder why not directly change node values. 
+Directly changing node values, however, is difficult to handle as importance does not have a clear and closed-form definition and it may also cause problems for convergence.
+To our knowledge, there is no related work on changing node weights and it is yet unclear how to handle it. Finally, we use impact weights to achieve the goal since importance is essentially propagable through edges and it is also fair for all nodes.
 
 
 \textbf{[R1D2]} \emph{This paper has an important observation that ¡°the impact of an article tends to decay with time after the peak time only.¡± However, I cannot see that from Figure 1. It is better to add some references to support the claim.}
 
-Figure 1 shows the logscale number of citations which grows exponentially with time
-%(due to the exponential growth of volume of  scientific publications)
-(which is highlighted in the revised version), instead of numbers of citations (\ie impacts) of individual articles.
-\marked{We add references [x,y] to support our observation.}
+Figure 1 shows the logscale percentage of the number of citations of each year which grows exponentially with time (due to the exponential growth of volume of  scientific publications), instead of numbers of citations (\ie impacts) of individual articles.
+We have highlighted it in the revised version (Figure 1, page 2).
+\marked{Moreover, we add references [x,y] to support our observation.}
 
 
 
 \textbf{[R1D3]} \emph{How to determine the peak time for the PeakMul pattern?}
 
-The PeakMul pattern is originally defined in [19]:  the height of a peak should be at least 75\% of the maximum peak height, and two consecutive peaks should be separated by more than two years. In our work, we have simplified the pattern and only use the latest peak time which we have discussed in Section II-A (left column, page 3).
+The PeakMul pattern is originally defined in [19]:  the height of a peak should be at least 75\% of the maximum peak height, and two consecutive peaks should be separated by more than two years. In our work, we unify the five patterns and only use the latest peak time which we have discussed in Section II-A (para 1, left column, page 3).
 
 
 [19]  T. Chakraborty, S. Kumar, P. Goyal, N. Ganguly, and A. Mukherjee, ¡°On the categorization of scientific citation profiles in computer science,¡± Commun. ACM, vol. 58, no. 9, 2015.
@@ -84,17 +85,18 @@ The PeakMul pattern is originally defined in [19]:  the height of a peak should 
 
 \textbf{[R1D4]} \emph{For large scholar graph, such as MAG, it is better to use the distributed graph processing framework to improve the scalability of the method}
 
-Yes, we agree that distributed processing is an important while independent problem which we have already placed in our future work (Conclusions, left column, page 12). %Thanks for the suggestion!
+Yes, we agree that distributed processing is an important while independent problem which we have already placed in our future work (Conclusions, page 12). %Thanks for the suggestion!
 
 
 \textbf{[R1D5]} \emph{TWPageRank works better on the scholar graphs than the general web graph. is it due to that the citation graph is an directed acyclic graph?}
 
-Yes. This work does not assume the DAG structure of scholar graphs, where cycles are allowed to exist (Observation, left column, page 5).
-Compared to general web graphs, the computation of TWPageRank on scholarly graphs is more efficient as a result of the temporal order of citations, which gives less SCC edge ratio shown in Table I (page 5). In addition, we further design incremental algorithms based on the temporal order, which also makes the computation more efficient. We have highlighted the statements about temporal order in the revised version.
+Yes. This work does NOT assume the DAG structure of scholar graphs, where cycles are allowed to exist (Observation, left column, page 5).
+Compared to general web graphs, the computation of TWPageRank on scholarly graphs is more efficient as a result of the temporal order of citations, which gives less SCC edge ratio as shown in Table I (page 5). In addition, we further design incremental algorithms based on the temporal order, which also makes the computation more efficient. 
+%We have highlighted the statements about temporal order in the revised version.
 
 \textbf{[R1D6]} \emph{MAG is used before description in Page 1. Some cells in Table 1 have two values, while others have one value. The meaning should be given explicitly}
 
-Yes, we have revised as suggested (right column, page 1 \& right column, page 4). Thanks for the suggestion!
+Yes, we have revised our paper as suggested (right column, page 1 \& right column, page 5). Thanks for the suggestion!
 
 
 %******************* reviewer 2 ***********************************************
@@ -110,7 +112,8 @@ We think that the techniques proposed also have their own interests: a) An ensem
 
 \textbf{[R2W2]} \emph{Presentation could improve a bit since the paper has too much notation making it hard to read/follow.}
 
-Yes, we have gone over the paper and improved the presentation to make it more understandable. Thanks for the suggestion!
+\marked{Yes, we have gone over the paper and improved the presentation to make it more understandable. }
+%Thanks for the suggestion!
 
 
 
@@ -118,9 +121,15 @@ Yes, we have gone over the paper and improved the presentation to make it more u
 
 We thank the reviewer for appreciating the practice merit of our work which is drawn from an important and practical problem.
 %
-And we believe this paper also stands from research and technique perspective. To our knowledge, incremental algorithms of time-weighted PageRank has not gained enough attentions. Furthermore, the only existing dynamic scholarly article ranking solution [22] is based on a impractical assumption that there is no citations between articles of the same year. Therefore, we have designed the incremental time-weighted PageRank algorithm for scholarly article ranking which has its unique features.  To conclude, we are not simply applying existing techniques into a different domain.
+And we believe this paper also stands from research and technique perspective (Please also refer to our response to R2W1). 
 %
-We have further clarified \marked{our contributions in Introduction} and claimed the technique difference of our algorithm in Related Work.
+The property of scholarly data makes the incremental computation of (time-weighted) PageRank quite different from on general graphs, which, to our knowledge, has not gained enough attentions. Furthermore, the only existing dynamic scholarly article ranking solution [22] is based on a impractical assumption that there is no citations between articles of the same years. 
+%
+Therefore, we have designed the incremental time-weighted PageRank algorithm for scholarly graphs which has its own unique features.  To conclude, we are not simply applying existing techniques into a different domain.
+%
+We have further clarified \marked{our contributions in Introduction} and claimed the technique difference of our algorithm in Related Work. 
+%
+
 
 [22]  R. Ghosh, T. Kuo, C. Hsu, S. Lin, and K. Lerman, ¡°Time-aware ranking in dynamic citation networks,¡± in ICDM Workshops, 2011.
 
@@ -146,7 +155,7 @@ Yes, we agree that more examples (especially on how to generate components from 
 
 \textbf{[R3W2\&D4]} \emph{The memory cost of the algorithms is better to be reported in the experiments.}
 
-We have added the memory cost of our algorithm which uses 49.4GB when using data before 2017 in experiment Exp-x.x. Thanks for the suggestion!
+\marked{We have added the memory cost of our algorithm which uses 49.4GB when using data before 2017 in experiment Exp-x.x. }
 
 \textbf{[R3D1]} \emph{Although the authors have a detailed introduction about the growing data, detailed figures about the data are recommended in the introduction.}
 
@@ -154,7 +163,7 @@ Yes, \marked{we add the volume statistics of the growing data in Figure 1.}
 
 \textbf{[R3D3]} \emph{It is suggested that the authors should include some references to papers addressing the time delaying problem such as temporal graph, since it is related to the topic.}
 
-Yes. We include references to temporal graphs in Related Work (page 12).
+Yes. We have discussed the correlation between our work and temporal graph and include necessary references in Related Work.
 
 \line(1,0){500}
 
