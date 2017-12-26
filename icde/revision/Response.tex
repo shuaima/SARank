@@ -60,9 +60,9 @@ The extension in other heterogeneous information networks is currently unclear, 
 
 \textbf{[R1D1]} \emph{In the time-weighted pagerank algorithm, the impacts are encoded into the edge weight. How about changing the values on nodes?}
 
-We clarify the reasons of not changing values on nodes at the revised version (Remarks, left column, page 3). 
+We clarify the reasons of not changing values on nodes at the revised version (Remarks, left column, page 3).
 The goal of our TWPageRank is to change node values, \ie importance.
-%One may wonder why not directly change node values. 
+%One may wonder why not directly change node values.
 Directly changing node values, however, is difficult to handle as importance does not have a clear and closed-form definition and it may also cause problems for convergence.
 To our knowledge, there is no related work on changing node weights and it is yet unclear how to handle it. Finally, we use impact weights to achieve the goal since importance is essentially propagable through edges and it is also fair for all nodes.
 
@@ -91,7 +91,7 @@ Yes, we agree that distributed processing is an important while independent prob
 \textbf{[R1D5]} \emph{TWPageRank works better on the scholar graphs than the general web graph. is it due to that the citation graph is an directed acyclic graph?}
 
 Yes. This work does NOT assume the DAG structure of scholar graphs, where cycles are allowed to exist (Observation, left column, page 5).
-Compared to general web graphs, the computation of TWPageRank on scholarly graphs is more efficient as a result of the temporal order of citations, which gives less SCC edge ratio as shown in Table I (page 5). In addition, we further design incremental algorithms based on the temporal order, which also makes the computation more efficient. 
+Compared to general web graphs, the computation of TWPageRank on scholarly graphs is more efficient as a result of the temporal order of citations, which gives less SCC edge ratio as shown in Table I (page 5). In addition, we further design incremental algorithms based on the temporal order, which also makes the computation more efficient.
 %We have highlighted the statements about temporal order in the revised version.
 
 \textbf{[R1D6]} \emph{MAG is used before description in Page 1. Some cells in Table 1 have two values, while others have one value. The meaning should be given explicitly}
@@ -121,13 +121,13 @@ We think that the techniques proposed also have their own interests: a) An ensem
 
 We thank the reviewer for appreciating the practice merit of our work which is drawn from an important and practical problem.
 %
-And we believe this paper also stands from research and technique perspective (Please also refer to our response to R2W1). 
+And we believe this paper also stands from research and technique perspective (Please also refer to our response to R2W1).
 %
-The property of scholarly data makes the incremental computation of (time-weighted) PageRank quite different from on general graphs, which, to our knowledge, has not gained enough attentions. Furthermore, the only existing dynamic scholarly article ranking solution [22] is based on a impractical assumption that there is no citations between articles of the same years. 
+The property of scholarly data makes the incremental computation of (time-weighted) PageRank quite different from on general graphs, which, to our knowledge, has not gained enough attentions. Furthermore, the only existing dynamic scholarly article ranking solution [22] is based on a impractical assumption that there is no citations between articles of the same years.
 %
 Therefore, we have designed the incremental time-weighted PageRank algorithm for scholarly graphs which has its own unique features.  To conclude, we are not simply applying existing techniques into a different domain.
 %
-We have further clarified \marked{our contributions in Introduction} and claimed the technique difference of our algorithm in Related Work. 
+We have further clarified \marked{our contributions in Introduction} and claimed the technique difference of our algorithm in Related Work.
 %
 
 
@@ -155,7 +155,7 @@ Yes, we agree that more examples (especially on how to generate components from 
 
 \textbf{[R3W2\&D4]} \emph{The memory cost of the algorithms is better to be reported in the experiments.}
 
-\marked{We have added the memory cost of our algorithm which uses 49.4GB when using data before 2017 in experiment Exp-x.x. }
+\marked{We have added the memory cost in experiment Exp-3. Indeed, the memory cost of (PRank, FRank, SARank) is (12.65GB, 16.42GB, 49.42GB) while set the $Y_s=2015$ on MAG, respectively, and the memory cost of HRank is while set the the $Y_s=2014$ on MAG. }
 
 \textbf{[R3D1]} \emph{Although the authors have a detailed introduction about the growing data, detailed figures about the data are recommended in the introduction.}
 
