@@ -18,8 +18,8 @@ Our work belongs to the last category aiming at fully employing information avai
 PageRank \cite{Brin98:PageRank} and its extensions have been extensively used for citation analyses \cite{Waltman2014}. While PageRank equally propagates scores along outlinks, Weighted PageRank extends PageRank by distributing scores based on certain criteria such as popularity of pages~\cite{Xing04:WPR} or authority of authors~\cite{Ding11}.
 %Both these approaches fail to capture the time-dependent characteristics, a key factor for scholarly article ranking.
 \markedb{Scholarly graph is a kind of temporal graphs~\cite{temporalgraph} and temporal information is a key factor for scholarly article ranking.}
-There has been work extending temporal information into PageRank, \eg exponentially decayed weights~\cite{Li08TSRanking}, exponentially decayed initial vectors~\cite{WalkerXKM07} and time-dependent weights based on co-authorship~\cite{FIALA2012370}. 
-%Different from previous work, 
+There has been work extending temporal information into PageRank, \eg exponentially decayed weights~\cite{Li08TSRanking}, exponentially decayed initial vectors~\cite{WalkerXKM07} and time-dependent weights based on co-authorship~\cite{FIALA2012370}.
+%Different from previous work,
 Differently, our Time-Weighted PageRank \markedb{is inspired by an analysis of impacts of articles} and discriminately propagates scores in terms of statistics of citations.
 
 
@@ -28,7 +28,7 @@ Dynamic algorithms have proven useful for various tasks by avoiding computing fr
 To our knowledge, little concern has been paid to dynamic scholarly article ranking except that~\cite{GhoshKHLL11} uses PageRank in dynamic citation networks. However, its solution is based on a strong and impractical assumption that there are no citations between articles in the same years.
 Further, although there exist several studies on incremental PageRank computation~\cite{DesikanPSK05,AbiteboulPC03,WuR09} and on incremental PageRank approximation \cite{BahmaniCG10,BahmaniKMU12}, they are not designed for scholarly article ranking.
 %
-\markedb{In this work, we study dynamic scholarly article ranking in the general case and develop our incremental algorithm in terms of the citation characteristics, which has never been exploited before.}
+\markedb{In this work, we study dynamic scholarly article ranking in the general case and develop our incremental algorithm based on the citation characteristics, which has never been exploited before.}
 %Different from previous work, we study scholarly article ranking in a dynamic environment in terms of the citation characteristics of scholarly articles, which has never been exploited before.
 
 

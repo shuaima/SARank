@@ -108,10 +108,11 @@ It first computes the block-wise graph $G'$ by treating \sccs in $G$ as single n
 The vector $PR$ returned by~\twprscc converges such that $||PR-PR^*||_1 < \epsilon$ where vector $PR^*$ is the convergent TWPageRank vector~\cite{Berkhin05}.
 \end{cor}
 
+\eat{
 \begin{proofSketch}
 We first prove that the sum of changes after another iteration from $PR$, \ie $||d M^T PR + (1-d)e/n-PR||_1$, is smaller than $\epsilon$, and then prove that $||PR^*-PR||_1$ is smaller than the sum of changes computed earlier. %(see~\cite {ERank-full} for details). % since $\epsilon > ||PR^+-PR||_1 = ||d\cdot M^T \cdot (PR-PR^*)||_1 + ||PR-PR^*||_1$.
 \end{proofSketch}
-
+}
 
 %%% detailed proof sketch
 \eat{
@@ -214,6 +215,7 @@ Indeed, on (\aan, \aminer, \magdata), the nodes in the largest SCC amount to (0.
 
 %\subsection{Time \& Space Complexity Analyses}
 
+\eat{   %% time & space complexity
 \stitle{Time \& space complexity analyses of the batch algorithm}.
 %
 By Lemma~\ref{prop-venue-time-complexity} and the analyses in Section~\ref{subsec-bat-alg}, one can verify that algorithm \batensemble takes $O(|V^c|+|V^v|+|E^c_a|+|E^v_a|+t|E^c_i|+t|E^v_i|+|PA|)$ time, where $|PA|$ is the total number of author-article relationships, and takes $O(7|V^c|+2|V^c{'}|+4|V^v|+2|V^v{'}|+|E^c|+|E^c{'}|+|E^v|+|E^v{'}|+2|A|+|D|)$ space, where $|A|$ is the number of authors and $|D|$ is the size of academic graph data $D$.
@@ -227,6 +229,14 @@ By Lemma~\ref{prop-venue-time-complexity} and the analyses in Section~\ref{subse
 
 The key of algorithm \batensemble is to compute TWPageRank with algorithm \twprscc.
 Compared with the traditional power method~\cite{Brin98:PageRank}, our block-wise algorithm \twprscc uses $(2|V^c{'}|+|E^c{'}|)$ and $(2|V^v{'}|+|E^v{'}|)$ extra space to store the block-wise graphs $G^c{'}(V^c{'},E^c{'})$ of $G^c$ and $G^v{'}(V^v{'},E^v{'})$ of $G^v$ and their topological orders, while speeds up computation by $O((t-1)(|E^c_a|+|E^v_a|))$.
+}  %%% eat
+
+\stitle{Time complexity analysis of the batch algorithm}.
+%
+By Lemma~\ref{prop-venue-time-complexity} and the analyses in Section~\ref{subsec-bat-alg}, one can verify that algorithm \batensemble takes $O(|V^c|+|V^v|+|E^c_a|+|E^v_a|+t|E^c_i|+t|E^v_i|+|PA|)$ time, where $|PA|$ is the total number of author-article relationships.
+%
+The key of algorithm \batensemble is to compute TWPageRank with algorithm \twprscc.
+Compared with the traditional power method~\cite{Brin98:PageRank}, our block-wise algorithm \twprscc speeds up computation by $O((t-1)(|E^c_a|+|E^v_a|))$ at an extra space cost for the block-wise graphs of $G^c$ and $G^v$ and their topological orders.
 
 %. That is, \batensemble speeds up computation with a reasonable extra space.
 

@@ -2,8 +2,9 @@
 \label{sec-intro}
 
 Query independent ranking of scholarly articles has drawn significant attentions from both academia~\cite{Garfield471,Hirsch15112005,Liang16AAAI,Jiang12-MRank,Waltman2014,Wang16TIST,Ng11KDD,Li08TSRanking,
-Wang13AAAI,sayyadi09,WalkerXKM07,TanLMGSW16} and industry~\cite{g-scholar,Sinha15:MAG,sem-scholar}.
+Wang13AAAI,sayyadi09,WalkerXKM07} and industry~\cite{g-scholar,Sinha15:MAG,sem-scholar}.
 Generally speaking, a ranking is {\em a function that assigns each item a numerical score}. Query independent ranking aims to give a static ranking based on the scholarly  data only, and is independent of how well articles match a specific query. Such a ranking plays a key role in literature recommendation systems, especially in the {\em cold start} scenario.
+%,TanLMGSW16
 
 In the academia, popular approaches have witnessed a shift from citation-count analysis~\cite{Garfield471,Hirsch15112005} to graph analysis~\cite{Liang16AAAI,Jiang12-MRank,Waltman2014,Wang16TIST,Ng11KDD,Li08TSRanking,Wang13AAAI,sayyadi09,WalkerXKM07}, as graph-based methods further leverage the global or local structure of bibliographic networks and  the interactions among heterogeneous entities, and, hence, are typically more appropriate.
 %
@@ -50,10 +51,10 @@ The popularity of an article is the sum of all its citation freshness (how close
 %
 %Observe that (a), intuitively, prestige favors articles with many citations soon after their publication, and popularity favors those with recent citations, and (b) both prestige and popularity capture the evolving nature of entities.
 %
-To our knowledge, the Time-Weighted PageRank is among the first to \markedb{use citation statistics to incorporate the diverse citation patterns of individual articles for scholarly article ranking.}
+To our knowledge, the Time-Weighted PageRank is among the first to incorporate the diverse citation patterns of individual articles \markedb{and exploit citation statistics for scholarly article ranking.}
 %and the long-term bias caused by the dynamic nature of data
 
-\sstab(2)  We then develop  a batch algorithm for scholarly article ranking (Section \ref{sec-alg}), in which we propose a block-wise method for Time-Weighted PageRank \markedb{and show its advantage in terms of an efficiency analysis based on citation characteristics of scholarly articles.}
+\sstab(2)  We then develop  a batch algorithm for scholarly article ranking (Section \ref{sec-alg}), in which we propose a block-wise method for Time-Weighted PageRank \markedb{and show its efficiency advantage in terms of an analysis of the citation characteristics and a specific structural property of scholarly graphs.}
 %in which we propose a block-wise method for Time-Weighted PageRank in terms of an analysis of the citation characteristics of scholarly articles.
 
 \sstab(3)
@@ -69,7 +70,8 @@ We further develop an incremental algorithm for dynamic scholarly article rankin
 (b) Our batch algorithm \batensemble and incremental algorithm \incensemble are also efficient. Indeed, \incensemble is on average (1.7, 2.8, 116) and (2.0, 4.4, 245) times faster than (\batensemble, \futurerank, \hhgrank)  on the large \aminer and \magdata, respectively.
 %%%%%%%%%%%%%%%%%%%%%%%%%
 
-All the detailed proofs can be found in \cite{SARank-full}.
+%All the detailed proofs can be found in \cite{SARank-full}.
+All the proofs can be found in \cite{SARank-full}.
 
 \eat{
 \stitle{Organization}. The rest of our paper is organized as follows. The latter part of Section~\ref{sec-intro} summarizes related work. Section~\ref{sec-model} introduces the ranking model. Section~\ref{sec-alg} .... Section~\ref{sec-incAlg} .... Experimental results are reported in Section~\ref{sec-exp}, followed by conclusions in Section~\ref{sec-conc}.

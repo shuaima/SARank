@@ -37,9 +37,9 @@ Dear Reviewers,
 
 This is the response letter regarding the revised version of our submission to IEEE International Conference on Data Engineering 2018, \emph{Query Independent Scholarly Article Ranking}.
 
-The paper has been substantially revised according to the referees¡¯ comments. In particular, we have (1) further clarified our contributions, (2) added figures to better illustrate the data growing (3) explained the author component better,  (4) reported the memory cost in experiments, (5) modified related work to differentiate our technique with existing ones, (6) answered the questions raised by referees, and (7) taken this opportunity to rewrite several parts of our paper to improve the presentation.
-
 We would like to thank all the referees for their thorough reading of our paper and for their valuable comments.
+
+The paper has been substantially revised according to the referees¡¯ comments. In particular, we have (1) further clarified our contributions, (2) added figures to better illustrate the data growing, (3) explained the author component better,  (4) reported the memory cost in experiments, (5) modified related work to differentiate our technique with existing ones, (6) answered the questions raised by referees, and (7) taken this opportunity to rewrite several parts of our paper to improve the presentation.
 
 Below please find our detailed responses to the comments by the referees.
 
@@ -50,17 +50,18 @@ Below please find our detailed responses to the comments by the referees.
 
 \textbf{[R1W1]} \emph{Formula 7 in SARank still needs parameters, which are not easy to set.}
 
-We discuss the necessity and the selection of parameters right after Eq. (7) (left column, page 4). More specifically, these parameters enable our model to fit to the various ranking scenarios in real-life applications, which hardly can be covered with one set of parameters. As be shown in the experiments, our model performs well in two reasonable ranking scenarios (with \recom and \fcita) by using quite different aggregating parameters, and, moreover, these parameters are indeed quite flexible to choose within a certain range, \ie $[0,1]$, as a) the optimal \PairAcc is obtained within a single region, b) the \PairAcc keeps at a high level within a certain ($\alpha$, $\beta$) combination space around the optimal region, and c) the optimal parameters on the same set of ground-truth are very similar across different datasets (please also refer to Exp-4.3).
+We discuss the necessity and the selection of parameters right after Eq. (7) (left column, page 4). More specifically, these parameters enable our model to fit to the various ranking scenarios in real-life applications, which hardly can be covered with one set of parameters. As be shown in the experiments, our model performs well in two reasonable ranking scenarios (with \recom and \fcita) by using quite different aggregating parameters, and, moreover, these parameters are indeed quite flexible to choose within a certain range, \ie $[0,1]$, as a) the optimal \PairAcc is obtained within a single region, b) the \PairAcc keeps at a high level within a certain ($\alpha$, $\beta$) combination space around the optimal region, and c) the optimal parameters on the same set of ground-truth are very similar across different datasets (please also refer to our analysis in Exp-4.3).
 
 %The parameters are designed to fit variety ranking with different demands. For example, the ground-truth RECOM prefer venue component while PFCTN prefer citation component. Furthermore, our parameters are quite flexible to choose in a certain range for suiting different ranking which we have discussed in Exp-4.3.
 
 \textbf{[R1W2]} \emph{The extension of this method to query dependent ranking or other heterogeneous information network should be discussed.}
 
+We discuss the extension of query dependent ranking in the revised paper (left column, page 2).
+%
 This work focuses on query independent ranking because of its wide application in modern scholarly search engines such as Google Scholar, Semantic Scholar and Microsoft Academic Search.
+And our ranking can serve as an indicator of the importance of items, and, given a specific query, it can either be directly used to rank a subset of relevant items or combine with any relevance scores for ranking.
 %
-We discuss the extension of query dependent ranking in the revised paper (left column, page 2), that our ranking can serve as an indicator of the importance of items, and, given a specific query, it can either be directly used to rank a subset of relevant items or combine with any relevance scores for ranking.
-%
-The extension in other heterogeneous information networks is currently unclear, since the TWPageRank is derived from the analysis of impacts of articles (left column, page 2). We shall identify such possible applications in the future.
+The extension in other heterogeneous information networks is currently unclear, since the TWPageRank is derived from an analysis of impacts of articles (left column, page 2). We shall identify possible applications in the future.
 
 
 \textbf{[R1D1]} \emph{In the time-weighted pagerank algorithm, the impacts are encoded into the edge weight. How about changing the values on nodes?}
@@ -77,19 +78,19 @@ To our knowledge, there is no related work on changing node weights and it is ye
 Figure 1 shows the logscale percentage of the number of articles/citations of each year which grows exponentially with time, instead of numbers of citations (\ie impacts) of individual articles.
 We have highlighted it in the revised version (Figure 1, page 2).
 
-We have explained our claim better. The observation is inspired by the five distinct citation patterns. Considering that the direct decay model only conforms with {\em MonDec}, we thus propose our claim that can better explain the five citation patterns. Moreover, reference [18] exploits a log-normal survival probability which also decays with time after the citation peak.
+We have explained our claim better. The observation is inspired by the five distinct citation patterns. Considering that the direct decay model only conforms with {\em MonDec}, we thus propose our claim that can better explain the five citation patterns. Moreover, reference [17] exploits a log-normal survival probability which also decays with time after the citation peak.
 %(it increases before reaching the peak since it aims to predict the number of citations instead of impacts of articles).
 
-[18]  D. Wang, C. Song, and A. Barab¨¢si, ¡°Quantifying long-term scientific impact,¡± Science, vol. 342, no. 6154, pp. 127-132, 2013.
+[17]  D. Wang, C. Song, and A. Barab¨¢si, ¡°Quantifying long-term scientific impact,¡± Science, vol. 342, no. 6154, pp. 127-132, 2013.
 
 
 
 \textbf{[R1D3]} \emph{How to determine the peak time for the PeakMul pattern?}
 
-The PeakMul pattern is originally defined in [19]:  the height of a peak should be at least 75\% of the maximum peak height, and two consecutive peaks should be separated by more than two years. In our work, we unify the five patterns and only use the latest peak time which we have discussed in Section II-A (para 1, left column, page 3).
+The PeakMul pattern is originally defined in [18]:  the height of a peak should be at least 75\% of the maximum peak height, and two consecutive peaks should be separated by more than two years. In our work, we unify the five patterns and only use the latest peak time which we have discussed in Section II-A (para 1, left column, page 3).
 
 
-[19]  T. Chakraborty, S. Kumar, P. Goyal, N. Ganguly, and A. Mukherjee, ¡°On the categorization of scientific citation profiles in computer science,¡± Commun. ACM, vol. 58, no. 9, 2015.
+[18]  T. Chakraborty, S. Kumar, P. Goyal, N. Ganguly, and A. Mukherjee, ¡°On the categorization of scientific citation profiles in computer science,¡± Commun. ACM, vol. 58, no. 9, 2015.
 
 
 \textbf{[R1D4]} \emph{For large scholar graph, such as MAG, it is better to use the distributed graph processing framework to improve the scalability of the method}
@@ -105,7 +106,7 @@ Compared to general web graphs, the computation of TWPageRank on scholarly graph
 
 \textbf{[R1D6]} \emph{MAG is used before description in Page 1. Some cells in Table 1 have two values, while others have one value. The meaning should be given explicitly}
 
-Yes, we have revised our paper as suggested (right column, page 1 \& right column, page 5). 
+Yes, we have revised our paper as suggested (right column, page 1 \& right column, page 5).
 %Thanks for the suggestion!
 
 
@@ -133,7 +134,7 @@ We thank the reviewer for appreciating the practice merit of our work which is d
 %
 And we believe this paper also stands from research and technique perspective.
 %
-The property of scholarly data makes the incremental computation of (time-weighted) PageRank quite different from those on general graphs, which, to our knowledge, has not gained enough attentions. Furthermore, the only existing dynamic scholarly article ranking solution [22] is based on a impractical assumption that there is no citations between articles of the same years.
+The property of scholarly data makes the incremental computation of (time-weighted) PageRank quite different from those on general graphs, which, to our knowledge, has not gained enough attentions. Furthermore, the only existing dynamic scholarly article ranking solution [21] is based on a impractical assumption that there is no citations between articles of the same years.
 %
 Therefore, we have designed the incremental time-weighted PageRank algorithm for scholarly graphs which has its own unique features.  To conclude, we are not simply applying existing techniques into a different domain.
 %
@@ -141,7 +142,7 @@ We have further clarified our contributions in Introduction and claimed the tech
 %
 Please also refer to our response to R2W1.
 
-[22]  R. Ghosh, T. Kuo, C. Hsu, S. Lin, and K. Lerman, ¡°Time-aware ranking in dynamic citation networks,¡± in ICDM Workshops, 2011.
+[21]  R. Ghosh, T. Kuo, C. Hsu, S. Lin, and K. Lerman, ¡°Time-aware ranking in dynamic citation networks,¡± in ICDM Workshops, 2011.
 
 
 \textbf{[R2D2]} \emph{The abstract starts with the sentence ``Ranking query independent scholarly articles is a critical and challenging task, due to the heterogeneous, evolving and dynamic nature of entities involved in scholarly articles". If three types of data (articles, authors and venues) that are updated (maybe) weekly is considered challenging in terms of heterogeneity and dynamicity then one must wonder what one can say about real-life scenarios with thousands of data types where hundreds/thousands of new items are inserted daily (consider any online merchant system) and were ranking is important (recommendations). In summary, this sentence should go. Not to mention that the task is not really ``critical".}
