@@ -37,7 +37,7 @@ Dear Reviewers,
 
 This is the response letter regarding the revised version of our submission to IEEE International Conference on Data Engineering 2018, \emph{Query Independent Scholarly Article Ranking}.
 
-The paper has been substantially revised according to the referees¡¯ comments. In particular, we have (1) further clarified our contributions (Section I), (2) added figures to show the statistics of data (3) explained the author component better,  (4) reported the memory cost in experiments, (5) added related work of time delaying problem, and (6) taken this opportunity to rewrite several parts of our paper to improve the presentation.
+The paper has been substantially revised according to the referees¡¯ comments. In particular, we have (1) further clarified our contributions, (2) added figures to better illustrate the data growing (3) explained the author component better,  (4) reported the memory cost in experiments, (5) modified related work to differentiate our technique with existing ones, (6) answered the questions raised by referees, and (7) taken this opportunity to rewrite several parts of our paper to improve the presentation.
 
 We would like to thank all the referees for their thorough reading of our paper and for their valuable comments.
 
@@ -74,9 +74,13 @@ To our knowledge, there is no related work on changing node weights and it is ye
 
 \textbf{[R1D2]} \emph{This paper has an important observation that ¡°the impact of an article tends to decay with time after the peak time only.¡± However, I cannot see that from Figure 1. It is better to add some references to support the claim.}
 
-Figure 1 shows the logscale percentage of the number of citations of each year which grows exponentially with time (due to the exponential growth of volume of  scientific publications), instead of numbers of citations (\ie impacts) of individual articles.
+Figure 1 shows the logscale percentage of the number of articles/citations of each year which grows exponentially with time, instead of numbers of citations (\ie impacts) of individual articles.
 We have highlighted it in the revised version (Figure 1, page 2).
-\marked{Moreover, we add references [x,y] to support our observation.}
+
+We have explained our claim better. The observation is inspired by the five distinct citation patterns. Considering that the direct decay model only conforms with {\em MonDec}, we thus propose our claim that can better explain the five citation patterns. Moreover, reference [18] exploits a log-normal survival probability which also decays with time after the citation peak.
+%(it increases before reaching the peak since it aims to predict the number of citations instead of impacts of articles).
+
+[18]  D. Wang, C. Song, and A. Barab¨¢si, ¡°Quantifying long-term scientific impact,¡± Science, vol. 342, no. 6154, pp. 127-132, 2013.
 
 
 
@@ -133,7 +137,7 @@ The property of scholarly data makes the incremental computation of (time-weight
 %
 Therefore, we have designed the incremental time-weighted PageRank algorithm for scholarly graphs which has its own unique features.  To conclude, we are not simply applying existing techniques into a different domain.
 %
-We have further clarified \marked{our contributions in Introduction} and claimed the technique difference of our algorithm in Related Work.
+We have further clarified our contributions in Introduction and claimed the technique difference of our algorithm in Related Work.
 %
 Please also refer to our response to R2W1.
 

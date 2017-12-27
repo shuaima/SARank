@@ -50,11 +50,11 @@ The popularity of an article is the sum of all its citation freshness (how close
 %
 %Observe that (a), intuitively, prestige favors articles with many citations soon after their publication, and popularity favors those with recent citations, and (b) both prestige and popularity capture the evolving nature of entities.
 %
-To our knowledge, the Time-Weighted PageRank is among the first to incorporate the diverse citation patterns of individual articles for scholarly article ranking.
+To our knowledge, the Time-Weighted PageRank is among the first to \markedb{use citation statistics to incorporate the diverse citation patterns of individual articles for scholarly article ranking.}
 %and the long-term bias caused by the dynamic nature of data
 
-\sstab(2)  We then develop  a batch algorithm for scholarly article ranking (Section \ref{sec-alg}), in which we propose a block-wise method for Time-Weighted PageRank in terms of an analysis of the citation characteristics of scholarly articles.
-
+\sstab(2)  We then develop  a batch algorithm for scholarly article ranking (Section \ref{sec-alg}), in which we propose a block-wise method for Time-Weighted PageRank \markedb{and show its advantage in terms of an efficiency analysis based on citation characteristics of scholarly articles.}
+%in which we propose a block-wise method for Time-Weighted PageRank in terms of an analysis of the citation characteristics of scholarly articles.
 
 \sstab(3)
 We further develop an incremental algorithm for dynamic scholarly article ranking (Section~\ref{sec-incAlg}), which partitions graphs into  {\em affected and unaffected areas}, and employs different updating strategies for nodes in affected and unaffected areas.
