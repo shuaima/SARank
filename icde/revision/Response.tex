@@ -78,7 +78,7 @@ To our knowledge, there is no related work on changing node weights and it is ye
 Figure 1 shows the logscale percentage of the number of articles/citations of each year which grows exponentially with time, instead of numbers of citations (\ie impacts) of individual articles.
 We have highlighted it in the revised version (Figure 1, page 2).
 
-We have explained our claim better. The observation is inspired by the five distinct citation patterns. Considering that the direct decay model only conforms with {\em MonDec}, we thus propose our claim that can better explain the five citation patterns. Moreover, reference [17] exploits a log-normal survival probability which also decays with time after the citation peak.
+We have explained our claim better (Time-Weighted PageRank, right column, page 2). The observation is inspired by the five distinct citation patterns. Considering that the direct decay model only conforms with {\em MonDec}, we thus propose our claim that can better explain the five citation patterns. Moreover, reference [17] exploits a log-normal survival probability which also decays with time after the citation peak.
 %(it increases before reaching the peak since it aims to predict the number of citations instead of impacts of articles).
 
 [17]  D. Wang, C. Song, and A. Barab¨¢si, ¡°Quantifying long-term scientific impact,¡± Science, vol. 342, no. 6154, pp. 127-132, 2013.
@@ -87,7 +87,7 @@ We have explained our claim better. The observation is inspired by the five dist
 
 \textbf{[R1D3]} \emph{How to determine the peak time for the PeakMul pattern?}
 
-The PeakMul pattern is originally defined in [18]:  the height of a peak should be at least 75\% of the maximum peak height, and two consecutive peaks should be separated by more than two years. In our work, we unify the five patterns and only use the latest peak time which we have discussed in Section II-A (para 1, left column, page 3).
+The PeakMul pattern is originally defined in [18]:  the height of a peak should be at least 75\% of the maximum peak height, and two consecutive peaks should be separated by more than two years. In our work, we unify the five patterns and only use the latest peak time which we have discussed in Section II-A (para 2, left column, page 3).
 
 
 [18]  T. Chakraborty, S. Kumar, P. Goyal, N. Ganguly, and A. Mukherjee, ¡°On the categorization of scientific citation profiles in computer science,¡± Commun. ACM, vol. 58, no. 9, 2015.
@@ -100,11 +100,11 @@ Yes, we agree that distributed processing is an important while independent prob
 
 \textbf{[R1D5]} \emph{TWPageRank works better on the scholar graphs than the general web graph. is it due to that the citation graph is an directed acyclic graph?}
 
-Yes. This work does NOT assume the DAG structure of scholar graphs, where cycles are allowed to exist (Observation, left column, page 5).
-Compared to general web graphs, the computation of TWPageRank on scholarly graphs is more efficient as a result of the temporal order of citations, which gives less SCC edge ratio as shown in Table I (page 5). In addition, we further design incremental algorithms based on the temporal order, which also makes the computation more efficient.
+This work does NOT assume the DAG structure of scholarly graphs, where cycles are allowed to exist (Observation, left column, page 5).
+Compared to general Web graphs, the computation of TWPageRank on scholarly graphs is more efficient as a result of the {\em temporal order of citations}, which gives less SCC edge ratio as shown in Table I (page 5). In addition, we further design incremental algorithms based on the temporal order of citations, which also makes the computation more efficient.
 %We have highlighted the statements about temporal order in the revised version.
 
-\textbf{[R1D6]} \emph{MAG is used before description in Page 1. Some cells in Table 1 have two values, while others have one value. The meaning should be given explicitly}
+\textbf{[R1D6]} \emph{MAG is used before description in Page 1. Some cells in Table 1 have two values, while others have one value. The meaning should be given explicitly.}
 
 Yes, we have revised our paper as suggested (right column, page 1 \& right column, page 5).
 %Thanks for the suggestion!
@@ -134,7 +134,7 @@ We thank the reviewer for appreciating the practice merit of our work which is d
 %
 And we believe this paper also stands from research and technique perspective.
 %
-The property of scholarly data makes the incremental computation of (time-weighted) PageRank quite different from those on general graphs, which, to our knowledge, has not gained enough attentions. Furthermore, the only existing dynamic scholarly article ranking solution [21] is based on a impractical assumption that there is no citations between articles of the same years.
+The property of scholarly data makes the incremental computation of (time-weighted) PageRank quite different from those on general graphs, which, to our knowledge, has not gained enough attentions. Furthermore, the only existing dynamic scholarly article ranking solution [21] is based on an impractical assumption that there is no citations between articles of the same years.
 %
 Therefore, we have designed the incremental time-weighted PageRank algorithm for scholarly graphs which has its own unique features.  To conclude, we are not simply applying existing techniques into a different domain.
 %
@@ -152,7 +152,7 @@ We have downgraded the tone and changed it into ``practical and difficult". Than
 
 \textbf{[R2D3]} \emph{On page 4, you say ``However, the resulting author citation graph to compute the prestige is typically too large to handle". This is a questionable statement. Maybe it is too large to handle ``on a PC with 2 Intel Xeon E5¨C2630 2.4GHz CPUs and 64 GB of memory" but approaches like PageRank has been used for web-scale data so unless there is something that I am missing, this statement should also go (or explained better).}
 
-We have removed the sentence and explained more details about the statement. Moreover specifically, we add the details of the generation of the author citation graph. The generated graph has 7.12 billion edges on the largest \magdata (\ie the memory cost of storage only is 57GB), which makes it computationally expensive to compute prestige of authors  with TWPageRank on that graph (Author Component, left column, page 3). We hence turn to the alternative light-weight method to achieve the goal.
+We have removed the sentence and explained more details about the statement (Author Component, left column, page 3). Moreover specifically, we add the details of the generation of the author citation graph. The generated graph has 7.12 billion edges on the largest \magdata (\ie the memory cost of storage only is 57GB), which makes it computationally expensive to compute prestige of authors  with TWPageRank on that graph. We hence turn to the alternative light-weight method to achieve the goal.
 
 %******************* reviewer 3 ***********************************************
 \line(1,0){500}
