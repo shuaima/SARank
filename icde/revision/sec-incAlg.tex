@@ -1,7 +1,7 @@
 \section{Dynamic Ranking Computation}
 \label{sec-incAlg}
 
-Scholarly articles are dynamic and continuously growing, and it is impractical to recompute ranking from scratch once they get updated. In this section, we present an incremental algorithm for our ranking model \ensemblerank.
+Scholarly data is dynamic and continuously growing, and it is impractical to recompute ranking from scratch once it gets updated. In this section, we present an incremental algorithm for our ranking model \ensemblerank.
 
 
 \subsection{Incremental Algorithm Framework}
@@ -10,18 +10,14 @@ Scholarly articles are dynamic and continuously growing, and it is impractical t
 
 
 
-Our incremental algorithm \incensemble incrementally computes the popularity and prestige of scholarly articles.
-We consider that an update $\Delta$ = $\Delta V\cup\Delta E$ is added to a   (citation or venue) graph $G(V, E)$,
+Our incremental algorithm \incensemble incrementally computes the popularity and prestige of associate entities.
+We consider that an update $\Delta$ = $\Delta V\cup\Delta E$ is added to a (citation or venue) graph $G(V, E)$,
 and the resulting graph is $G^+(V\cup\Delta V, E\cup\Delta E)$, where
-$\Delta V$ is a set of nodes with $\Delta V\cap V = \emptyset$, and $\Delta E$ is a set of directed edges on $\Delta V$ and from $\Delta V$ to $V$ only, as article citation relationships obey a natural temporal order, \ie an article only cites those published earlier, and it is rare for the mutual citations between two articles published in the same time.
+$\Delta V$ is a set of nodes with $\Delta V\cap V = \emptyset$, and $\Delta E$ is a set of directed edges on $\Delta V$ and from $\Delta V$ to $V$ only, as citation relationships obey a natural temporal order, \ie an article only cites those published earlier, and it is rare for the mutual citations between two articles published in the same time.
 
 
 \stitle{Incremental popularity computation}.
-The popularity of venues and authors is computed along the same lines as their batch counterparts of algorithm \batensemble,
-as almost all venues and authors are affected  by the definitions of the popularity of venues and authors.
-
-
-As the popularity of articles is defined as the sum of the freshness of all their citations, it is convenient to maintain in a dynamic scenario. Consider an updated citation graph $G^{c,+}(V^c\cup\Delta V^c, E^c\cup\Delta E^c)$ of $G^c(V^c, E^c)$, and the updated popularity $Pop_{c}^+(v)$ can be computed as:
+As the popularity of articles is defined as the sum of the freshness of their citations, it is convenient to maintain dynamically. Consider an updated citation graph $G^{c,+}(V^c\cup\Delta V^c, E^c\cup\Delta E^c)$ of $G^c(V^c, E^c)$, and the updated popularity $Pop_{c}^+(v)$ can be computed as:
 
 \vspace{-1ex}
 \begin{small}
@@ -30,13 +26,14 @@ Pop_c^+(v) = Pop_c(v) {e^{\sigma (T^+_0-T_0)}} + \sum_{(u,v)\in \Delta E^c} {e^{
 \end{equation}
 \end{small}
 %
-\noindent where $Pop_c(v)$ (resp. $Pop_c^+(v)$) is the popularity of node $v$ on $G^c$ (resp. $G^{c,+}$), and
-$T_0$ (resp. $T^+_0$) is the current time on $G^c$ (resp. $G^{c,+}$).
+\noindent where $Pop^+_c(v)$ (resp. $Pop_c(v)$) is the popularity of node $v$ on $G^{c,+}$ (resp. $G^c$), and
+$T^+_0$ (resp. $T_0$) is the current time on $G^{c,+}$ (resp. $G^c$).
 %
-By Eq.~(\ref{eq-inc-pop}), it is easy to see that it takes $O($ $|V^c|+|\Delta V^c|+|\Delta E^c|)$ time to update the popularity.
+By Eq.~(\ref{eq-inc-pop}), it is easy to see that updating the popularity of articles takes $O($ $|V^c|+|\Delta V^c|+|\Delta E^c|)$ time.
 %This further shows that Eq.~(\ref{eq-inc-pop}) is a desired solution for popularity maintenance.
 
-
+The popularity of venues and authors is computed along the same lines as their batch counterparts of algorithm \batensemble,
+as almost all venues and authors are affected  by the definitions of the popularity of venues and authors.
 
 \stitle{Incremental prestige computation}.
 The prestige of authors is computed along the same lines as the batch algorithm \batensemble,
@@ -66,7 +63,7 @@ Consider a citation or venue graph $G(V, E)$, its TWPageRank vector $PR$ and the
 
 
 \stitle{Auxiliary data structure maintenance}.
-Two auxiliary data structures in the batch algorithm~\twprscc need to be maintained: (a) the block-wise graph and  a mapping that, given a node of graph $G$, returns the index of the \scc to which it belongs, and (b) the topological order of the nodes in the block-wise graph.
+Two auxiliary data structures in the batch algorithm~\twprscc need to be maintained: (a) the block-wise graph and  a mapping that, given a node of the citation or venue graph, returns the index of the \scc to which it belongs, and (b) the topological order of the nodes in the block-wise graph.
 %
 Observe that these auxiliary data structures can be easily maintained as follows.
 
@@ -138,7 +135,8 @@ which obviously holds (1) for  $E'\cup E'_\Delta$ as $O$ and $\Delta O$ are topo
 %%%%%%%%%%%%Algorithm
 
 %%% affected/unaffected division
-\stitle{Analyses of affected and unaffected areas}.
+\vspace{-1ex}
+\stitle{Analysis of affected and unaffected areas}.
 The TWPageRank vector $PR$ of graph $G$ is mainly affected in two ways.
 
 
