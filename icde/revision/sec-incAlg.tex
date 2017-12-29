@@ -188,20 +188,14 @@ It then processes each \scc in the order $O^+$ such that the TWPageRank scores o
 When processing $V_B$ with Eq.~(\ref{eq-inc-prscc}), {\em edges in $E_{AB}$ can be skipped}  since $PR^+(u)={n}/{n^+}\cdot PR(u)$ for $u\in V_A$ and $M_{u,v}=M^+_{u,v}$ for $(u,v)\in E_{AB}$. Besides, we use ${n}/{n^+}\cdot PR$ as the initial vector. Both of them can speed up the computation.
 
 
-\eat{
 \begin{figure}[tb!]
 \centering
-\includegraphics[scale=0.6]{fig/General_framework_peak_ABC.eps}
-\vspace{-3ex}
-\caption{\small An example of affected and unaffected areas}
+\includegraphics[scale=0.7]{fig/General_framework_peak.eps}
+\vspace{-1ex}
+\caption{\small An example of incremental TWPageRank computation}
 \label{fig-inc-division}
 \vspace{-3ex}
 \end{figure}
-
-\begin{example} \label{eg-layer-dag}
-Figure~\ref{fig-inc-division} illustrates an example of affected and unaffected areas, in which subgraphs $G_A$, $G_B$ and $G_C$ are associated with node sets $V_A$, $V_B$ and $\Delta V$, respectively. Here the citation peak time of node $x$ is changed, which leads to the changes of the normalized weights of edges $(w,x)$, $(w,y)$ and $(w,z)$.
-\end{example}
-}
 
 
 \begin{example} \label{eg-layer-dag}
@@ -228,14 +222,7 @@ Assume a topological order $v_1'/\dots/v_{l}'$ of the block-wise graph $G^+{'}$ 
 \end{proofSketch}
 }
 
-\begin{figure}[tb!]
-\centering
-\includegraphics[scale=0.7]{fig/General_framework_peak.eps}
-\vspace{-1ex}
-\caption{\small An example of incremental TWPageRank computation}
-\label{fig-inc-division}
-\vspace{-3ex}
-\end{figure}
+
 
 Observe that (a) a topological order of the block-wise graph of $G_C$ can be computed in $O(|\Delta V|+|\Delta E|)$ time,
 (b) updating the TWPageRank scores of nodes in $V_B$ and $V_C$ costs $O(|V_B\cup V_C|+|E_{B,a}\cup E_{C,a}\cup E_{CB}|)+t^+|E_{B,i}\cup E_{C,i}|)$ time, where $t^+$ is  the maximum number of iterations among all \sccs in $G_B$ and $G_C$, and, finally, (c) updating the scores of nodes in $V_A$ costs $O(|V_A|)$ time. From these, the following holds.
