@@ -3,7 +3,7 @@
 
 In this section, we first present Time-Weighted PageRank for evaluating  the importance of entities, defined as a combination of the prestige and popularity, and then introduce our ranking model \ensemblerank that assembles the importance of articles, venues and authors involved in scholarly articles.
 %
-\markedb{Before going into details, it is worthy pointing out that although this work focuses on query independent ranking, it can also be used for query dependent ranking. Our ranking can serve as an indicator of the importance of items, and, given a specific query, it can either be directly used to rank a subset of relevant items or combine with any relevance scores.}
+%\markedb{Before going into details, it is worthy pointing out that although this work focuses on query independent ranking, it can also be used for query dependent ranking. Our ranking can serve as an indicator of the importance of items, and, given a specific query, it can either be directly used to rank a subset of relevant items or combine with any relevance scores.}
 
 %It further assembles the importance of heterogeneous entities involved to rank scholarly articles.
 %The model is based on PageRank~\cite{Brin98:PageRank}, which was initially designed for web pages and widely applied to many other tasks, including article ranking~\cite{Li08TSRanking,Richardson06:BPR,sayyadi09,Zhou07-CoRank}.
@@ -29,9 +29,9 @@ We first present Time-Weighted PageRank (TWPageRank) based on citation statistic
 % and each individual article reaches their periods in different time
 
 \stitle{Time-Weighted PageRank (TWPageRank)}. Most previous work simply exploits temporal information in the form of exponential decay~\cite{Li08TSRanking,Wang13AAAI,sayyadi09,WalkerXKM07}. We rethink the usage of time information in terms of the impacts of scholarly articles.
-Recall that articles are categorized  into six citation patterns featured by the time when the articles reach their citation peaks~\cite{Chakraborty15}: (a) {\em PeakInit} with a single citation-count peak in the first five years (but not the first year) after publication, (b) {\em PeakMul} with distinct multiple peaks, (c) {\em PeakLate} with a single peak in at least five years   (but not the last year) after publication, (d) {\em MonDec} with monotonically decreasing citations, (e) {\em MonIncr} with monotonically increasing citations, and, (f) {\em Other} for articles whose average numbers of citations per year are less than 1. Though the number of citations is an indicator of the impact of an article~\cite{WangSB13,Garfield471}, its impact is time-dependent but not simply in the form of exponential decay, \markedb{which only conforms with the case of {\em MonDec}}.
+Recall that articles are categorized  into six citation patterns featured by the time when the articles reach their citation peaks~\cite{Chakraborty15}: (a) {\em PeakInit} with a single citation-count peak in the first five years (but not the first year) after publication, (b) {\em PeakMul} with distinct multiple peaks, (c) {\em PeakLate} with a single peak in at least five years   (but not the last year) after publication, (d) {\em MonDec} with monotonically decreasing citations, (e) {\em MonIncr} with monotonically increasing citations, and, (f) {\em Other} for articles whose average numbers of citations per year are less than 1. Though the number of citations is an indicator of the impact of an article~\cite{WangSB13,Garfield471}, its impact is time-dependent but not simply in the form of exponential decay that only considers  the case of {\em MonDec}.
 %
-\markedb{Inspired by these distinct citation patterns, we claims that} {\em the impact of an article tends to decay with time after the peak time only}~\cite{WangSB13}. That is, the impacts of articles directly decay with time only for those in {\em MonDec}, and decay with time after the peak time for those in {\em PeakInit}, {\em PeakLate} and {\em PeakMul}, and do not decay for ones in {\em MonIncr} (which is rare).
+To unify these distinct citation patterns, we adopt that {\em the impact of an article tends to decay with time after the peak time}, as pointed out in~\cite{WangSB13}. That is, the impacts of articles directly decay with time only for those in {\em MonDec}, and decay with time after the (highest) peak time for those in {\em PeakInit}, {\em PeakLate} and {\em PeakMul}, and do not decay for ones in {\em MonIncr} (which is rare).
 %Otherwise, its impact is fixed as a constant number. %, since we argue that the increment of its citations during this period is mainly due to the increase of its popularity.
 Also observe that {\em each individual article has its own peak time} as articles may reach their citation peaks in different patterns and time.
 %using the peak year in Fig.~\ref{fig-citation} is not appropriate for all articles. On the contrary, we compute a peak year for each article.
@@ -56,7 +56,7 @@ Moreover, considering that articles might reach their citation peaks in differen
 \hspace{-4ex}
 \subfigure{\label{fig-citation}
 \includegraphics[scale=0.41]{fig/yearly-references.eps}}
-\caption{\small Statistics of scholarly articles that reports the {\em logscale percentage of the number of papers (left) and citations (right) of each year} \wrt\ the total number of papers and citations on \aan, \aminer and \magdata, respectively.}
+\caption{\small Statistics of scholarly articles: (1) the (logscale) percentage of papers in each year \wrt\ all papers (left) and (2) the (logscale) percentage of citations in each year \wrt\ all citations (right) on datasets \aan, \aminer and \magdata, respectively.}
 \label{fig-data-analysis}
 \vspace{-3ex}
 \end{figure}
@@ -96,8 +96,7 @@ The update rule of TWPageRank is:
 PR(v)=d\sum_{(u,v)\in E} \frac{w(u,v)PR(u)}{W(u)}+\frac{1-d}{n},
 \end{equation}
 \end{small}
-%
-\noindent where $PR(u)$ and $PR(v)$ are the TWPageRank scores of $u$ and $v$, respectively, $E$ is the set of edges, $W(u)=\Sigma_{v} w(u,v)$ is the sum of the impact weights on all edges from $u$, $n$ is the number of nodes and $d$ is a damping parameter in $(0, 1)$. By Eq.~(\ref{eq-twpr}), we can see that prestige is updated based on the impact weights, not equally distributed.
+where $PR(u)$ and $PR(v)$ are the TWPageRank scores of $u$ and $v$, respectively, $E$ is the set of edges, $W(u)=\Sigma_{v} w(u,v)$ is the sum of the impact weights on all edges from $u$, $n$ is the number of nodes and $d$ is a damping parameter in $(0, 1)$. By Eq.~(\ref{eq-twpr}), we can see that prestige is updated based on the impact weights, not equally distributed.
 
 % in Eq.~(\ref{eq-twpr}) into
 Correspondingly, the matrix form of the update rule is:
@@ -122,7 +121,8 @@ The linear system in Eq.~(\ref{eq-twpr-update}) is equivalent to {\em irreducibl
 TWPageRank converges to a unique  vector on any graph, regardless of the initial vector.
 \end{prop}
 
-\eat{
+
+\eat{%%%%%%%
 \begin{proof}
 It is known that a sequence of vectors $x^{(k)}$ such that $x^{(k+1)}=A\cdot x^{(k)}+b$ (where $k=0,1,\dots$) converges to a unique vector $x^*$,  regardless of the initial vector $x^0$, if and only if $\rho(A)<1$~\cite{kelley1999iterative}, where $\rho(A)$ is the spectral radius of matrix $A$. Hence, it suffices to show $\rho(d\cdot M^T) < 1$ by Eq.~(\ref{eq-twpr-update}).
 
@@ -133,12 +133,12 @@ We then have $\rho(d\cdot M^T) \le ||d\cdot M^T||_1 \le d < 1$, as the spectral 
 
 %\stitle{Remarks}. Note that Eq.~(\ref{eq-twpr}) is indeed a general update rule of Weighted PageRank~\cite{Xing04:WPR,Ding11}, and the name of Time-Weighted PageRank comes from the use of time information of citations in the initial impact weight  $w(u,v)$ of Eq.~(\ref{eq-infl-weights}).
 
-\vspace{-1ex}
-\stitle{Remarks}.
-\markedb{
-The goal of our TWPageRank is to change node values, \ie importance. One may wonder why not directly change node values. However, it is difficult to handle as importance does not have a clear and closed-form definition and it may also cause problems for convergence.
-To our knowledge, there is no related work on changing node weights and it is yet unclear how to handle it. Finally, we use impact weights to achieve the goal since importance is essentially propagable through edges and it is also fair for all nodes.
-}
+%\vspace{-1ex}
+%\stitle{Remarks}.
+%\markedb{
+%The goal of our TWPageRank is to change node values, \ie importance. One may wonder why not directly change node values. However, it is difficult to handle as importance does not have a clear and closed-form definition and it may also cause problems for convergence.
+%To our knowledge, there is no related work on changing node weights and it is yet unclear how to handle it. Finally, we use impact weights to achieve the goal since %importance is essentially propagable through edges and it is also fair for all nodes.
+%}
 
 
 \subsection{Ranking with Importance Assembling}
@@ -156,7 +156,7 @@ We next introduce the details of the three components.
 \stitle{Citation component}.
 The first component computes the importance of articles using the citation information.
 
-A {\em citation graph} $G^c(V^c, E^c)$ is firstly constructed using the citation information such that (a) a node in $V^c$ denotes an article, (b) a directed edge $(u,v)$ in $E^c$ denotes that $u$ cites $v$, and (c) each node is associated with two types of time information: the publication year and the latest year having the largest (logscale) number of citations.
+A {\em citation graph} $G^c(V^c, E^c)$ is firstly constructed using the citation information such that (a) a node in $V^c$ denotes an article, (b) a directed edge $(u,v)$ in $E^c$ denotes that $u$ cites $v$, and (c) each node is associated with two types of time information: the publication year and the latest year having the largest scaled number of citations.
 
 
 \sstab(1) The prestige of articles is derived by applying TWPageRank on the citation graph $G^c$, and each article $v$ is assigned the corresponding TWPageRank score as its prestige $Prs_c(v)$.
@@ -233,8 +233,9 @@ The author component computes the importance of authors with their published art
 Similar to the venue component, we evaluate the importance of each author, and compute the average importance of the authors of an article as its {\em author importance score}.
 
 %However, the resulting author citation graph to compute the prestige is typically too large to handle.
-\markedb{To do this, an {\em author graph} needs to be constructed such that (a) a node represents an author, and (b) a direct edge $(s,t)$ denotes that there exist articles of author $s$ citing articles of author $t$. It is not hard to image that the number of edges in the author graph is much larger than the number in the citation graph, which reaches to 7.12  billion on the largest \magdata (\ie the memory cost of storage only is 57GB). It is computationally expensive to compute prestige of authors with TWPageRank on that graph.}
-Hence, we evaluate the prestige of an author, by using the average prestige of all articles published by the author. Similar to the venue component, the popularity of an author is also defined as the average popularity of her/his published articles. Finally, the prestige and popularity are combined to derive the importance in the same way as the citation component.
+One way to do this is to construct an author citation graph  such that (a) a node represents an author, and (b) a direct edge $(s,t)$ denotes that there exist articles of author $s$ citing articles of author $t$. However, it is easy to see that all authors of a article forms a clique, which makes it computationally expensive to compute the prestige of authors on such an author citation graph with TWPageRank.
+
+Hence, we choose to evaluate the prestige of an author with the average prestige of all articles published by the author. Similar to the venue component, the popularity of an author is  defined as the average popularity of her/his published articles. Finally, the prestige and popularity are combined to derive the importance along the same way as the citation component.
 
 %, which can be directly obtained from the citation component,
 %to evaluate the authority of that author.
@@ -260,11 +261,9 @@ The final ranking score $R(v)$ is aggregated as follows:
 R(v) =  \alpha R_c(v) + \beta R_v(v) + (1 - \alpha - \beta) R_a(v).
 \end{equation}
 \end{small}
-\noindent Here aggregating parameters $\alpha$ and $\beta$ and value $(1 - \alpha - \beta)$ regularize the contributions of the citation, venue and author information.
-%
-\markedb{
-By this, our model is able to fit to the various ranking scenarios in real-life applications, which hardly can be covered with one set of parameters. As will be shown in the experiments, our model performs well in two reasonable ranking scenarios by using quite different aggregating parameters, and, moreover, these parameters are indeed quite flexible to choose within a certain range, \ie $[0,1]$. }
-%Intuitively, these parameters indicate the intensity of the correlation between the importance of scholarly articles and the specific information.
+\noindent Here aggregating parameters $\alpha$ and $\beta$ and value $(1 - \alpha - \beta)$ regularize the contributions of the citation, venue and author information,
+which make our model be able to fit to the various ranking scenarios. As will be seen in the experiments, our model performs well in two reasonable ranking scenarios by using quite different aggregating parameters, and, moreover, these parameters are indeed quite flexible to choose within a certain range.
+Intuitively, these parameters indicate the intensity of the correlation between the importance of scholarly articles and the specific information.
 
 
 \stitle{Remarks}. This work follows the graph-based formalization, and further develops efficient batch and incremental algorithms based on graphs for scholarly article ranking (Sections~\ref{sec-alg} \& \ref{sec-incAlg}). However, it is also possible to learn a discriminative model that directly optimizes certain loss functions for ranking, similar to \cite{Richardson06:BPR} for ranking Web pages.

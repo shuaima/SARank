@@ -20,7 +20,7 @@ Semantic Scholar~\cite{sem-scholar} proposes to use the citation velocity, which
 
 
 Scholarly articles are involved with multiple entities such as authors, venues, dates and references. That is, scholarly article ranking is essentially a problem of assessing the importance of nodes in a heterogeneous network.
-However, effective and efficient ranking of nodes in such a large complex network is a different task due to the heterogeneous, evolving and dynamic natures of involved entities~\cite{AggarwalS14-survey,fcs-biggraph}.
+However, effective and efficient ranking of nodes in such a large complex network is a difficult task due to the heterogeneous, evolving and dynamic natures of involved entities~\cite{AggarwalS14-survey,fcs-biggraph}.
 
 First, even if we are only to rank one type of entities (\ie scholarly articles), the other types of entities (\eg venues and authors) are closely involved, and, moreover, different types of entities may have different impacts on the ranking of scholarly articles.
 %
@@ -30,7 +30,7 @@ Newly published articles are very likely to have increasing impacts in the next 
 Finally, academic data is dynamic and continuously growing. Indeed, the number of articles in Microsoft Academic Graph has exceeded 126 million, and keeps increasing at around 5.7 million per year~\cite{Sinha15:MAG}. This may cause certain long-term biases into data, \eg the number of citations increases significantly over time~\cite{BornmannM15}, which should be properly considered for scholarly article ranking.
 
 
-Query independent ranking of scholarly articles remains difficult~\cite{wsdmcup}, although there exists quite a bit of work on scholarly article ranking, \eg~\cite{Garfield471,Liang16AAAI,Jiang12-MRank,Waltman2014}.
+Query independent ranking of scholarly articles remains challenging~\cite{wsdmcup}, although there exists quite a bit of work on scholarly article ranking, \eg~\cite{Garfield471,Liang16AAAI,Jiang12-MRank,Waltman2014}.
 Most previous work exploits the time-dependent information of scholarly data in the form of exponential decay~\cite{Li08TSRanking,Wang13AAAI,sayyadi09,WalkerXKM07}, which fails to capture the diverse citation patterns of individual articles~\cite{Chakraborty15}.
 Further, to our knowledge, little concern has been paid to dynamic scholarly article ranking except \cite{GhoshKHLL11} with a strong and impractical assumption that there are no citations between articles published in the same years.
 %\marked{Finally, the bias caused by the dynamic nature of data has never been exploited in scholarly article ranking}.
@@ -51,11 +51,11 @@ The popularity of an article is the sum of all its citation freshness (how close
 %
 %Observe that (a), intuitively, prestige favors articles with many citations soon after their publication, and popularity favors those with recent citations, and (b) both prestige and popularity capture the evolving nature of entities.
 %
-To our knowledge, the Time-Weighted PageRank is among the first to incorporate the diverse citation patterns of individual articles \markedb{and exploit citation statistics for scholarly article ranking.}
+To our knowledge, our Time-Weighted PageRank is among the first to incorporate diverse citation patterns of individual articles and to exploit citation statistics for scholarly article ranking.
 %and the long-term bias caused by the dynamic nature of data
 
-\sstab(2)  We then develop  a batch algorithm for scholarly article ranking (Section \ref{sec-alg}), in which we propose a block-wise method for Time-Weighted PageRank \markedb{and show its efficiency advantage in terms of an analysis of the citation characteristics and a specific structural property of scholarly graphs.}
-%in which we propose a block-wise method for Time-Weighted PageRank in terms of an analysis of the citation characteristics of scholarly articles.
+\sstab(2)  We then develop  a batch algorithm for scholarly article ranking (Section \ref{sec-alg}), in which we propose a block-wise method for Time-Weighted PageRank %\markedb{and show its efficiency advantage in terms of an analysis of the citation characteristics and a specific structural property of scholarly graphs.}
+in which we propose a block-wise method for Time-Weighted PageRank in terms of an analysis of the citation characteristics of scholarly articles.
 
 \sstab(3)
 We further develop an incremental algorithm for dynamic scholarly article ranking (Section~\ref{sec-incAlg}), which partitions graphs into  {\em affected and unaffected areas}, and employs different updating strategies for nodes in affected and unaffected areas.
@@ -70,8 +70,8 @@ We further develop an incremental algorithm for dynamic scholarly article rankin
 (b) Our batch algorithm \batensemble and incremental algorithm \incensemble are also efficient. Indeed, \incensemble is on average (1.7, 2.8, 116) and (2.0, 4.4, 245) times faster than (\batensemble, \futurerank, \hhgrank)  on the large \aminer and \magdata, respectively.
 %%%%%%%%%%%%%%%%%%%%%%%%%
 
-%All the detailed proofs can be found in \cite{SARank-full}.
-All the proofs can be found in \cite{SARank-full}.
+All the detailed proofs can be found in \cite{SARank-full}.
+%All the proofs can be found in \cite{SARank-full}.
 
 \eat{
 \stitle{Organization}. The rest of our paper is organized as follows. The latter part of Section~\ref{sec-intro} summarizes related work. Section~\ref{sec-model} introduces the ranking model. Section~\ref{sec-alg} .... Section~\ref{sec-incAlg} .... Experimental results are reported in Section~\ref{sec-exp}, followed by conclusions in Section~\ref{sec-conc}.
