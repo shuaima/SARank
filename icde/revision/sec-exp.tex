@@ -489,7 +489,7 @@ In the last set of tests, we evaluated the impacts of time decaying factor $\sig
 
 
 
-\etitle{Exp-4.1}.
+\etitle{Exp-5.1}.
 %\stitle{Exp-4.1}.
 To evaluate the impacts of the time decaying factor $\sigma$, we varied $\sigma$ from -1.6 to -0.4.
 %, while fixed $Y_s$ to default values, $T_i=+\infty$, $dif=1$ and $\lambda=0.5$.
@@ -508,7 +508,7 @@ The running time varies (11.3\%, 8.6\%) on average only on (\aminer, \magdata), 
 %As we can see from the figure, our method \ensemblerank is almost stable with the reduction of $\sigma$, since there is only a small fluctuation and the accuracy of our methods is always higher than the best baseline result in all datasets regardless of the change of $\sigma$. This means \ensemblerank is insensitive with $\sigma$.
 
 
-\etitle{Exp-4.2}.
+\etitle{Exp-5.2}.
 %\stitle{Exp-4.2}.
 To evaluate the impacts of importance weighting factor $\lambda$, we varied $\lambda$ from 0 to 1.
 %while fixed $Y_s$ to default values, $T_i=+\infty$, $dif=1$ and $\sigma=-1.0$.
@@ -561,7 +561,7 @@ Indeed, with \recom and \fcita, the \PairAcc of combining prestige and popularit
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\etitle{Exp-4.3}.
+\etitle{Exp-5.3}.
 To evaluate the impacts of aggregating parameters $\alpha$ and $\beta$, we varied $\alpha$ and $\beta$ at the granularity of 0.01. Again, parameters $\alpha$ and $\beta$ have few impacts on efficiency. The results are reported in Fig.~\ref{exp-ab}, where the parameters $\alpha$ and $\beta$ are set by default (used earlier) to the corresponding values of $\alpha$-axis and $\beta$-axis of the \PairAcc marked with $\star$, respectively.
 
 When varying $\alpha$ and $\beta$, the \PairAcc of \ensemblerank changes gently, as shown in Fig.~\ref{exp-ab}.
@@ -573,7 +573,7 @@ Moreover, the \PairAcc keeps at a high level within a certain ($\alpha$, $\beta$
 Further, the optimal parameters on the same set of ground-truth are very similar for (\aan, \aminer and \magdata), indicating that the setting of $\alpha$ and $\beta$ can be easily transferred across different datasets.
 To conclude, \ensemblerank is very robust to parameters $\alpha$ and $\beta$, and it is quite flexible for choosing proper values of parameters $\alpha$ and $\beta$.
 
-Moreover, this enables to verify the effectiveness of importance assembling from different components, whose results are reported in Table~IV, in which letters C, V and A stand for citation, venue and author components, respectively.
+Moreover, this enables to verify the effectiveness of importance assembling from different components, whose results are reported in Table~V, in which letters C, V and A stand for citation, venue and author components, respectively.
 The ranking based on all components consistently performs the best, using both \recom and \fcita, which justifies the use of importance assembling for ranking scholarly articles.
 %which, using \recom and \fcita, improves the \PairAcc over using components (C, V, A, CV, CA, VA) by (5.77\%, 19.4\%, 16.1\%, 0.09\%, 4.59\%, 6.28\%) and (9.54\%, 23.7\%, 5.90\%, 2.50\%, 0.71\%, 4.79\%) on \aan, (6.94\%, 23.7\%, 14.4\%, 0.21\%, 1.56\%, 7.67\%) and (17.68\%, 12.4\%, 9.61\%, 0.33\%, 1.88\%, 6.34\%) on \aminer, and (6.29\%, 16.38\%, 14.45\%, 0.05\%, 2.43\%, 5.02\%) and (11.43\%, 19.2\%, 11.2\%, 1.44\%, 0.77\%, 9.62\%) on \magdata, respectively.
 
@@ -595,7 +595,7 @@ of  parameters $\alpha$ and $\beta$.
 \newcommand{\drank}{\kw{DRank}}
 
 
-\etitle{Exp-4.4}.
+\etitle{Exp-5.4}.
 To evaluate the impacts of our TWPageRank, we compared our \ensemblerank with \drank, an alternative of \ensemblerank by removing the peak time in  Eq.~(\ref{eq-infl-weights}) of  TWPageRank, \ie $w(u,v)=e^{\sigma(T_u-T_v)}$. % with a directly exponentially decayed impact weights without peak times, \ie , .
 %The two algorithms produce the same popularity while different prestige.
 To better understand the impacts, we varied the importance weighting factor $\lambda$ from 0.1 to 1. Note that the ranking results are the same when $\lambda=0$ due to the same popularity computation. The results are reported in Fig.~\ref{exp-drank}, where the numbers represent the improvement of \PairAcc by \ensemblerank over the one by \drank.
