@@ -2,9 +2,9 @@
 \label{sec-exp}
 
 In this section, we present an extensive experimental study of our approach \ensemblerank, compared with three competitive methods.
-Using three real-life scholarly datasets (\aan, \aminer and \magdata) and two sets of ground-truth (\recom and \fcita), we conducted four sets of experiments to evaluate: (1) the effectiveness of \ensemblerank,
+Using three real-life scholarly datasets (\aan, \aminer and \magdata) and two sets of ground-truth (\recom and \fcita), we conducted five sets of experiments to evaluate: (1) the effectiveness of \ensemblerank,
 %two sets of benchmark article pairs (\recom and \fcita) ranked by numbers of recommendations and future citations,
-(2) the efficiency of our batch algorithm \batensemble and incremental algorithm \incensemble, and (3) the impacts of parameters. %\ie time decaying factor $\sigma$, importance weighting factor $\lambda$ and aggregating parameters $\alpha$ and $\beta$.
+(2) the efficiency of our batch algorithm \batensemble and incremental algorithm \incensemble, (3) the memory cost, and (4) the impacts of parameters. %\ie time decaying factor $\sigma$, importance weighting factor $\lambda$ and aggregating parameters $\alpha$ and $\beta$.
 
 \subsection{Experimental Settings}
 
@@ -386,7 +386,7 @@ When varying $dif$, the \PairAcc of all algorithms increases with the increment 
 \vspace{-1.5ex}
 \caption{\small Accuracy evaluation: varying aggregating parameters $\alpha$ and $\beta$}
 \label{exp-ab}
-\vspace{-2ex}
+\vspace{-3ex}
 \end{figure*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -424,16 +424,19 @@ In our tests we adopted a yearly update policy due the limitation of  available 
 %\vspace{-2ex}
 \label{tab-result}
 \begin{center}
-\caption{\small Memory cost of algorithms}
+\caption{\small Memory costs on \aminer and \magdata}
 %\begin{small}
 \vspace{-.5ex}
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-{\bf Datasets}   &  \hspace{1ex}Original\hspace{1ex}     &  \hspace{1ex}\pagerank\hspace{1ex}     & \hspace{1ex}\futurerank\hspace{1ex}  &  \hspace{1ex}\hhgrank\hspace{1ex}  &   \hspace{1ex}\ensemblerank\hspace{1ex}    \\
+{\bf Datasets}   &  Data     &  \pagerank     & \futurerank  &  \hhgrank  &   \ensemblerank    \\
 \hline \hline
-\aan  & 6.80MB   & 5.03MB   & 5.86MB   & 11.06MB     & 13.09MB      \\  %\hline
-\aminer  & 288.87MB   & 263.81MB   & 404.46MB   & 1.34GB     & 1.28GB      \\ %\hline
-\magdata  & 10.46GB   & 8.67GB   & 14.32GB   & 61.37GB     & 48.13GB      \\ \hline
+%\aan  & 6.80MB   & 5.03MB   & 5.86MB   & 11.06MB     & 13.09MB      \\  %\hline
+%\aminer  & 288.87MB   & 263.81MB   & 404.46MB   & 1.34GB     & 1.28GB      \\ %\hline
+%\magdata  & 10.46GB   & 8.67GB   & 14.32GB   & 61.37GB     & 48.13GB      \\ \hline
+%\aan  & 6.8MB   & 5.03MB   & 5.86MB   & 11.06MB     & 13.09MB      \\  %\hline
+\aminer  & 289MB   & 264MB   & 404MB   & 1.34GB     & 1.28GB      \\ %\hline
+\magdata  & 10.5GB   & 8.7GB   & 14.3GB   & 61.4GB     & 48.1GB      \\ \hline
 \end{tabular}
 %\vspace{-.5ex}
 %\end{small}
@@ -443,11 +446,18 @@ In our tests we adopted a yearly update policy due the limitation of  available 
 %%%%%%%%%%%%%%%%%%%
 
 \stitle{Exp-4: Memory cost}.
+%
+In the fourth set of tests, we evaluated the memory cost of our algorithm on the large \aminer and \magdata. For a fair comparison, we used all data on \aminer and data before 2014 on \magdata such that \hhgrank can finish the test. The results are reported in Table~IV, where the Data column records the size of the academic graph data, \ie the citation graph, author-article relationships, article-venue relationships and time information of articles.
 
-In the fourth set of tests, we evaluated the memory cost of our algorithm. For a fair comparison, all algorithms used all data on both \aan and \aminer, and used data before 2014 on \magdata, since the \hhgrank will run out of memory in when $Y_s=2015$. The original data including paper citation graph, paper-author graph, paper-venue graph and time information of articles. The results of memory cost are reported in Table~IV.
+On both datasets, algorithm \pagerank uses the least memory, followed by algorithms \futurerank, \ensemblerank and \hhgrank, respectively. 
+%
+The memory used by \pagerank is even less than the size of data as it is based on the citation graph only.
+%
+Our \ensemblerank model costs more memory than \futurerank since it also combines article-venue relationships ignored by \futurerank and it assembles multiple rankings based on prestige and popularity. However, our \ensemblerank model is still more memory-efficient than \hhgrank. 
+%
+To conclude, the \ensemblerank model uses reasonable amount of  memory to achieve the better effectiveness.
 
-
-For all algorithms, the memory cost increases with the original graph. Moreover, the more complexity the algorithm is, the more memory it costs. The memory cost of \pagerank is much lower than the one of other algorithms, since it only uses the citation information alone. Moreover, \ensemblerank costs more memory than \futurerank due to it also uses venue information besides of author information which \futurerank uses. The memory cost of \hhgrank is much higher than the one of other algorithms except on \aan possibly because the hypernetwork it generates will be more complicated with bigger original graph. Consider that, we choose to evaluate the prestige of an author with the average prestige of all articles published by the author instead of constructing an author citation graph with author component.
+%For all algorithms, the memory cost increases with the original graph. Moreover, the more complexity the algorithm is, the more memory it costs. The memory cost of \pagerank is much lower than the one of other algorithms, since it only uses the citation information alone. Moreover, \ensemblerank costs more memory than \futurerank due to it also uses venue information besides of author information which \futurerank uses. The memory cost of \hhgrank is much higher than the one of other algorithms except on \aan possibly because the hypernetwork it generates will be more complicated with bigger original graph. Consider that, we choose to evaluate the prestige of an author with the average prestige of all articles published by the author instead of constructing an author citation graph with author component.
 
 
 

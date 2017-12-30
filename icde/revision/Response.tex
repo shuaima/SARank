@@ -15,6 +15,7 @@
 \newcommand{\ensemblerank}{\kw{SARank}}
 \newcommand{\marked}[1]{\textcolor{red}{#1}}
 \newcommand{\magdata}{{\sc MAG}\xspace}
+\newcommand{\aminer}{{\sc DBLP}\xspace}
 
 \geometry{left=2.0cm, right=2.0cm, top=2.5cm, bottom=2.5cm}
 \newcommand{\ie}{\emph{i.e.,}\xspace}
@@ -176,7 +177,16 @@ Yes, we agree that more examples (especially on how to generate components from 
 
 \textbf{[R3W2\&D4]} \emph{The memory cost of the algorithms is better to be reported in the experiments.}
 
-We have reported the memory costs in a new set of experiments Exp-4 (page 10). \marked{that on the largest \magdata, (\futurerank, \ensemblerank) cost (16.42GB, 49.42GB) memory when $Y_s=2015$, and \hhgrank costs 61.37GB memory when $Y_s=2014$. Interestingly, our \ensemblerank model costs more memory than \futurerank due to its model complexity, while it is more efficient with our batch and incremental algorithms. seperate exp, between two baselines, author citation graph}
+We have reported the memory costs in a new set of experiments, \ie Exp-4 (page 10). 
+On the large \aminer and \magdata, algorithm \pagerank uses the least memory, followed by algorithms \futurerank, \ensemblerank and \hhgrank, respectively.
+%
+The memory used by \pagerank is even less than the size of the academic graph data as it is based on the citation graph only.
+%
+Our \ensemblerank model costs more memory than \futurerank since it also combines article-venue relationships ignored by \futurerank and it assembles multiple rankings based on prestige and popularity. However, our \ensemblerank model is still more memory-efficient than \hhgrank.
+%
+To conclude, the \ensemblerank model uses reasonable amount of  memory to achieve the better effectiveness.
+
+%that on the largest \magdata, (\futurerank, \ensemblerank) cost (16.42GB, 49.42GB) memory when $Y_s=2015$, and \hhgrank costs 61.37GB memory when $Y_s=2014$. Interestingly, our \ensemblerank model costs more memory than \futurerank due to its model complexity, while it is more efficient with our batch and incremental algorithms. seperate exp, between two baselines, author citation graph
 %the memory cost of (\pagerank, \futurerank, \ensemblerank) is (12.65GB, 16.42GB, 49.42GB) when $Y_s=2015$, and the one of \hhgrank is 61.37GB when $Y_s=2014$.
 
 
