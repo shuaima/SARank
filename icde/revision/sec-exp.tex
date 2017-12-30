@@ -427,13 +427,13 @@ In our tests we adopted a yearly update policy due the limitation of  available 
 \caption{\small Memory cost of algorithms}
 %\begin{small}
 \vspace{-.5ex}
-\begin{tabular}{|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|c|}
 \hline
-{\bf Datasets}   &  \hspace{1ex}\pagerank\hspace{1ex}     & \hspace{1ex}\futurerank\hspace{1ex}  &  \hspace{1ex}\hhgrank\hspace{1ex}  &   \hspace{1ex}\ensemblerank\hspace{1ex}    \\
+{\bf Datasets}   &  \hspace{1ex}Original\hspace{1ex}     &  \hspace{1ex}\pagerank\hspace{1ex}     & \hspace{1ex}\futurerank\hspace{1ex}  &  \hspace{1ex}\hhgrank\hspace{1ex}  &   \hspace{1ex}\ensemblerank\hspace{1ex}    \\
 \hline \hline
-\aan  & $0.671$   & $0.738$   & $0.758$     & {\bf 0.805}      \\  %\hline
-\aminer  & $0.651$   & $0.729$   & $0.730$     & {\bf 0.778}      \\ %\hline
-\magdata  & $0.615$   & $0.655$   & $0.658$     & {\bf 0.680}      \\ \hline
+\aan  & 6.80MB   & 5.03MB   & 5.86MB   & 11.06MB     & 13.09MB      \\  %\hline
+\aminer  & 288.87MB   & 263.81MB   & 404.46MB   & 1.34GB     & 1.28GB      \\ %\hline
+\magdata  & 10.46GB   & 8.67GB   & 14.32GB   & 61.37GB     & 48.13GB      \\ \hline
 \end{tabular}
 %\vspace{-.5ex}
 %\end{small}
@@ -443,9 +443,12 @@ In our tests we adopted a yearly update policy due the limitation of  available 
 %%%%%%%%%%%%%%%%%%%
 
 \stitle{Exp-4: Memory cost}.
-In the fourth set of tests, we evaluated the memory cost of our algorithm. For a fair comparison, all algorithms used data before 2014, since the \hhgrank will run out of memory in 2015. The results of memory cost are reported in Table~IV.
-The original data including
-\markedb{The memory cost is an important factor of efficiency. We thus collect the memory use on the largest \magdata that (\futurerank, \ensemblerank) cost (16.42GB, 49.42GB) memory when $Y_s=2015$, and \hhgrank costs 61.37GB when $Y_s=2014$. Interestingly, our \ensemblerank model costs more memory than \futurerank due to its model complexity, while it is more efficient with our batch and incremental algorithms.}
+
+In the fourth set of tests, we evaluated the memory cost of our algorithm. For a fair comparison, all algorithms used all data on both \aan and \aminer, and used data before 2014 on \magdata, since the \hhgrank will run out of memory in when $Y_s=2015$. The original data including paper citation graph, paper-author graph, paper-venue graph and time information of articles. The results of memory cost are reported in Table~IV.
+
+
+For all algorithms, the memory cost increases with the original graph. Moreover, the more complexity the algorithm is, the more memory it costs. The memory cost of \pagerank is much lower than the one of other algorithms, since it only uses the citation information alone. Moreover, \ensemblerank costs more memory than \futurerank due to it also uses venue information besides of author information which \futurerank uses. The memory cost of \hhgrank is much higher than the one of other algorithms except on \aan possibly because the hypernetwork it generates will be more complicated with bigger original graph. Consider that, we choose to evaluate the prestige of an author with the average prestige of all articles published by the author instead of constructing an author citation graph with author component.
+
 
 
 
