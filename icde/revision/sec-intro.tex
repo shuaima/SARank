@@ -47,7 +47,7 @@ The importance is a combination of {\em prestige} and {\em popularity} to captur
 %
 To compute the prestige of articles and venues, we propose a novel {\em Time-Weighted PageRank} with a time decaying factor based on the citation statistics (instead of simple exponential decay), and the prestige of authors is the average prestige of all their published articles.
 %
-The popularity of an article is the sum of all its citation freshness (how close to the current year), while the one of venues and authors is the average popularity of their associated articles.
+The popularity of an article is the sum of all its citation freshness (closeness to the current year), while the one of venues and authors is the average popularity of their associated articles.
 %
 %Observe that (a), intuitively, prestige favors articles with many citations soon after their publication, and popularity favors those with recent citations, and (b) both prestige and popularity capture the evolving nature of entities.
 %
@@ -55,10 +55,12 @@ To our knowledge, our Time-Weighted PageRank is among the first to incorporate d
 %and the long-term bias caused by the dynamic nature of data
 
 \sstab(2)  We then develop  a batch algorithm for scholarly article ranking (Section \ref{sec-alg}), in which we propose a block-wise method for Time-Weighted PageRank %\markedb{and show its efficiency advantage in terms of an analysis of the citation characteristics and a specific structural property of scholarly graphs.}
-in which we propose a block-wise method for Time-Weighted PageRank in terms of an analysis of the citation characteristics of scholarly articles.
+%in which we propose a block-wise method for Time-Weighted PageRank
+in terms of an analysis of the citation characteristics of scholarly articles.
 
 \sstab(3)
-We further develop an incremental algorithm for dynamic scholarly article ranking (Section~\ref{sec-incAlg}), which partitions graphs into  {\em affected and unaffected areas}, and employs different updating strategies for nodes in affected and unaffected areas.
+We further develop an incremental algorithm for the block-wise algorithm
+to deal with dynamic scholarly article ranking (Section~\ref{sec-incAlg}), which partitions graphs into  {\em affected and unaffected areas}, and employs different updating strategies for nodes in affected and unaffected areas.
 
 
 \sstab(4) Using three real-life scholarly datasets (\aan, \aminer and \magdata) and two sets of ground-truth (\recom and \fcita), we finally conduct an extensive experimental study (Section~\ref{sec-exp}).
