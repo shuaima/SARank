@@ -447,15 +447,15 @@ In our tests we adopted a yearly update policy due the limitation of  available 
 
 \stitle{Exp-4: Memory cost}.
 %
-In the fourth set of tests, we evaluated the memory cost of our algorithm on the large \aminer and \magdata. For a fair comparison, we used all data on \aminer and data before 2014 on \magdata such that \hhgrank can finish the test. The results are reported in Table~IV, where the Data column records the size of the academic graph data, \ie the citation graph, author-article relationships, article-venue relationships and time information of articles.
+In the fourth set of tests, we evaluated the memory cost of our algorithm on the large \aminer and \magdata. For a fair comparison, we used all data on \aminer and data before 2014 on \magdata such that \hhgrank could finish the test. The results are reported in Table~IV, where column `Data' records the size of the academic graph data, \ie the citation graph, author-article relationships, article-venue relationships and time information of articles.
 
-On both datasets, algorithm \pagerank uses the least memory, followed by algorithms \futurerank, \ensemblerank and \hhgrank, respectively. 
+Algorithm \pagerank uses the least memory, followed by algorithms \futurerank, \ensemblerank and \hhgrank, respectively.
 %
-The memory used by \pagerank is even less than the size of data as it is based on the citation graph only.
+The memory used by \pagerank is even less than the data size as it uses the citation graph only.
 %
-Our \ensemblerank model costs more memory than \futurerank since it also combines article-venue relationships ignored by \futurerank and it assembles multiple rankings based on prestige and popularity. However, our \ensemblerank model is still more memory-efficient than \hhgrank. 
-%
-To conclude, the \ensemblerank model uses reasonable amount of  memory to achieve the better effectiveness.
+Our \ensemblerank model costs more memory than \futurerank, but less than \hhgrank.
+This is because \ensemblerank further combines article-venue relationships ignored by \futurerank, and assembles multiple rankings based on prestige and popularity,
+a price paid to achieve better effectiveness.
 
 %For all algorithms, the memory cost increases with the original graph. Moreover, the more complexity the algorithm is, the more memory it costs. The memory cost of \pagerank is much lower than the one of other algorithms, since it only uses the citation information alone. Moreover, \ensemblerank costs more memory than \futurerank due to it also uses venue information besides of author information which \futurerank uses. The memory cost of \hhgrank is much higher than the one of other algorithms except on \aan possibly because the hypernetwork it generates will be more complicated with bigger original graph. Consider that, we choose to evaluate the prestige of an author with the average prestige of all articles published by the author instead of constructing an author citation graph with author component.
 
