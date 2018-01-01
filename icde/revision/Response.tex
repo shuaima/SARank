@@ -34,15 +34,38 @@
 %Editor-in-Chief,\\
 %IEEE International Conference on Data Engineering\\
 
-Dear Reviewers,
+Dear Meta-Reviewer and Reviewers,
 
-This is the response letter regarding the revised version of our submission to IEEE International Conference on Data Engineering 2018, \emph{Query Independent Scholarly Article Ranking}.
+We have revised our submission, \emph{Query Independent Scholarly Article Ranking}, to IEEE International Conference on Data Engineering 2018.
 
 We would like to thank all the referees for their thorough reading of our paper and for their valuable comments.
 
 The paper has been substantially revised according to the referees¡¯ comments. In particular, we have (1) further clarified our contributions, (2) added figures to better illustrate the data growing, (3) explained the author component better,  (4) reported the memory cost in experiments, (5) modified related work to differentiate our technique with existing ones, (6) answered the questions raised by referees, and (7) taken this opportunity to rewrite several parts of our paper to improve the presentation.
 
 Below please find our detailed responses to the comments by the referees.
+
+
+\line(1,0){500}
+
+\textbf{Response to the comments of Meta-Reviewer.}
+
+\textbf{[M1]} \emph{The reviewers see some merit in the approach, but they have also raised important concerns regarding the technical depth and novelty of the approach. In particular, the authors use known techniques for an application (scientific article ranking) for which there is abundance of previous work (it even has its own field, called scientometrics, or  bibliometrics).}
+
+
+
+
+We do believe that there are technical contributions: (1) An ensemble based ranking model (a great effort needs to be paid to develop such a ranking model);  (2) An incremental algorithm designed for dynamic scholarly article ranking in the general setting, which is designed for the block-wise algorithm of Time-Weighted PageRank, and is based on the citation characteristics. These have never been exploited in existing studies. That is, we are not simply using known techniques for an application.
+
+
+
+We also believe that our ensemble based ranking model and the citation statistics revealed in our study have their own interests to the researchers in the field of scientometrics or  bibliometrics.
+
+ We have clarified these in our paper. Thanks for pointing these out!
+
+\textbf{[M2]} \emph{In revising their paper, the authors should try to address all reviewers¡¯ comments and in particular address the required changes for revision by Reviewer 1.}
+
+Yes, we have addressed these. Please refer to our responses below.
+
 
 %******************* reviewer 1 ***********************************************
 \line(1,0){500}
@@ -51,9 +74,10 @@ Below please find our detailed responses to the comments by the referees.
 
 \textbf{[R1W1]} \emph{Formula 7 in SARank still needs parameters, which are not easy to set.}
 
-We discuss the necessity and the selection of parameters right after Eq. (7) (left column, page 4). More specifically, these parameters make our model be able to fit to the various ranking scenarios. As will be seen in the experiments, our model performs well in two reasonable ranking scenarios by using quite different aggregating parameters, and, moreover, these parameters are indeed quite flexible to choose within a certain range.
-%
-Note that a) the optimal \PairAcc is obtained within a single region, b) the \PairAcc keeps at a high level within a certain ($\alpha$, $\beta$) combination space around the optimal region, and c) the optimal parameters on the same set of ground-truth are very similar across different datasets (Exp-5.3, page 10).
+We discuss the necessity and the selection of parameters right after Eq. (7) (left column, page 4). More specifically, these parameters make our model be able to fit to the various ranking scenarios. As shown in the experiment study (Exp-1 and Exp-2), our model performs well in two reasonable ranking scenarios by using quite different aggregating parameters.
+
+
+Moreover, these parameters are indeed quite flexible to choose within a certain range (Exp-5.3, page 10). Note that (a) the optimal \PairAcc is obtained within a single region, (b) the \PairAcc keeps at a high level within a certain ($\alpha$, $\beta$) combination space around the optimal region, and (c) the optimal parameters on the same set of ground-truth are very similar across different datasets.
 
 
 %The parameters are designed to fit variety ranking with different demands. For example, the ground-truth RECOM prefer venue component while PFCTN prefer citation component. Furthermore, our parameters are quite flexible to choose in a certain range for suiting different ranking which we have discussed in Exp-4.3.
@@ -62,10 +86,11 @@ Note that a) the optimal \PairAcc is obtained within a single region, b) the \Pa
 
 %We discuss the extension of query dependent ranking in the revised paper (left column, page 2).
 %
-This work focuses on {\em query independent ranking} because of its wide application in modern scholarly search engines such as Google Scholar, Semantic Scholar and Microsoft Academic Search.
+This work focuses on {\em query independent ranking} because of its wide application in modern scholarly search engines such as Google Scholar, Semantic Scholar and Microsoft Academic Search (as we discussed in the first two paragraphs in Section 1).
 %
-And it can be easily extended to {\em query dependent ranking}. Our ranking can serve as an indicator of the importance of items, and, given a specific query, it can either be directly used to rank a subset of relevant items or combine with any relevance scores for ranking.
-%
+The combination of query dependent ranking and query independent ranking  is well known, e.g., typical search engines such as Google : keyword search (query dependent ranking) is combined with Pagerank (query independent ranking). Our ranking can serve as an indicator of the importance of items, and, given a specific query, it can either be directly used to rank a subset of relevant items or combine with any relevance scores for ranking along the same lines as keyword search.
+
+
 The extension in {\em other heterogeneous information networks} is currently unclear, since the TWPageRank is designed based on a deep analysis of scholarly articles (left column, page 2). We shall identify the possible applications in other heterogeneous information networks in the future.
 
 
@@ -74,18 +99,18 @@ The extension in {\em other heterogeneous information networks} is currently unc
 %We clarify the reasons of not changing values on nodes at the revised version (Remarks, left column, page 3).
 The goal of our TWPageRank is to change node values, \ie importance, through iterations.
 %One may wonder why not directly change node values.
-An alternative way to do that is to directly change node values. However, it is difficult to handle as importance does not have a clear and closed-form definition and it may also cause problems for convergence.
-To our knowledge, there is no related work on changing node weights to achieve this goal and it is yet unclear how to handle it. Finally, we use iterations with impact weights since importance is essentially propagable through edges and it is also fair for all nodes.
+An alternative way to do that is to directly change node values. However, it is difficult to handle as importance does not have a clear and closed-form definition. It may also cause problems for convergence.
+To our knowledge, there is no related work on changing node weights to achieve this goal, and it is indeed unclear how to handle it. % Finally, we use iterations with impact weights since importance is essentially propagable through edges and it is also fair for all nodes.
 
 
 \textbf{[R1D2]} \emph{This paper has an important observation that ¡°the impact of an article tends to decay with time after the peak time only.¡± However, I cannot see that from Figure 1. It is better to add some references to support the claim.}
 
-Figure 1 shows the logscale percentage of the number of articles/citations of each year which grows exponentially with time, instead of the number of citations (\ie impacts) of individual articles.
+Figure 1 shows the logscale percentage of the number of articles/citations of each year that grows exponentially with time, instead of the number of citations (\ie impacts) of individual articles.
 %We have highlighted it in the revised version (Figure 1, page 2).
 
 We have explained our claim better (Time-Weighted PageRank, page 2). The direct decay model only considers the case of {\em MonDec}.
 To unify these distinct citation patterns and to make our ranking model succinct, we adopt the claim that the impact of an article tends to decay with time after the peak time.
-Moreover, the aging function in [17] exploits a log-normal survival probability which also only decays with time after the citation peak.
+Moreover, the aging function in [17] exploits a log-normal survival probability that also only decays with time after the citation peak.
 %(it increases before reaching the peak since it aims to predict the number of citations instead of impacts of articles).
 
 [17]  D. Wang, C. Song, and A. Barab¨¢si, ¡°Quantifying long-term scientific impact,¡± Science, vol. 342, no. 6154, pp. 127-132, 2013.
@@ -94,8 +119,8 @@ Moreover, the aging function in [17] exploits a log-normal survival probability 
 
 \textbf{[R1D3]} \emph{How to determine the peak time for the PeakMul pattern?}
 
-The {\em PeakMul} pattern is originally defined in [18]:  the height of a peak should be at least 75\% of the maximum peak height, and two consecutive peaks should be separated by more than two years. In our work, we unify the five patterns and only use the highest peak time which has been formally defined in Section II-A (para 1, left column, page 3).
-Also note that: a) [18] allows multiple peaks to exist for an article while we only consider the highest peak, and b) [18] uses the original numbers of citations to compute peaks and we use the scaled numbers of citations \wrt the total number of citations of all articles at each year.
+The {\em PeakMul} pattern is originally defined in [18]:  the height of a peak should be at least 75\% of the maximum peak height, and two consecutive peaks should be separated by more than two years. In our work, we unify the five patterns, and we only use the highest peak time that has been formally defined in Section II-A (para 1, left column, page 3).
+Also note that: (a) [18] allows multiple peaks to exist for an article while we only consider the highest peak, and (b) [18] uses the original numbers of citations to compute peaks, and we use the scaled numbers of citations \wrt the total number of citations of all articles at each year.
 
 
 [18]  T. Chakraborty, S. Kumar, P. Goyal, N. Ganguly, and A. Mukherjee, ¡°On the categorization of scientific citation profiles in computer science,¡± Commun. ACM, vol. 58, no. 9, 2015.
@@ -103,7 +128,7 @@ Also note that: a) [18] allows multiple peaks to exist for an article while we o
 
 \textbf{[R1D4]} \emph{For large scholar graph, such as MAG, it is better to use the distributed graph processing framework to improve the scalability of the method}
 
-Yes, we agree that distributed processing is an important while independent problem which we have already placed in our future work (Conclusions, page 12). %Thanks for the suggestion!
+Yes, we agree that distributed processing is an important way for large scholar graphs.  But this topic is beyond the reach of this study, and we plan to do this in our future work (Conclusions, page 12). Thanks for the suggestion!
 
 
 \textbf{[R1D5]} \emph{TWPageRank works better on the scholar graphs than the general web graph. is it due to that the citation graph is an directed acyclic graph?}
@@ -114,7 +139,7 @@ Compared with general Web graphs, the computation of TWPageRank on scholarly gra
 
 \textbf{[R1D6]} \emph{MAG is used before description in Page 1. Some cells in Table 1 have two values, while others have one value. The meaning should be given explicitly.}
 
-Yes, we have revised our paper as suggested (right column, page 1 \& Table I, page 5).
+Yes, we have revised our paper as suggested (right column, page 1 \& Table I, page 5). Thanks!
 %Thanks for the suggestion!
 
 
@@ -177,7 +202,7 @@ Yes, we agree that more examples (especially on how to generate components from 
 
 \textbf{[R3W2\&D4]} \emph{The memory cost of the algorithms is better to be reported in the experiments.}
 
-We have reported the memory costs in a new set of experiments, \ie Exp-4 (page 10). 
+We have reported the memory costs in a new set of experiments, \ie Exp-4 (page 10).
 On the large \aminer and \magdata, algorithm \pagerank uses the least memory, followed by algorithms \futurerank, \ensemblerank and \hhgrank, respectively.
 %
 The memory used by \pagerank is even less than the size of the academic graph data as it is based on the citation graph only.
@@ -201,16 +226,7 @@ Yes. We have discussed the correlation between our work and temporal graphs and 
 %******************* meta-reviewer ***********************************************
 \line(1,0){500}
 
-\textbf{Response to the comments of META-REVIEWER.}
 
-\textbf{[D1]} \emph{The reviewers see some merit in the approach, but they have also raised important concerns regarding the technical depth and novelty of the approach. In particular, the authors use known techniques for an application (scientific article ranking) for which there is abundance of previous work (it even has its own field, called scientometrics, or  bibliometrics).}
-
-
-The techniques used in our work are not simply existing techniques:
-a) an importance assembling based ranking model is still novel in the field of scientometrics and bibliometrics and we further consider the efficient batch and dynamic computation problem which rarely has been exploited in these two fields, b) an incremental algorithm for block-wise time-weighted PageRank computation that makes use of the particular properties of the scholarly graphs, and c) a thorough experimental study.
-That is, although bearing similarities, this paper certainly has its contributions to the technical part and brings certain novelty for the task.
-
-Please also refer to our response to R2W1\&D1 for more details.
 
 \line(1,0){500}
 
