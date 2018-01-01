@@ -198,35 +198,22 @@ Indeed, the generated author citation graph has 7.12 billion edges on the larges
 
 \textbf{[R3W1\&D2]} \emph{More examples are suggested, especially when introducing the definitions, to make it easier for readers to understand.}
 
-Yes, we agree that more examples (especially on how to generate components from scholarly data) will make our paper easier to understand. Due to the space limitation, we choose to add the examples in the extended version.
+Yes, thanks for the nice suggestion! Due to the space limitation, we have added the examples to the full version (https://hurenjun.github.io/SARank-full.pdf).
 
 \textbf{[R3W2\&D4]} \emph{The memory cost of the algorithms is better to be reported in the experiments.}
 
-We have reported the memory costs in a new set of experiments, \ie Exp-4 (page 10).
-On the large \aminer and \magdata, algorithm \pagerank uses the least memory, followed by algorithms \futurerank, \ensemblerank and \hhgrank, respectively.
-%
-The memory used by \pagerank is even less than the size of the academic graph data as it is based on the citation graph only.
-%
-Our \ensemblerank model costs more memory than \futurerank since it also combines article-venue relationships ignored by \futurerank and it assembles multiple rankings based on prestige and popularity. However, our \ensemblerank model is still more memory-efficient than \hhgrank.
-%
-To conclude, the \ensemblerank model uses reasonable amount of  memory to achieve the better effectiveness.
-
+We have reported the memory costs in a new set of experiments, \ie Exp-4 (page 10). Thanks for the suggestion!
 %that on the largest \magdata, (\futurerank, \ensemblerank) cost (16.42GB, 49.42GB) memory when $Y_s=2015$, and \hhgrank costs 61.37GB memory when $Y_s=2014$. Interestingly, our \ensemblerank model costs more memory than \futurerank due to its model complexity, while it is more efficient with our batch and incremental algorithms. seperate exp, between two baselines, author citation graph
 %the memory cost of (\pagerank, \futurerank, \ensemblerank) is (12.65GB, 16.42GB, 49.42GB) when $Y_s=2015$, and the one of \hhgrank is 61.37GB when $Y_s=2014$.
 
 
 \textbf{[R3D1]} \emph{Although the authors have a detailed introduction about the growing data, detailed figures about the data are recommended in the introduction.}
 
-Yes, we add the volume statistics (the number of articles published at each year) of the growing data  in Figure 1.
+Yes, we  have added the volume statistics (the number of articles published at each year) of the growing data in Figure 1. Thanks!
 
 \textbf{[R3D3]} \emph{It is suggested that the authors should include some references to papers addressing the time delaying problem such as temporal graph, since it is related to the topic.}
 
-Yes. We have discussed the correlation between our work and temporal graphs and included necessary references in Related Work.
-
-%******************* meta-reviewer ***********************************************
-\line(1,0){500}
-
-
+Yes. We have discussed the correlation between our work and temporal graphs, and cited necessary references (e.g., P. Holme and J. Saramaki, ¡°Temporal networks,¡± Physics Reports, vol. 519, no. 3, pp. 97 ¨C 125, 2012) in related work (Section VI).
 
 \line(1,0){500}
 
