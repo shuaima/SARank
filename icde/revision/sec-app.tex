@@ -101,6 +101,12 @@ Combining with Corollary \ref{prop-prscc}, we have the conclusion.
 \subsection{Ranking with Importance Assembling}
 \label{subsec-ensemble}
 
+%In our model, the importance of scholarly articles is defined as a combination of the prestige and popularity of its associated articles, venues and authors. Intuitively, prestige favors those with many citations soon after the publication of articles for citation component or associated articles for venue and author components, and popularity favors those with recent citations. Both prestige and popularity capture the temporal nature of entities in scholarly data.
+In our model, the importance is defined as a combination of the prestige and popularity. Intuitively, prestige favors those with many citations soon after the publication of articles or associated articles of venues and authors, and popularity favors those with recent citations. Both prestige and popularity capture the temporal nature of entities. %in scholarly data.
+
+Our ranking model \ensemblerank,  illustrated in Fig.~\ref{fig-rankmodel}, assembles the importance of article, venue and author entities for scholarly article ranking, which is computed by the citation, venue and author components, respectively.
+%
+We next introduce the details of the three components.
 \begin{figure}[tb!]
 \centering
 %\includegraphics[scale=0.15]{fig/framework.eps}
@@ -119,24 +125,14 @@ Combining with Corollary \ref{prop-prscc}, we have the conclusion.
 \vspace{-3ex}
 \end{figure}
 
-%In our model, the importance of scholarly articles is defined as a combination of the prestige and popularity of its associated articles, venues and authors. Intuitively, prestige favors those with many citations soon after the publication of articles for citation component or associated articles for venue and author components, and popularity favors those with recent citations. Both prestige and popularity capture the temporal nature of entities in scholarly data.
-In our model, the importance is defined as a combination of the prestige and popularity. Intuitively, prestige favors those with many citations soon after the publication of articles or associated articles of venues and authors, and popularity favors those with recent citations. Both prestige and popularity capture the temporal nature of entities. %in scholarly data.
-
-Our ranking model \ensemblerank,  illustrated in Fig.~\ref{fig-rankmodel}, assembles the importance of article, venue and author entities for scholarly article ranking, which is computed by the citation, venue and author components, respectively.
-%
-We next introduce the details of the three components.
-
-
 \begin{example} \label{eg-layer-dag}
 Figure~\ref{fig-example-graph} illustrates an example of graph generation. We choose four articles of real-life data to show how to generate the citation graph, venue graph and author citation graph while the original academic graph data only has citation information, author-article relationships, article-venue relationships and time information of articles. As shown in Figure~\ref{fig-example-graph}, the articles A, B, C and D represent "Role Discovery in Networks", "On the Use of Side Information for Mining Text Data", "On Text Clustering with Side Information" and "Efficient streaming text clustering", respectively. We next introduce the details of graph generation.
 
 The citation graph is constructed using the citation information such that each node denotes an individual article and the edge $(A,B)$ denotes that article A have cited article B. The venue graph is constructed using the citation information among venues. As shown in Figure~\ref{fig-example-graph}, each node denotes a venue in a specific year such that TKDE-14 and TKDE-15 are two different nodes. Further, each edge denotes that there are citations between the articles published in the two venues. The author citation graph is constructed using the citation information among authors. As shown in Figure~\ref{fig-example-graph}, the article citation between article A and article B will generate 6 different edges in author citation graph, which makes it much more complicated than citation graph. As a result, the citation graph of 4 articles and 4 edges have generated a author citation graph of 6 nodes and 18 edges (the bidirectional arrow denotes two edges) although the article B and article C have shared same authors.
-
 \end{example}
 
 \begin{example} \label{eg-layer-dag}
-Figure~\ref{fig-example-model} illustrates an example of article ranking model. Consider an article $v$ published by authors $t$ and $u$ in venue $k$. 
-
+Figure~\ref{fig-example-model} illustrates an example of article ranking model. Consider an article $v$ published by authors $t$ and $u$ in venue $k$. Select the citation important score of $v$, the venue importance score of $k$ and the average of author importance scores of $t$ and $u$ from three components to assembled to produce the final ranking. Before assembling, each component is properly scaled such that the average importance scores are the same. Finally, calculate the final ranking score of article $v$ as Eq.~(\ref{eq-ensemble}).
 \end{example}
 
 
