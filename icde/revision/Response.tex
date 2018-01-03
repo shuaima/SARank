@@ -193,7 +193,7 @@ We agree that this sentence does not make sense, and, hence, we have removed the
 Yes, distributed processing is adopted for PangRank computation at Google, and we plan to develop a distributed version of our algorithm as well.
 However, even this, memory cost should also be deliberately considered in a centralized case.
 
-One way to compute the prestige of authors is to construct an author citation graph  such that (a) a node represents an author, and (b) a direct edge $(s,t)$ denotes that there exist articles of author $s$ citing articles of author $t$. However, it is easy to see that for each citation, the corresponding two sets of authors are fully connected, which makes it computationally expensive to compute the prestige of authors on such an author citation graph with TWPageRank.
+One way to compute the prestige of authors is to construct an author citation graph  such that (1) a node represents an author, and (2) a direct edge $(s,t)$ denotes that there exist articles of author $s$ citing articles of author $t$. However, it is easy to see that for each citation, the corresponding two sets of authors are fully connected, which makes it computationally expensive to compute the prestige of authors on such an author citation graph with TWPageRank.
 
 This needs quite a few space, and  the generated author citation graph has 7.12 billion edges on the largest \magdata (its memory cost of storage is 57GB).
 This is why we choose to evaluate the prestige of an author with the average prestige of all articles published by the author.
