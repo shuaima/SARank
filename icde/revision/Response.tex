@@ -183,7 +183,7 @@ Yes, we have gone over the paper, and tried our best to improve its presentation
 
 \textbf{[R2D2]} \emph{The abstract starts with the sentence ``Ranking query independent scholarly articles is a critical and challenging task, due to the heterogeneous, evolving and dynamic nature of entities involved in scholarly articles". If three types of data (articles, authors and venues) that are updated (maybe) weekly is considered challenging in terms of heterogeneity and dynamicity then one must wonder what one can say about real-life scenarios with thousands of data types where hundreds/thousands of new items are inserted daily (consider any online merchant system) and were ranking is important (recommendations). In summary, this sentence should go. Not to mention that the task is not really ``critical".}
 
-We have downgraded the tone and changed it into ``a practical and difficult problem''. Thanks for the suggestion!
+We have downgraded the tone to ``a practical and difficult problem''. Thanks for the suggestion!
 
 
 \textbf{[R2D3]} \emph{On page 4, you say ``However, the resulting author citation graph to compute the prestige is typically too large to handle". This is a questionable statement. Maybe it is too large to handle ``on a PC with 2 Intel Xeon E5¨C2630 2.4GHz CPUs and 64 GB of memory" but approaches like PageRank has been used for web-scale data so unless there is something that I am missing, this statement should also go (or explained better).}
@@ -191,7 +191,7 @@ We have downgraded the tone and changed it into ``a practical and difficult prob
 We agree that this sentence does not make sense, and, hence, we have removed the sentence, and explained more details about the statement (Author Component, left column, page 4). Thanks!
 
 Yes, distributed processing is adopted for PangRank computation at Google, and we plan to develop a distributed version of our algorithm as well.
-However, even this, memory cost should also be deliberately considered in a centralized case.
+However, even this, memory cost should also be deliberately considered in the centralized case.
 
 One way to compute the prestige of authors is to construct an author citation graph  such that (1) a node represents an author, and (2) a direct edge $(s,t)$ denotes that there exist articles of author $s$ citing articles of author $t$. However, it is easy to see that for each citation, the corresponding two sets of authors are fully connected, which makes it computationally expensive to compute the prestige of authors on such an author citation graph with TWPageRank.
 
@@ -212,7 +212,7 @@ Yes, thanks for the nice suggestion! Due to the space limitation, we have added 
 
 \textbf{[R3W2\&D4]} \emph{The memory cost of the algorithms is better to be reported in the experiments.}
 
-We have reported the memory costs with a new set of tests in the experimental study (Exp-4, page 9). Thanks for the suggestion!
+We have reported the memory cost with a new set of tests in the experimental study (Exp-4, page 9). Thanks for the suggestion!
 %that on the largest \magdata, (\futurerank, \ensemblerank) cost (16.42GB, 49.42GB) memory when $Y_s=2015$, and \hhgrank costs 61.37GB memory when $Y_s=2014$. Interestingly, our \ensemblerank model costs more memory than \futurerank due to its model complexity, while it is more efficient with our batch and incremental algorithms. seperate exp, between two baselines, author citation graph
 %the memory cost of (\pagerank, \futurerank, \ensemblerank) is (12.65GB, 16.42GB, 49.42GB) when $Y_s=2015$, and the one of \hhgrank is 61.37GB when $Y_s=2014$.
 
