@@ -13,8 +13,8 @@ Scholarly data is dynamic and continuously growing, and it is impractical to rec
 Our incremental algorithm \incensemble incrementally computes the popularity and prestige of associate entities.
 We consider that an update $\Delta$ = $\Delta V\cup\Delta E$ is added to a (citation or venue) graph $G(V, E)$,
 and the resulting graph is $G^+(V\cup\Delta V, E\cup\Delta E)$, where
-$\Delta V$ is a set of nodes with $\Delta V\cap V = \emptyset$, and $\Delta E$ is a set of directed edges on $\Delta V$ and from $\Delta V$ to $V$ only, as citations obey a natural temporal order, \ie an article only cites those published earlier. %, and it is rare for the mutual citations between two articles published in the same time.
-
+$\Delta V$ is a set of nodes with $\Delta V\cap V = \emptyset$, and $\Delta E$ is a set of directed edges on $\Delta V$ and from $\Delta V$ to $V$ only, as citations obey a natural temporal order, \ie an article only cites those published earlier, %, and it is rare for the mutual citations between two articles published in the same time.
+\markedb{and set $|\Delta |= |\Delta V|+|\Delta E|$.}
 
 \stitle{Incremental popularity computation}.
 As the popularity of articles is defined as the sum of the freshness of their citations, it is convenient to maintain dynamically. Consider an updated citation graph $G^{c,+}(V^c\cup\Delta V^c, E^c\cup\Delta E^c)$ of $G^c(V^c, E^c)$, and the updated popularity $Pop_{c}^+(v)$ can be computed as:
@@ -29,8 +29,9 @@ Pop_c^+(v) = Pop_c(v) {e^{\sigma (T^+_0-T_0)}} + \sum_{(u,v)\in \Delta E^c} {e^{
 \noindent where $Pop^+_c(v)$ (resp. $Pop_c(v)$) is the popularity of node $v$ on $G^{c,+}$ (resp. $G^c$), and
 $T^+_0$ (resp. $T_0$) is the current time on $G^{c,+}$ (resp. $G^c$).
 %
-By Eq.~(\ref{eq-inc-pop}), it is easy to see that updating the popularity of articles takes $O($ $|V^c|+|\Delta V^c|+|\Delta E^c|)$ time.
+\eat{By Eq.~(\ref{eq-inc-pop}), it is easy to see that updating the popularity of articles takes $O($ $|V^c|+|\Delta V^c|+|\Delta E^c|)$ time.}
 %This further shows that Eq.~(\ref{eq-inc-pop}) is a desired solution for popularity maintenance.
+\markedb{By Eq.~(\ref{eq-inc-pop}), it is easy to see that updating the popularity of articles takes $O($ $|V^c|+|\Delta G^c|)$ time.}
 
 The popularity of venues and authors is computed along the same lines as their batch counterparts of algorithm \batensemble,
 as almost all venues and authors are affected  by the definitions of the popularity of venues and authors.
@@ -224,7 +225,8 @@ Assume a topological order $v_1'/\dots/v_{l}'$ of the block-wise graph $G^+{'}$ 
 
 
 
-Observe that (a) a topological order of the block-wise graph of $G_C$ can be computed in $O(|\Delta V|+|\Delta E|)$ time,
+%Observe that (a) a topological order of the block-wise graph of $G_C$ can be computed in $O(|\Delta V|+|\Delta E|)$ time,
+\markedb{Observe that (a) a topological order of the block-wise graph of $G_C$ can be computed in $O(|\Delta G|)$ time,}
 (b) updating the TWPageRank scores of nodes in $V_B$ and $V_C$ costs $O(|V_B\cup V_C|+|E_{B,a}\cup E_{C,a}\cup E_{CB}|)+t^+|E_{B,i}\cup E_{C,i}|)$ time, where $t^+$ is  the maximum number of iterations among all \sccs in $G_B$ and $G_C$, and, finally, (c) updating the scores of nodes in $V_A$ costs $O(|V_A|)$ time. From these, the following holds.
 
 
@@ -256,7 +258,8 @@ By the analyses above, the time complexity of \incensemble is the same as \baten
 
 Despite of its similar time complexity to \batensemble, algorithm \incensemble typically achieves a substantial efficiency improvement over \batensemble, according to our statistics of affected/unaffected areas given a yearly update, \ie articles of 2011 on \aan and 2015 on \aminer and \magdata, respectively, shown in Table~II.
 %
-(a) It saves $O(|V^c|+|E^c|)$ and $O(|V^v|+|E^v|)$ time when maintaining \sccs and the topological order based on the update data only,
+%(a) It saves $O(|V^c|+|E^c|)$ and $O(|V^v|+|E^v|)$ time when maintaining \sccs and the topological order based on the update data only,
+\markedb{(a) It saves $O(|G^c|)$ and $O(|G^v|)$ time when maintaining \sccs and the topological order based on the update data only,}
 %where ($|V^c|$, $|E^c|$, $|V^v|$, $|E^v|$) are more than (92\%, 89\%, 93\%, 89\%) of ($|V^{c,+}|$, $|E^{c,+}|$, $|V^{v,+}|$, $|E^{v,+}|$) on all tested graphs;
 where ($|V|$, $|E|$) are more than (92\%, 89\%) of ($|V^{+}|$, $|E^{+}|$) on all tested citation and venue graphs;
 (b) It saves $O(|E^c_A \cup E^c_{AB}|)$ time when updating scores on $V^c$, where edges in $E^c_A\cup E^c_{AB}$ account for more than 28\% of total;
