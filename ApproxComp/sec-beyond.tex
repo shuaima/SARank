@@ -1,0 +1,25 @@
+\section{Beyond Query and Data Approximations}
+\label{sec-beyond}
+
+There exist no single techniques fit all for big data analytics, and  it is often necessary to combine different techniques to obtain satisfiable solutions. 
+We have seen that data sampling and data compression techniques help to achieve a balance between efficiency and effectiveness. 
+We next roughly introduce three other potential techniques used for big data analytics. 
+
+
+When there are data updates, query answers typically need to be re-computed to reflect the changes. Incremental computation is a technique that attempts to reduce computations by reusing previous computing efforts and only computing those answers that ``depend on'' the changed data.
+
+
+ incremental algorithms have been developed for
+various applications.  Thomas W. Reps has done pioneering work on the study of incremental computation, and he observed that
+the complexity of incremental algorithms was more accurately characterized
+in terms of the size of the area affected by the updates, rather than the size
+of the entire input~\cite{Reps96}.
+
+One may notice that incremental algorithms can be utilized to achieve query approximation.
+
+
+
+Data partitioning, Data indexing and Distributed computing~\cite{MaLHLH16} can also be combined to design query approximation and data approximation approaches for big data analytics.
+
+
+
