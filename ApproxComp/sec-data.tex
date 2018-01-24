@@ -23,51 +23,40 @@ We next explain data approximation computation in more detail with three differe
 
 
 
-\stitle{(2) Proxies for Shortest Paths/Distances~\cite{MaFLWCH16}}
-
-
-We study the {\em node-to-node shortest path} ({\em distance}) problem on large graphs: given a weighted undirected graph $G(V, E)$ with non-negative edge weights, and two nodes of $G$, the source $s$ and the target $t$, find the shortest path (distance) from $s$ to $t$ in $G$.
-The Dijkstra's algorithm with Fibonacci heaps runs in $O(n\log n + m)$ due to Fredman \& Tarjan~\cite{CormenLRS01}, where $n$ and $m$ denote the numbers of nodes and edges in a graph, respectively, which remains asymptotically the fastest known solution on arbitrary undirected graphs with non-negative edge weights.
+\stitle{(1) Proxies for Shortest Paths and Distances~\cite{MaFLWCH16}}. Computing shortest paths and distances is one of the fundamental problems on graphs. We study the {\em node-to-node shortest path} ({\em distance}) problem on large graphs: given a weighted undirected graph $G(V, E)$ with non-negative edge weights, and two nodes of $G$, the source $s$ and the target $t$, find the shortest path (distance) from $s$ to $t$ in $G$. The Dijkstra's algorithm with Fibonacci heaps runs in $O(n\log n + m)$ due to Fredman \& Tarjan~\cite{CormenLRS01}, where $n$ and $m$ denote the numbers of nodes and edges in a graph, respectively, which remains asymptotically the fastest known solution on arbitrary undirected graphs with non-negative edge weights.
 %The challenge of computing shortest paths on large graphs.
 However, computing shortest  paths and distances remains a challenging problem, in terms of both time and space cost, on large-scale graphs. Hence, various optimizations have been developed to speed-up the computation.
 
-To speed-up shortest  path and distance queries, our approach is to use {\em representatives}, each of which captures a set of nodes in a graph. The task of finding a proper form of representatives is, however, {\em nontrivial}. Intuitively, we expect representatives to have the following properties.
+To speed-up shortest  path and distance queries, we propose {\em proxies} that have the following properties:
 %
-(1) A small number of representatives can represent a large number of nodes in a graph;
+(a) each proxy captures a set of nodes in a graph, referred to as \dra, 
 %
-(2) Shortest paths and distances involved within the set of nodes being represented by the same representative can be answered efficiently; And,
+(b) a small number of proxies can represent a large number of nodes in a graph,
 %
-(3) the representatives and the set of nodes being represented can be computed efficiently.
-
-\stitle{1. Preprocessing}. Given graph $G(V, E)$, the preprocessing module executes the following.
-
-\sstab (1) It first computes all \dras and their maximal proxies with a linear algorithm, referred to as  $\compDRAs$ \cite{journal-version2016}.
-
-\sstab (2) It then pre-computes and stores all the shortest paths and distances between any node in a \dra and its proxy.
+(c) shortest paths and distances involved within the set of nodes being represented by the same proxies can be answered efficiently, and,
 %
-To support shortest distance queries, for each node in a \dra, we store its proxy $u$, its distance to $u$ and the component of $A^{+}_u$ to which it belongs,
-and to support shortest path queries, we further keep the shortest paths from proxy $u$ to all nodes in the \dra.
-
-\sstab (3) It finally computes the reduced subgraph $G'$ by removing all \dras, but keeping their proxies, from graph $G$.
+(d) the proxies and the set of nodes being represented can be computed efficiently in {\em linear} time.
 
 
-\stitle{2. Query answering}. Given two nodes $s$ and $t$ in graph $G(V$, $E)$  and the pre-computed information, the query answering module executes the following.
+
+The framework for speeding-up shortest path and distance queries with proxies consists of two modules: preprocessing and query answering
 
 
-\sstab (1) When nodes $s$ and $t$ belong to the same \dra $G[A^+_u]$ with proxy $u$ such that $A^+_u$ = $A^1_u\cup\ldots A^h_u$.
+\ni(a) {\em Preprocessing}: Given graph $G(V, E)$, it first computes all \dras and their maximal proxies in linear time, then it computes and stores all the shortest paths and distances between any node and its proxy. It finally computes the reduced subgraph $G'$ by removing all \dras, but keeping their proxies, from graph $G$.
 
-If $s$ and $t$ further fall into the same component $A^i_u$ ($i\in[1,h]$), it invokes the Dijkstra's algorithm on the subgraph $G[A^i_u]$ to compute the shortest path and distance between $s$ and $t$. Otherwise, it simply returns $\path(s, u)/\path(u, t)$ or $\dist(s, u)$ + $\dist(u, t)$ in constant time.
 
-\sstab (2)  When $s$ and $t$ belong to two \dras $G[A^+_{u_s}]$ and $G[A^+_{u_t}]$ with proxies $u_s$ and $u_t$, respectively.
+\ni(b) {\em Query answering}. Given two nodes $s$ and $t$ in graph $G(V$, $E)$  and the pre-computed information, the query answering module essentially executes the following.
 
- As shown in Section~\ref{sec-proxy}, we know that $\path(s, t)$ = $\path(s, u_s)/$ $\path(u_s, u_t)/$ $\path(u_t, t)$, in which $\path(s, u_s)$ and $\path(u_t, t)$ are already known. Hence, it simply invokes an algorithm (\eg~\arcflag \cite{MohringSSWW05}, \tnr~\cite{bast2014route}, \ah~\cite{zhu2013shortest}) on the reduced graph $G'$ for computing $\path(u_s, u_t)$.
+The shortest path $\path(s, t)$ = $\path(s, u_s)/$ $\path(u_s, u_t)/$ $\path(u_t, t)$, where $u_s$ and $u_t$ are the proxies of $s$ and $t$, respectively.
+Here  $\path(s, u_s)$ and $\path(u_t, t)$ are pre-computed, and $\path(u_s, u_t)$ can be computed on the reduced subgraph $G'$ by invoking any existing 
+(\eg \ah~\cite{zhu2013shortest}). 
 %
-Similarly, it computes $\dist(s, t)$ = $\dist(s, u_s)$ + $\dist(u_s, u_t)$ + $\dist(u_t, t)$.
+The shortest distance $\dist(s, t)$ = $\dist(s, u_s)$ + $\dist(u_s, u_t)$ + $\dist(u_t, t)$ can be computed similarly.
+
+We show experimentally that about $1/3$  nodes of social networks and road networks  are captured by by proxies, leaving $2/3$ in the reduced graphs.
+Hence, we propose a light-weight data reduction technique for speeding-up (exact)  shortest path and distance queries on large weighted undirected graphs~\cite{MaFLWCH16}.
 
 
-We have studied how to speed-up (exact)  shortest path and distance queries on large weighted undirected graphs.
-To do this, we have proposed  a light-weight data reduction technique, a notion of proxies such that each proxy represents a small subgraph, referred to as \dras, and proxies and \dras can be computed efficiently in linear time.  We have also verified,
-both analytically and experimentally, that proxies significantly reduce graph sizes and improve efficiency of existing methods.
 
 
 \begin{figure}[tb!]
@@ -80,7 +69,7 @@ both analytically and experimentally, that proxies significantly reduce graph si
   \vspace{-2ex}
 \end{figure}
 
-\stitle{(3) Ensemble Enabled Link Prediction~\cite{DuanMAMH17}}
+\stitle{(2) Ensemble Enabled Link Prediction~\cite{DuanMAMH17}}
 
 The problem of {\em link prediction} or {\em link inference} is that of predicting the formation of future links in a dynamic and
 evolving network. The link prediction problem has numerous
