@@ -4,21 +4,14 @@
 
 
 
-\begin{figure}[tb!]
-  \vspace{-1ex}
-  \begin{center}
-  \includegraphics[scale=0.45]{./dataApprox.png}
-  \end{center}
-  \vspace{-3ex}
-  \caption{Data approximation}\label{fig-tech-dataappro}
-  \vspace{-2ex}
-\end{figure}
+
 
 Big data has large volume, and, hence, the space complexity of big data analytic tasks starts raising more concerns.
 Given a class $Q$ of queries on a data set $D$, data approximation is to transform $D$ into a smaller data set $D'$ such that $Q$ on $D'$ returns a satisfiable approximate answer in a more efficient way. Further, it is typically common that query $Q$ needs to be (slightly) modified to $Q'$ to accommodate  the changes of $D$ to $D'$, as shown in Fig.~\ref{fig-tech-dataappro}. Similar to query approximation, data approximation needs to reach a balance between the query efficiency and answer accuracy.
 
 
-The rationale of data approximation has roots in the Pareto principle\footnote{\small \url{https://en.wikipedia.org/wiki/Pareto_principle}} that ``states that, for many events, roughly 80\% of the effects come from 20\% of the causes''. By this principle, for many big analytic tasks, one may only need to keep a small amount of the data to derive ``satisfiable'' answers.
+The rationale of data approximation has roots in the Pareto principle\footnote{\small \url{https://en.wikipedia.org/wiki/Pareto_principle}} that ``states that, for many events, roughly 80\% of the effects come from 20\% of the causes''. The critical thing for data approximation is to determine which part of data is relevant to tasks (belong to the 20\%).
+ By this principle, for many big analytic tasks, one may only need to keep a small amount of the data to derive ``satisfiable'' answers.
 For example, when we are to build a predictive model on the stock of razers for an online store based on the order history of customers, orders from men are good enough. While on the stock of lipsticks, those from women are good enough. That is to say,  it is not necessary to use the entire data for certain data analytic tasks.
 
 
@@ -76,6 +69,16 @@ We have studied how to speed-up (exact)  shortest path and distance queries on l
 To do this, we have proposed  a light-weight data reduction technique, a notion of proxies such that each proxy represents a small subgraph, referred to as \dras, and proxies and \dras can be computed efficiently in linear time.  We have also verified,
 both analytically and experimentally, that proxies significantly reduce graph sizes and improve efficiency of existing methods.
 
+
+\begin{figure}[tb!]
+  \vspace{-1ex}
+  \begin{center}
+  \includegraphics[scale=0.45]{./dataApprox.png}
+  \end{center}
+  \vspace{-3ex}
+  \caption{Data approximation}\label{fig-tech-dataappro}
+  \vspace{-2ex}
+\end{figure}
 
 \stitle{(3) Ensemble Enabled Link Prediction~\cite{DuanMAMH17}}
 
@@ -174,7 +177,7 @@ standard classification problem. Therefore, the use of an ensemble
 approach has obvious effectiveness advantages as well.
 
 
-Using real-life datasets, we finally conduct an extensive experimental study, and show that our ensemble approach for link prediction is both effective and efficient. 
+Using real-life datasets, we finally conduct an extensive experimental study, and show that our ensemble approach for link prediction is both effective and efficient.
 
 
 
@@ -185,7 +188,6 @@ We have adopted the idea in the process of dealing with large graphs in the stud
 
 
 
-\stitle{Experiences}.  Determining the task relevance is data is the key for data approximation.
 
 
 
