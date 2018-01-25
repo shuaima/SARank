@@ -39,7 +39,7 @@ To speed-up shortest  path and distance queries, we propose {\em proxies} that h
 
 
 
-The framework for speeding-up shortest path and distance queries with proxies consists of two modules: preprocessing and query answering
+The framework for speeding-up shortest path and distance queries with proxies consists of modules preprocessing and query answering as follows.
 
 
 \ni(a) {\em Preprocessing}: Given graph $G(V, E)$, it first computes all \dras and their maximal proxies in linear time, then it computes and stores all the shortest paths and distances between any node and its proxy. It finally computes the reduced subgraph $G'$ by removing all \dras, but keeping their proxies, from graph $G$.
@@ -57,7 +57,7 @@ We show experimentally that about $1/3$  nodes of social networks and road netwo
 Hence, we propose a light-weight data reduction technique for speeding-up (exact)  shortest path and distance queries on large weighted undirected graphs~\cite{MaFLWCH16}.
 
 
-
+without losing any accuracy
 
 \begin{figure}[tb!]
   \vspace{-1ex}
@@ -69,42 +69,31 @@ Hence, we propose a light-weight data reduction technique for speeding-up (exact
   \vspace{-2ex}
 \end{figure}
 
-\stitle{(2) Ensemble Enabled Link Prediction~\cite{DuanMAMH17}}
-
-The problem of {\em link prediction} or {\em link inference} is that of predicting the formation of future links in a dynamic and
-evolving network. The link prediction problem has numerous
-applications, such as the recommendation of friends in a social
-network, the recommendation of images in a multimedia network, or
-the recommendation of collaborators in a scientific network, therefore, link
-prediction methods have been extensively studied  because of their numerous applications in various network-centered domains.
+\stitle{(2) Ensemble Enabled Link Prediction~\cite{DuanMAMH17}}. Link prediction is the task to predict the formation of future links in a dynamic and evolving network, and has been extensively studied due to its numerous applications, such as the recommendation of friends in a social network, images in a multimedia network, or
+collaborators in a scientific network.
 
 
-Link prediction methods are often applied to very large networks, which are also sparse.  The massive sizes of such networks can
-create challenges for the prediction process in spite of their sparsity. This is because the {\em search space} for the link
-prediction problem is of the size $O(n^2)$, where $n$ is the number of nodes. Quadratic scalability can rapidly become untenable for
-larger networks. In fact, an often overlooked fact is that most {\em current link prediction algorithms evaluate the link
-propensities only over a subset of possibilities rather than exhaustively search for link propensities over the entire network}, \eg \cite{dwang,lee,zhao2016,zhu2016}.
-
-
-In order to understand why this is the case,
-consider a network with $10^6$ nodes. Note that a size such as
-$10^6$ is not large at all by modern standards, and even common
-bibliographic networks such as DBLP now exceed this size. Even
-for this modest network, the number of {\em possibilities} for links
-is of the order of $10^{12}$. Therefore, a 1GHz processor would
-require at least $10^3$ seconds just to allocate one {\em machine cycle} to
+Link prediction methods are often applied to very large and sparse networks, which has a large {\em search space} $O(n^2)$, 
+where $n$ is the number of nodes. Hence, the scalability is a big challenge. In fact, an often overlooked fact is that most {\em exiting link prediction algorithms evaluate the link propensities only over a subset of possibilities rather than all propensities over the entire network}, \eg \cite{zhu2016}.
+In order to understand why this is the case, consider a large network with $10^8$ nodes. Its number of {\em possibilities} for links
+is of the order of $10^{16}$. Therefore, a 3GHz processor would
+require at least $35$ days just to allocate one {\em machine cycle} to
 every pair of nodes. This implies that in order to determine the
 top-ranked link predictions over the {\em entire network}, the
-running time will be much larger than $10^3$ seconds.  It is
-instructive, therefore, to examine how this (lower bound on) running
-time scales with increasing network size. Table~\ref{time} shows the
-time requirements for allocating a single machine cycle to each
-pair-wise possibility. The running time in this table represent
-very optimistic lower bounds on the required time because link
-prediction algorithms are complex and require far more than a single
-machine cycle for processing a node-pair. Note that for larger
-networks, even the presented lower bounds on the running time are
-impractical.
+running time will be much much larger than $35$ days.  
+
+It is noteworthy that most existing link prediction algorithms are not designed to search over the entire 
+$O(n^2)$ possibilities. A closer examination of the relevant
+studies shows that even for networks of modest size, these
+algorithms perform benchmark evaluations over a {\em
+sample of the possibilities} for links.  In other
+words, the {\em complete ranking problem for link prediction in
+very large networks remains challenging at least from a
+computational point of view}.
+
+
+
+\eat{%%%%%%%
 \begin{table}
 \caption{The $O(n^2)$ problem in link prediction: Time required to
 allocate a {\em single machine cycle} to every node-pair possibility
@@ -122,25 +111,7 @@ in networks of varying sizes and processors of various speeds.}
 \end{tabular}
 \vspace{-2ex}
 \end{table}
-
-
-It is noteworthy that most link prediction algorithms in the
-literature are not designed to search over the entire space of
-$O(n^2)$ possibilities. A closer examination of the relevant
-publications shows that even for networks of modest size, these
-algorithms perform benchmarking  only by evaluating over a {\em
-sample of the possibilities} for links. This is only to be expected
-in light of the lower bounds shown in Table~\ref{time}.  In other
-words, the {\em complete ranking problem} for link prediction in
-very large networks remains largely unsolved at least from a
-computational point of view. It is evident from the presented lower
-bounds in Table~\ref{time} that any ranking-based link prediction
-algorithm {\em must integrate search space pruning} within the
-prediction algorithm in order to even  have any  hope of exploring
-the $O(n^2)$ search space in a reasonable amount of time. The
-algorithmic design of most link prediction algorithms largely
-overlooks this basic requirement~\cite{chancc,propflow}.
-
+}%%%%%%%%%%%
 
 
 To this end, we explore an {\em ensemble approach} to
