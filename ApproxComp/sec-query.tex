@@ -51,7 +51,7 @@ Exact computations on such online data, whose accompanying off-line data is extr
 These hinder the usability of graph pattern matching in emerging applications.
 
 
-To lower the high complexity of subgraph isomorphism, substitutes for subgraph isomorphism~\cite{FanLMTWW10,FanLMTW11} that allow graph pattern matching to be conducted in cubic-time have been proposed by extending graph simulation~\cite{infsimu95}. However, they fall short of capturing the topology of data graphs, i.e., graphs may have a structure drastically different from pattern graphs they match, and the matches found are often too large to analyze.
+To lower the high complexity of subgraph isomorphism, substitutes for subgraph isomorphism \cite{FanLMTWW10,FanLMTW11}, that allow graph pattern matching to be conducted in cubic-time have been proposed by extending graph simulation~\cite{infsimu95}. However, they fall short of capturing the topology of data graphs, i.e., graphs may have a structure drastically different from pattern graphs they match, and the matches found are often too large to analyze.
 
 To rectify these problems, strong simulation, an ``approximate'' substitute for subgraph isomorphism, was  proposed for graph pattern matching, such that strong simulation (a) theoretically preserves the key topology of pattern graphs and finds a bounded number of matches, (b) retains the same complexity as earlier extensions of graph simulation~\cite{FanLMTWW10,FanLMTW11}, by providing a cubic-time algorithm for computing strong simulation, and (c) has the locality property that allows us to develop an effective distributed algorithm to conduct graph pattern matching on distributed graphs~\cite{tods-MaCFHW14}.
 

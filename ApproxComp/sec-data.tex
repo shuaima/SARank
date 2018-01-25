@@ -53,11 +53,11 @@ Here  $\path(s, u_s)$ and $\path(u_t, t)$ are pre-computed, and $\path(u_s, u_t)
 %
 The shortest distance $\dist(s, t)$ = $\dist(s, u_s)$ + $\dist(u_s, u_t)$ + $\dist(u_t, t)$ can be computed similarly.
 
-We show experimentally that about $1/3$  nodes of social networks and road networks  are captured by by proxies, leaving $2/3$ in the reduced graphs.
+We show experimentally show that about $1/3$  nodes of real-life social networks and road networks  are captured by by proxies, leaving $2/3$ in the reduced graphs.
 Hence, we propose a light-weight data reduction technique for speeding-up (exact)  shortest path and distance queries on large weighted undirected graphs~\cite{MaFLWCH16}.
 
 
-without losing any accuracy
+
 
 \begin{figure}[tb!]
   \vspace{-1ex}
@@ -74,7 +74,7 @@ collaborators in a scientific network.
 
 
 Link prediction methods are often applied to very large and sparse networks, which has a large {\em search space} $O(n^2)$, 
-where $n$ is the number of nodes. Hence, the scalability is a big challenge. In fact, an often overlooked fact is that most {\em exiting link prediction algorithms evaluate the link propensities only over a subset of possibilities rather than all propensities over the entire network}, \eg \cite{zhu2016}.
+where $n$ is the number of nodes. Hence, the scalability is a big challenge. In fact, an often overlooked fact is that most {\em exiting link prediction algorithms evaluate the link propensities only over a subset of possibilities rather than all propensities over the entire network}.
 In order to understand why this is the case, consider a large network with $10^8$ nodes. Its number of {\em possibilities} for links
 is of the order of $10^{16}$. Therefore, a 3GHz processor would
 require at least $35$ days just to allocate one {\em machine cycle} to
@@ -92,8 +92,29 @@ very large networks remains challenging at least from a
 computational point of view}.
 
 
+Latent factor models have been shown to be wildly successful in the domain of
+collaborative filtering, but not link prediction in spite of the obvious
+similarity between link prediction and collaborative filtering and
+the obvious effectiveness of latent factor models. One of the reasons why latent factor models are rarely used for
+link prediction is due to their complexity. In
+collaborative filtering applications, the item dimension is of the
+order of a few hundred thousand, whereas even the smallest  real-world networks contain more than a million nodes.
+Even worse, we also experientially find that the quality of link prediction for latent factor models decreases with the increase of data sparsity,
+and networks typically become sparser when their sizes grow larger. 
+
+
+
 
 \eat{%%%%%%%
+
+The factorization of a matrix of
+size $O(n^2)$ is not only computationally expensive, but also
+memory-intensive.  As will be seen later in this article, one advantage
+of  latent-factor models is that they are able to  transform the
+adjacency matrix to a multidimensional space which can be searched
+efficiently {\em by pruning} large portions of the $O(n^2)$ search
+space in order to recommend the top-$k$ possibilities.
+
 \begin{table}
 \caption{The $O(n^2)$ problem in link prediction: Time required to
 allocate a {\em single machine cycle} to every node-pair possibility
@@ -114,31 +135,18 @@ in networks of varying sizes and processors of various speeds.}
 }%%%%%%%%%%%
 
 
-To this end, we explore an {\em ensemble approach} to
-achieving the aforementioned goals.
-
-We show how to make latent factor models
+We explore an {\em ensemble approach} to make latent factor models
 practical for link prediction by decomposing the search space into a
- set of smaller matrices. As a result, large parts of the $O(n^2)$
-search space can be pruned without even having to evaluate the
-relevant node pairs. An optimizing method is also provided for
-speeding up the search process when a threshold is available.
-This provides an efficient approach for the
-top-$k$ problem in link prediction.
-
-Furthermore, our problem
-decomposition method is an ensemble approach enabled with three
-structural bagging methods with performance guarantees, which has obvious {\em
-effectiveness} advantages. By incorporating with the characteristics of  link prediction, the bagging methods maintain high prediction
-accuracy while reducing the network size via graph sampling techniques.
-Note that the same bias-variance
-tradeoffs apply to the link-prediction problem, as they apply to the
+ set of smaller matrices with three structural bagging methods with performance guarantees, which has obvious {\em
+effectiveness} advantages. In this way, latent factor models only need to deal with networks with small sizes (and denser), and retain
+their effectiveness and efficiency.  By incorporating with the characteristics of  link prediction, the bagging methods maintain high prediction
+accuracy while reducing the network size via graph sampling techniques. 
+Further, the same bias-variance tradeoffs apply to the link-prediction problem, as the
 standard classification problem. Therefore, the use of an ensemble
-approach has obvious effectiveness advantages as well.
+approach has obvious robustness advantages as well.
 
 
-Using real-life datasets, we finally conduct an extensive experimental study, and show that our ensemble approach for link prediction is both effective and efficient.
-
+We experimentally show that our ensemble approach is over $50$ times faster and  over $20\%$ more accurate than {\sc bigclam} \cite{yang-wsdm2013} on using real-life social networks.
 
 
 \eat{

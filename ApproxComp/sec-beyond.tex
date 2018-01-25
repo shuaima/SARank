@@ -1,26 +1,11 @@
 \section{Beyond Query and Data Approximations}
 \label{sec-beyond}
-No One-Size-Fits-All
-
-There exist no single techniques fit all for big data analytics, and  it is often necessary to combine different techniques to obtain satisfiable solutions.
-We have seen that data sampling and data compression techniques help to achieve a balance between efficiency and effectiveness.
-We next roughly introduce three other potential techniques used for big data analytics.
-
-
-When there are data updates, query answers typically need to be re-computed to reflect the changes. Incremental computation is a technique that attempts to reduce computations by reusing previous computing efforts and only computing those answers that ``depend on'' the changed data.
+ 
+  For big data analytics, there are no one-size-fits-all techniques.  it is often necessary to combine different techniques to obtain good solutions.
+We have seen that data sampling helps to achieve a balance between efficiency and effectiveness for link prediction,
+and other techniques, \eg incremental computation, data partitioning, data indexing and distributed computing~\cite{MaLHLH16} can
+also be unitized to  design query and data approximation techniques for big data analytics. 
+For instance, it is easy to see that incremental algorithms can be utilized to achieve query approximation.
 
 
- incremental algorithms have been developed for
-various applications.  Thomas W. Reps has done pioneering work on the study of incremental computation, and he observed that
-the complexity of incremental algorithms was more accurately characterized
-in terms of the size of the area affected by the updates, rather than the size
-of the entire input~\cite{Reps96}.
-
-One may notice that incremental algorithms can be utilized to achieve query approximation.
-
-
-
-Techniques such as data partitioning, data indexing, distributed computing~\cite{MaLHLH16} can also be combined to design query approximation and data approximation approaches for big data analytics.
-
-
-
+ 
