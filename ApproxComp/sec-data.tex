@@ -29,7 +29,7 @@ However, computing shortest  paths and distances remains a challenging problem, 
 
 To speed-up shortest  path and distance queries, we propose {\em proxies} that have the following properties:
 %
-(a) each proxy captures a set of nodes in a graph, referred to as \dra, 
+(a) each proxy captures a set of nodes in a graph, referred to as \dra,
 %
 (b) a small number of proxies can represent a large number of nodes in a graph,
 %
@@ -48,8 +48,8 @@ The framework for speeding-up shortest path and distance queries with proxies co
 \ni(b) {\em Query answering}. Given two nodes $s$ and $t$ in graph $G(V$, $E)$  and the pre-computed information, the query answering module essentially executes the following.
 
 The shortest path $\path(s, t)$ = $\path(s, u_s)/$ $\path(u_s, u_t)/$ $\path(u_t, t)$, where $u_s$ and $u_t$ are the proxies of $s$ and $t$, respectively.
-Here  $\path(s, u_s)$ and $\path(u_t, t)$ are pre-computed, and $\path(u_s, u_t)$ can be computed on the reduced subgraph $G'$ by invoking any existing 
-(\eg \ah~\cite{zhu2013shortest}). 
+Here  $\path(s, u_s)$ and $\path(u_t, t)$ are pre-computed, and $\path(u_s, u_t)$ can be computed on the reduced subgraph $G'$ by invoking any existing
+(\eg \ah~\cite{zhu2013shortest}).
 %
 The shortest distance $\dist(s, t)$ = $\dist(s, u_s)$ + $\dist(u_s, u_t)$ + $\dist(u_t, t)$ can be computed similarly.
 
@@ -73,16 +73,17 @@ Hence, we propose a light-weight data reduction technique for speeding-up (exact
 collaborators in a scientific network.
 
 
-Link prediction methods are often applied to very large and sparse networks, which has a large {\em search space} $O(n^2)$, 
-where $n$ is the number of nodes. Hence, the scalability is a big challenge. In fact, an often overlooked fact is that most {\em exiting link prediction algorithms evaluate the link propensities only over a subset of possibilities rather than all propensities over the entire network}.
+Link prediction methods are often applied to very large and sparse networks, which has a large {\em search space} $O(n^2)$,
+where $n$ is the number of nodes. Hence, the scalability is a big challenge. In fact, an often overlooked fact is that most {\em exiting link prediction algorithms evaluate the link propensities only over a subset of possibilities rather than all propensities over the entire network}, 
+\eg \cite{zhu2016}..
 In order to understand why this is the case, consider a large network with $10^8$ nodes. Its number of {\em possibilities} for links
 is of the order of $10^{16}$. Therefore, a 3GHz processor would
 require at least $35$ days just to allocate one {\em machine cycle} to
 every pair of nodes. This implies that in order to determine the
 top-ranked link predictions over the {\em entire network}, the
-running time will be much much larger than $35$ days.  
+running time will be much much larger than $35$ days.
 
-It is noteworthy that most existing link prediction algorithms are not designed to search over the entire 
+It is noteworthy that most existing link prediction algorithms are not designed to search over the entire
 $O(n^2)$ possibilities. A closer examination of the relevant
 studies shows that even for networks of modest size, these
 algorithms perform benchmark evaluations over a {\em
@@ -100,7 +101,7 @@ link prediction is due to their complexity. In
 collaborative filtering applications, the item dimension is of the
 order of a few hundred thousand, whereas even the smallest  real-world networks contain more than a million nodes.
 Even worse, we also experientially find that the quality of link prediction for latent factor models decreases with the increase of data sparsity,
-and networks typically become sparser when their sizes grow larger. 
+and networks typically become sparser when their sizes grow larger.
 
 
 
@@ -135,12 +136,12 @@ in networks of varying sizes and processors of various speeds.}
 }%%%%%%%%%%%
 
 
-We explore an {\em ensemble approach} to make latent factor models
+We explore an {\em ensemble approach} to making latent factor models
 practical for link prediction by decomposing the search space into a
  set of smaller matrices with three structural bagging methods with performance guarantees, which has obvious {\em
 effectiveness} advantages. In this way, latent factor models only need to deal with networks with small sizes (and denser), and retain
 their effectiveness and efficiency.  By incorporating with the characteristics of  link prediction, the bagging methods maintain high prediction
-accuracy while reducing the network size via graph sampling techniques. 
+accuracy while reducing the network size via graph sampling techniques.
 Further, the same bias-variance tradeoffs apply to the link-prediction problem, as the
 standard classification problem. Therefore, the use of an ensemble
 approach has obvious robustness advantages as well.
