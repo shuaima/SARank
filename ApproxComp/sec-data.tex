@@ -73,9 +73,9 @@ Essentially, we propose a light-weight data reduction technique for speeding-up 
 collaborators in a scientific network.
 
 
-Link prediction methods are often applied to very large and sparse networks, which has a large {\em search space} $O(n^2)$,
+Link prediction methods are often applied to very large and sparse networks, which have a large {\em search space} $O(n^2)$,
 where $n$ is the number of nodes. Hence, the scalability is a big challenge. In fact, an often overlooked fact is that most {\em exiting link prediction algorithms evaluate the link propensities only over a subset of possibilities rather than all propensities over the entire network},
-\eg \cite{zhu2016}..
+\eg \cite{zhu2016}.
 In order to understand why this is the case, consider a large network with $10^8$ nodes. Its number of {\em possibilities} for links
 is of the order of $10^{16}$. Therefore, a 3GHz processor would
 require at least $35$ days just to allocate one {\em machine cycle} to
@@ -93,7 +93,7 @@ very large networks remains challenging at least from a
 computational point of view}.
 
 
-Latent factor models have been shown to be wildly successful in the domain of
+Latent factor models have proven a great success in the domain of
 collaborative filtering, but not link prediction in spite of the obvious
 similarity between link prediction and collaborative filtering and
 the obvious effectiveness of latent factor models. One of the reasons why latent factor models are rarely used for
@@ -147,7 +147,7 @@ standard classification problem. Therefore, the use of an ensemble
 approach has obvious robustness advantages as well.
 
 
-We experimentally show that our ensemble approach is over $50$ times faster and  over $20\%$ more accurate than {\sc bigclam} \cite{yang-wsdm2013} on using real-life social networks.
+We experimentally show that our ensemble approach is over $50$ times faster and  over $20\%$ more accurate than {\sc bigclam} \cite{yang-wsdm2013} using real-life social networks.
 
 
 \eat{
