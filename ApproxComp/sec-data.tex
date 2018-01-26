@@ -6,17 +6,17 @@
 
 
 
-Big data has large volume, and, hence, the space complexity of big data analytic tasks starts raising more concerns.
-Given a class $Q$ of queries on a data set $D$, data approximation is to transform $D$ into a smaller data set $D'$ such that $Q$ on $D'$ returns a satisfiable approximate answer in a more efficient way. Further, it is typically common that query $Q$ needs to be (slightly) modified to $Q'$ to accommodate  the changes of $D$ to $D'$, as shown in Fig.~\ref{fig-tech-dataappro}. Similar to query approximation, data approximation needs to reach a balance between the query efficiency and answer accuracy.
+Big data has large volume, and, hence, the space complexity~\cite{CormenLRS01} of big data analytic tasks starts raising more concerns.
+Given a class $Q$ of queries on data $D$, data approximation is to transform $D$ into smaller $D'$ such that $Q$ on $D'$ returns a sufficient or satisfiable approximate answer in a more efficient way. Further, it is typically common that query $Q$ needs to be (slightly) modified to $Q'$ to accommodate  the changes of $D$ to $D'$, as shown in Fig.~\ref{fig-tech-dataappro}. Similar to query approximation, data approximation needs to reach a balance between the query efficiency and answer quality.
 
 
-The rationale of data approximation has roots in the Pareto principle\footnote{\small \url{https://en.wikipedia.org/wiki/Pareto_principle}} that ``states that, for many events, roughly 80\% of the effects come from 20\% of the causes''. The critical thing for data approximation is to determine which part of data is relevant to tasks (belong to the 20\%).
- By this principle, for many big analytic tasks, one may only need to keep a small amount of the data to derive ``satisfiable'' answers.
+The rationale behind data approximation has roots in the Pareto principle\footnote{\small \url{https://en.wikipedia.org/wiki/Pareto_principle}} that ``states that, for many events, roughly 80\% of the effects come from 20\% of the causes''. The critical thing for data approximation is to determine which part of data is relevant to tasks (belong to the 20\%).
+ By this principle, for many big analytic tasks, one may only need to keep a small amount of the data to derive high quality answers.
 For example, when we are to build a predictive model on the stock of razers for an online store based on the order history of customers, orders from men are good enough. While on the stock of lipsticks, those from women are good enough. That is to say,  it is not necessary to use the entire data for certain data analytic tasks.
 
 
 
-However, it should be pointed out that there are data analytic tasks such that data approximation could not work well. For example, an online store needs to count the total number of goods in its catalog.  Essentially the entire goods should be considered for this task, and if a (small) portion of goods are chosen, it is hard to have a ``satisfiable'' result.
+However, it should be pointed out that there are data analytic tasks such that data approximation could not work well. For example, an online store needs to count the total number of goods in its catalog.  Essentially entire goods should be considered for this task, and if a (small) portion of goods are chosen, it is hard to have a ``satisfiable'' result.
 
 
 We next explain data approximation computation in more detail using three different data analytic tasks.
@@ -74,7 +74,7 @@ collaborators in a scientific network.
 
 
 Link prediction methods are often applied to very large and sparse networks, which has a large {\em search space} $O(n^2)$,
-where $n$ is the number of nodes. Hence, the scalability is a big challenge. In fact, an often overlooked fact is that most {\em exiting link prediction algorithms evaluate the link propensities only over a subset of possibilities rather than all propensities over the entire network}, 
+where $n$ is the number of nodes. Hence, the scalability is a big challenge. In fact, an often overlooked fact is that most {\em exiting link prediction algorithms evaluate the link propensities only over a subset of possibilities rather than all propensities over the entire network},
 \eg \cite{zhu2016}..
 In order to understand why this is the case, consider a large network with $10^8$ nodes. Its number of {\em possibilities} for links
 is of the order of $10^{16}$. Therefore, a 3GHz processor would

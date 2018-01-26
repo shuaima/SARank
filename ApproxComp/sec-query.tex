@@ -2,17 +2,14 @@
 \label{sec-query}
 
 
+Query approximation deals with complex queries involved with big data analytic tasks. Given a class $Q$ of data analytic queries with high a computational complexity,  query approximation is to transform into another class $Q'$ of queries with a low computational complexity and satisfiable approximate answers, as depicted in Fig.~\ref{fig-tech-queryappro} in which $Q$, $Q'$,  $D$ and $R$ denote the original query, approximate query, data and query result, respectively. Query approximation needs to reach a balance between the query efficiency and answer quality when approximating $Q$ with $Q'$.
 
-
-
-Query approximation deals with complex queries involved with big data analytic tasks. Given a class $Q$ of data analytic queries with higher computational complexity,  query approximation is to transform into another class $Q'$ of queries with lower computational complexity and satisfiable approximate answers, as depicted in Fig.~\ref{fig-tech-queryappro} in which $Q$, $Q'$ and $D$ denote the original query, approximate query and data, respectively. Query approximation needs to reach a balance between the query efficiency and answer accuracy when approximating $Q$ with $Q'$.
-
-The rationale behind query approximation has inexact or approximate answers are acceptable for many big data analytic tasks.
-On one hand, when the volume of data is extremely large, it may be impossible or not necessary to compute the exact queries.
+The rationale behind query approximation lies in that inexact or approximate answers are sufficient or acceptable for many big data analytic tasks.
+On one hand, when the volume of data is extremely large, it may be impossible or not necessary to compute the exact answers.
 Observe that nobody would try each and every store to find a pair of shoes with the best cost-performance ratio.
-That is, inexact (approximate) solutions are good candidates in this case.
+That is, inexact (approximate) solutions are good enough in this case.
 %
-On the other hand, when taking noises (common for big data) into account, it may not always a good idea to compute exact answers
+On the other hand, when taking noises (common for big data) into account, it may not always be a good idea to compute exact answers
 for those data analytic tasks whose answers are rare or hard to identify, such as the detection of homegrown violent extremists (HVEs) who seek to commit acts of terrorism in the United States and abroad~\cite{HungJ16}, as exact solutions may have a high chance to miss possible candidates.
 
 We next explain query approximation computation in more detail using three different data analytic tasks.
