@@ -28,7 +28,7 @@ We next explain query approximation computation in more detail using three diffe
 
 
 \stitle{(1) Strong Simulation~\cite{tods-MaCFHW14}}. Given a pattern graph $Q$ and a data graph $G$,
-{\em Graph pattern matching} is to find all subgraphs of $G$ that match $Q$, and is being increasingly used in various applications, \eg software, biology, social networks and intelligence analysis.
+{\em graph pattern matching} is to find all subgraphs of $G$ that match $Q$, and is being increasingly used in various applications, \eg software, biology, social networks and intelligence analysis.
 
 
 Here {\em matching} is typically defined in terms of
@@ -48,14 +48,13 @@ Exact computations on such online data, whose accompanying off-line data is extr
 These hinder the usability of graph pattern matching in emerging applications.
 
 
-To lower the high complexity of subgraph isomorphism, substitutes for subgraph isomorphism \cite{FanLMTWW10,FanLMTW11}, that allow graph pattern matching to be conducted in cubic-time have been proposed by extending graph simulation~\cite{infsimu95}. However, they fall short of capturing the topology of data graphs, i.e., graphs may have a structure drastically different from pattern graphs they match, and the matches found are often too large to analyze.
+To lower the high complexity of subgraph isomorphism, substitutes for subgraph isomorphism \cite{FanLMTWW10,FanLMTW11}, which allow graph pattern matching to be conducted in cubic-time, have been proposed by extending graph simulation~\cite{infsimu95}. However, they fall short of capturing the topology of data graphs, i.e., graphs may have a structure drastically different from pattern graphs that they match, and the matches found are often too large to analyze.
 
-To rectify these problems, strong simulation, an ``approximate'' substitute for subgraph isomorphism, was  proposed for graph pattern matching, such that strong simulation (a) theoretically preserves the key topology of pattern graphs and finds a bounded number of matches, (b) retains the same complexity as earlier extensions of graph simulation~\cite{FanLMTWW10,FanLMTW11}, by providing a cubic-time algorithm for computing strong simulation, and (c) has the locality property that allows us to develop an effective distributed algorithm to conduct graph pattern matching on distributed graphs~\cite{tods-MaCFHW14}.
+To rectify these problems, strong simulation, an ``approximate'' substitute for subgraph isomorphism, is proposed for graph pattern matching~\cite{tods-MaCFHW14}, such that strong simulation (a) theoretically preserves the key topology of pattern graphs and finds a bounded number of matches, (b) retains the same complexity as earlier extensions of graph simulation~\cite{FanLMTWW10,FanLMTW11}, by providing a cubic-time algorithm for computing strong simulation, and (c) has the locality property that allows us to develop an effective distributed algorithm to conduct graph pattern matching on distributed graphs.
 
 Strong simulation is experimentally verified that it is able to identify sensible matches that are not found by subgraph isomorphism, and it finds high
 quality matches that retain graph topology. Indeed, 70\%-80\% of matches found by subgraph
-isomorphism are retrieved by strong simulation, without paying the price of intractable complexity (100+ times faster) and large number (or
-size) of matches.
+isomorphism are retrieved by strong simulation. Further, strong simulation is over $100$ times faster than subgraph isomorphism, and has a bounded number of matches.
 
 
 
@@ -93,5 +92,5 @@ Moreover, given a temporal network with $T$ timestamps, there are a total number
 The state of the art solution {\sc meden} \cite{BogdanovMS11} adopts a filter-and-verification framework that {\em even if a large portion of time intervals are filtered, there often remain a large number of time intervals to verify}. This is not big data friendly, and it is not scalable when temporal networks have a large number of nodes/edges or a large number $T$ of timestamps.
 
 
-We develop a data-driven approach, instead of filter-and-verification, to  identifying the most possible $k$ time intervals from $T \times (T + 1)/2$ time intervals, in which $T$ is the number of snapshots and k is a small constant, \eg 10. This is achieved by exploring the characteristics of time intervals involved with dense subgraphs based on the observation of {\em evolving convergence phenomenon} in traffic data, inspired by the convergent evolution in nature~\footnote{\small \url{https://en.wikipedia.org/wiki/Convergent_evolution}}. Using both real-life and synthetic data, we experimentally show that Our method {\sc fides} is over 1000 times faster than the state of the art solution {\sc meden}~\cite{BogdanovMS11}, while the quality of dense subgraphs found is comparable with {\sc meden}.
+We develop a data-driven approach, instead of filter-and-verification, to  identifying the most possible $k$ time intervals from $T \times (T + 1)/2$ time intervals, in which $T$ is the number of snapshots and k is a small constant, \eg 10. This is achieved by exploring the characteristics of time intervals involved with dense subgraphs based on the observation of {\em evolving convergence phenomenon} in traffic data, inspired by the convergent evolution in nature\footnote{\small \url{https://en.wikipedia.org/wiki/Convergent_evolution}}. Using both real-life and synthetic data, we experimentally show that Our method {\sc fides} is over 1000 times faster than the state of the art solution {\sc meden}~\cite{BogdanovMS11}, while the quality of dense subgraphs found is comparable with {\sc meden}.
 
