@@ -45,7 +45,7 @@ The framework for speeding-up shortest path and distance queries with proxies co
 \ni(a) {\em Preprocessing}: Given graph $G(V, E)$, it first computes all \dras and their maximal proxies in linear time, then it computes and stores all the shortest paths and distances between any node and its proxy. It finally computes the reduced subgraph $G'$ by removing all \dras from graph $G$, \ie keeping the proxies only.
 
 
-\ni(b) {\em Query answering}. Given two nodes $s$ and $t$ in graph $G(V$, $E)$  and the pre-computed information above, the query answering module essentially executes the following.
+\ni(b) {\em Query answering}. Given two nodes $s$ and $t$ in graph $G(V$, $E)$  and the pre-computed information, the query answering module essentially executes the following.
 
 The shortest path $\path(s, t)$ = $\path(s, u_s)/$ $\path(u_s, u_t)/$ $\path(u_t, t)$, where $u_s$ and $u_t$ are the proxies of $s$ and $t$, respectively.
 Here  $\path(s, u_s)$ and $\path(u_t, t)$ are pre-computed, and $\path(u_s, u_t)$ can be computed on the reduced subgraph $G'$ by invoking any existing algorithms
@@ -53,20 +53,18 @@ Here  $\path(s, u_s)$ and $\path(u_t, t)$ are pre-computed, and $\path(u_s, u_t)
 %
 The shortest distance $\dist(s, t)$ = $\dist(s, u_s)$ + $\dist(u_s, u_t)$ + $\dist(u_t, t)$ can be computed along the same line.
 
-We experimentally show that about $1/3$  nodes of real-life social networks and road networks  are captured by proxies, leaving $2/3$ in the reduced graphs.
-Essentially, we propose a light-weight data reduction technique for speeding-up (exact)  shortest path and distance queries on large weighted undirected graphs~\cite{MaFLWCH16}.
-
+Essentially, we propose a light-weight data reduction technique for speeding-up (exact)  shortest path and distance queries on large weighted undirected graphs~\cite{MaFLWCH16}. We experimentally show that about $1/3$  nodes of real-life social and road networks  are captured by proxies.
 
 
 
 \begin{figure}[tb!]
   \vspace{-1ex}
   \begin{center}
-  \includegraphics[scale=0.5]{./dataApprox.png}
+  \includegraphics[scale=0.4]{./dataApprox.png}
   \end{center}
-  \vspace{-3ex}
+  \vspace{-4ex}
   \caption{Data approximation}\label{fig-tech-dataappro}
-  \vspace{-2ex}
+  \vspace{-4ex}
 \end{figure}
 
 \stitle{(2) Ensemble Enabled Link Prediction~\cite{DuanMAMH17}}. Link prediction is the task to predict the formation of future links in a dynamic and evolving network, and has been extensively studied due to its numerous applications, such as the recommendation of friends in a social network, images in a multimedia network, or

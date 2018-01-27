@@ -19,16 +19,16 @@ We next explain query approximation computation in more detail using three diffe
 \begin{figure}[tb!]
   \vspace{-1ex}
   \begin{center}
-  \includegraphics[scale=0.5]{./queryApprox.png}
+  \includegraphics[scale=0.4]{./queryApprox.png}
   \end{center}
-  \vspace{-3ex}
+  \vspace{-4ex}
   \caption{Query approximation}\label{fig-tech-queryappro}
-  \vspace{-2ex}
+  \vspace{-4ex}
 \end{figure}
 
 
 \stitle{(1) Strong Simulation~\cite{tods-MaCFHW14}}. Given a pattern graph $Q$ and a data graph $G$,
-{\em graph pattern matching} is to find all subgraphs of $G$ that match $Q$, and is being increasingly used in various applications, \eg software, biology, social networks and intelligence analysis.
+{\em graph pattern matching} is to find all subgraphs of $G$ that match $Q$, and is being increasingly used in various applications, \eg biology and social networks.
 
 
 Here {\em matching} is typically defined in terms of
@@ -60,11 +60,9 @@ isomorphism are retrieved by strong simulation. Further, strong simulation is ov
 
 \stitle{(2) One-Pass Trajectory Compression~\cite{LinMZWH17}}.  Trajectory compression (\aka trajectory simplification) is to compress data points in a trajectory to a set of continuous line segments, and is commonly used  in practice.
 
-Though lossless compression methods incur no information loss, their compression ratios are typically poor, and querying on the compressed data is time consuming due to the reconstruction of the original data \cite{Nibali:Trajic}. Hence, lossy techniques become the mainstream for trajectory compression,
-which provide approximate solutions with good compression ratios and bounded errors in practice.
+The compression ratios of lossless methods are poor, and querying on the compressed data is time consuming due to the reconstruction of the original data \cite{Nibali:Trajic}. Hence, lossy techniques, which  provide approximate solutions with good compression ratios and bounded errors, is the mainstream.
 
-
-Piece-wise line simplification (\lsa) comes from computational geometry, whose target is to approximate a given finer piece-wise linear curve by another coarser piece-wise linear curve ({normally} a subset of the former), such that the maximum distance of the former from the later is bounded by a user specified constant. It is widely used due to its distinct advantages: (a) simple and easy to implement, (b) no need of extra knowledge and suitable for freely  moving  objects, and (c) bounded errors with good compression ratios.
+Piece-wise line simplification (\lsa) comes from computational geometry, whose target is to approximate a given finer piece-wise linear curve by another coarser piece-wise linear curve ({normally} a subset of the former), such that the maximum distance of the former from the later is bounded by a user specified constant. It is widely used due to its distinct advantages: (a) simple and easy to implement, (b) no need extra knowledge and suitable for freely  moving  objects, and (c) bounded errors with good compression ratios.
 
 \lsa algorithms fall into two categories: {\em optimal} and {\em approximate}.
 Optimal methods\cite{Imai:Optimal} are to find the minimum number of points or segments to represent the original polygonal lines \wrt an error bound $\epsilon$. They have higher time and space complexities, and are not practical for large trajectory data.
@@ -73,12 +71,12 @@ Hence,  various approximate \lsa algorithms have been developed, from batch algo
 
 An \lsa algorithm is {\em one-pass} if it processes each point in a trajectory once and only once when compressing the trajectory.
 Obviously, one-pass algorithms have low time and space complexities, and are more appropriate for online processing. The difficulty comes from the need to achieve effective compression ratios.
-Existing trajectory simplification algorithms (\eg \cite{Douglas:Peucker}) and online algorithms  (\eg \cite{Liu:BQS}) essentially employ a global distance checking approach to assuring error bounds, although online algorithms restrict the checking within a window. That is to say, whenever a new directed line segment is formed, these algorithms always check its distances to all or a subset of data points, and, therefore, a data point is checked multiple times, depending on its order in the trajectory and the number of directed line segments formed. Hence, {\em an appropriate local distance checking approach is needed in the first place for designing one-pass trajectory simplification algorithms}.
+Existing trajectory simplification algorithms (\eg \cite{Douglas:Peucker}) and online algorithms  (\eg \cite{Liu:BQS}) essentially employ global distance checking, although online algorithms restrict the checking within a window. That is, whenever a new line segment is formed, these algorithms always check its distances to all or a subset of data points, and, therefore, a data point is checked multiple times, depending on its order in the trajectory and the number of directed line segments formed. Hence, {\em an appropriate local distance checking approach is needed in the first place for  one-pass trajectory simplification.}.
 
- We develop a local distance checking method, referred to as  {\em fitting function}, such that a data point is checked only once during the entire process of trajectory simplification. Based on the fitting function, we develop one-pass error bounded trajectory simplification algorithms \operb and \operba that scan each data point in a trajectory once and only once, allowing interpolating new data points or not, respectively. By comparing our algorithms with \fbqsa (the fastest existing \lsa online algorithm \cite{Liu:BQS}) and \dpa (the best existing \lsa batch algorithm in terms of compression ratio \cite{Douglas:Peucker}), our one-pass algorithms  \operb and \operba are over four times faster than \fbqsa, and have  comparable compression ratios with \dpa.
+ We develop a local distance checking method, referred to as  {\em fitting function}, such that a data point is checked only once in the entire process. Based on the fitting function, we develop one-pass error bounded trajectory simplification algorithms \operb and \operba that scan each data point in a trajectory once and only once, allowing interpolating new data points or not, respectively. By comparing our algorithms with \fbqsa (the fastest existing \lsa online algorithm \cite{Liu:BQS}) and \dpa (the best existing \lsa batch algorithm in terms of compression ratio \cite{Douglas:Peucker}), our one-pass algorithms  \operb and \operba are over four times faster than \fbqsa, and have  comparable compression ratios with \dpa.
 
 
-\stitle{(3) Dense Temporal Subgraph Computation~\cite{MaHWLH17}}.  We study dense subgraphs in {\em a special type of temporal networks} such that their nodes and edges are kept fixed, but their edge weights constantly and regularly vary with timestamps~\cite{MaHWLH17}.  Essentially, a temporal network with $T$ timestamps can be viewed as $T$ snapshots of a static network such that the network nodes and edges are kept the same among these $T$ snapshots, while the edge weights vary with network snapthots. Road traffic networks typically fall into this category of temporal networks, and dense subgraphs are used for road traffic analyses that are of particular importance for large cities, such as Beijing, New York, London and Paris, that are facing with heavy traffic congestions, one of the great challenges in urban computing.
+\stitle{(3) Dense Temporal Subgraph Computation~\cite{MaHWLH17}}.  We study dense subgraphs in {\em a special type of temporal networks} whose nodes and edges are kept fixed, but edge weights constantly and regularly vary with timestamps~\cite{MaHWLH17}.  Essentially, a temporal network with $T$ timestamps can be viewed as $T$ snapshots of a static network such that the network nodes and edges are kept the same among these $T$ snapshots, while the edge weights vary with network snapthots. Road traffic networks typically fall into this category of temporal networks, and dense subgraphs are used for road traffic analyses that are of particular importance for transportation management of large cities.
 
 Dense subgraphs are a general concept, and their concrete semantics highly depend on the studied problems and applications. Though  dense subgraphs have been widely studied in static networks, how to properly define their semantics over temporal networks is still in the early stage, not to mention effective and efficient analytic algorithms.
 
