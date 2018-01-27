@@ -74,14 +74,13 @@ collaborators in a scientific network.
 
 
 Link prediction methods are often applied to very large and sparse networks, which have a large {\em search space} $O(n^2)$,
-where $n$ is the number of nodes. Hence, the scalability is a big challenge. In fact, an often overlooked fact is that most {\em exiting link prediction algorithms evaluate the link propensities only over a subset of possibilities rather than all propensities over the entire network},
-\eg \cite{zhu2016}.
-In order to understand why this is the case, consider a large network with $10^8$ nodes. Its number of {\em possibilities} for links
+where $n$ is the number of nodes. Hence, the scalability is a big challenge. In fact, an often overlooked fact is that most {\em exiting link prediction algorithms evaluate the link propensities only over a subset of possibilities rather than all propensities over the entire network}. %,\eg \cite{zhu2016}.
+Consider a large network with $10^8$ nodes. Its number of {\em possibilities} for links
 is of the order of $10^{16}$. Therefore, a 3GHz processor would
 require at least $35$ days just to allocate one {\em machine cycle} to
 every pair of nodes. This implies that in order to determine the
 top-ranked link predictions over the {\em entire network}, the
-running time will be much much larger than $35$ days.
+running time would be much more than $35$ days.
 
 It is noteworthy that most existing link prediction algorithms are not designed to search over the entire
 $O(n^2)$ possibilities. A closer examination of the relevant
@@ -93,9 +92,9 @@ very large networks remains challenging at least from a
 computational point of view}.
 
 
-Latent factor models have proven a great success in the domain of
+Latent factor models have proven a great success for
 collaborative filtering, but not link prediction in spite of the obvious
-similarity between link prediction and collaborative filtering and
+similarity and
 the obvious effectiveness of latent factor models. One of the reasons why latent factor models are rarely used for
 link prediction is due to their complexity. In
 collaborative filtering applications, the item dimension is of the
@@ -142,8 +141,7 @@ practical for link prediction by decomposing the search space into a
 effectiveness} advantages. In this way, latent factor models only need to deal with networks with small sizes (and denser), and retain
 their effectiveness and efficiency.  By incorporating with the characteristics of  link prediction, the bagging methods maintain high prediction
 accuracy while reducing the network size via graph sampling techniques.
-Further, the same bias-variance tradeoffs apply to the link-prediction problem, as the
-standard classification problem. Therefore, the use of an ensemble
+Further, the use of an ensemble
 approach has obvious robustness advantages as well.
 
 
