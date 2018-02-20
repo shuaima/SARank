@@ -1,0 +1,36 @@
+%\stitle{Related work}.
+
+\section{Related work} \label{sec-related}
+
+%We summarize related work as follows.
+
+
+Scholarly article ranking has shifted from citation-count analysis~\cite{Garfield471,Hirsch15112005} to graph analysis~\cite{Waltman2014,Jiang12-MRank,Liang16AAAI,Li08TSRanking,Wang13AAAI,WalkerXKM07,sayyadi09,
+Wang16TIST,Ng11KDD}.
+Based on the information used, these methods are divided into four categories: (a) using the citation information only~\cite{Garfield471,Hirsch15112005,Ng11KDD}, (b) using the citation and temporal information~\cite{Li08TSRanking,WalkerXKM07}, (c) using the citation information and other heterogeneous information, \eg authors and venues of articles~\cite{Jiang12-MRank,Liang16AAAI}, and (d) combining the citation, temporal and other heterogeneous information~\cite{sayyadi09,Wang16TIST,Wang13AAAI}.
+Our work belongs to the last category aiming at fully employing information available for scholarly article ranking.
+%
+%Moreover, recent work has also leveraged external data to improve the ranking quality, \eg using Knowledge Graph Embedding to better understand the meaning of research concepts~\cite{XiongPCWWW17}, and has explored scientific journal ranking \cite{PackalenB17} and scholar ranking \cite{ZhangNBKZX17}. Different from these, our work ranks articles based on scholarly data only.
+
+
+%\stitle{PageRank\&weighted PageRank algorithms}.
+
+PageRank \cite{Brin98:PageRank} and its extensions have been extensively used for citation analyses \cite{Waltman2014}. While PageRank equally propagates scores along outlinks, Weighted PageRank extends PageRank by distributing scores based on certain criteria such as popularity of pages~\cite{Xing04:WPR} or authority of authors \cite{Ding11}.
+%Both these approaches fail to capture the time-dependent characteristics, a key factor for scholarly article ranking.
+Scholarly graphs belong to temporal graphs~\cite{temporalgraph}, and temporal information is a key factor for scholarly article ranking.
+There has been work extending temporal information into PageRank, \eg exponentially decayed weights~\cite{Li08TSRanking}, exponentially decayed initial vectors~\cite{WalkerXKM07} and time-dependent weights based on co-authorship~\cite{FIALA2012370}.
+%Different from previous work,
+Differently, our Time-Weighted PageRank is designed based on a deep analysis of scholarly articles, and discriminately propagates scores in terms of citation statistics.
+
+
+%\stitle{Dynamic algorithms}.
+Dynamic algorithms have proven useful for various tasks by avoiding computing from scratch~\cite{RamalingamR93}.
+To our knowledge, little concern has been paid to dynamic scholarly article ranking except that~\cite{GhoshKHLL11} uses PageRank in dynamic citation networks. However, its solution is based on a strong and impractical assumption that there are no citations between articles in the same years.
+Further, although there exist several studies on incremental PageRank computation~\cite{DesikanPSK05,AbiteboulPC03,WuR09} and on incremental PageRank approximation \cite{BahmaniCG10,BahmaniKMU12}, they are not designed for scholarly article ranking.
+%
+In this work, we study dynamic scholarly article ranking in the general setting by eliminating the strong and impractical assumption. Our incremental algorithm is designed for the block-wise algorithm of Time-Weighted PageRank, and is based on the citation characteristics, both of which have never been exploited before.
+%Different from previous work, we study scholarly article ranking in a dynamic environment in terms of the citation characteristics of scholarly articles, which has never been exploited before.
+
+
+Ensemble methods use multiple learners to obtain better performance than could be obtained from a constituent learner alone~\cite{zhihua-book}.
+In this work, we leverage  importance assembling  to produce better and more robust ranking for scholarly articles~\cite{zhihua-book,wsdmcup,DuanAMHH16}.
