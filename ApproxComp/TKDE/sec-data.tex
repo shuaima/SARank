@@ -48,7 +48,7 @@ The framework for speeding-up shortest path and distance queries with proxies co
 \ni(b) {\em Query answering}. Given two nodes $s$ and $t$ in graph $G(V$, $E)$  and the pre-computed information, the query answering module essentially executes the following.
 
 The shortest path $\path(s, t)$ = $\path(s, u_s)/$ $\path(u_s, u_t)/$ $\path(u_t, t)$, where $u_s$ and $u_t$ are the proxies of $s$ and $t$, respectively.
-Here  $\path(s, u_s)$ and $\path(u_t, t)$ are pre-computed, and $\path(u_s, u_t)$ can be computed on the reduced subgraph $G'$ by invoking any existing algorithms
+As  $\path(s, u_s)$ and $\path(u_t, t)$ are pre-computed, and $\path(u_s, u_t)$ can be computed on the reduced subgraph $G'$ by invoking any existing algorithms
 (\eg \ah~\cite{zhu2013shortest}).
 %
 The shortest distance $\dist(s, t)$ = $\dist(s, u_s)$ + $\dist(u_s, u_t)$ + $\dist(u_t, t)$ can be computed along the same line.
@@ -68,7 +68,7 @@ Essentially, we propose a light-weight data reduction technique for speeding-up 
 \end{figure}
 
 
-\stitle{(2) Network Anomaly Detection~\cite{HuAMH16}???}
+\stitle{(2) Network Anomaly Detection~\cite{HuAMH16}}
 Anomaly (or outlier) detection aims at identifying those objects in a database that are unusual, i.e., different than the majority of the data and therefore suspicious resulting from a contamination, error, or fraud~\cite{Zimek2017}. Network anomaly detection has become very popular
 in recent years because of the importance of discovering key
 regions of structural inconsistency in the network. In addition
@@ -83,9 +83,31 @@ In this paper, our goal is to discover {\em  structural inconsistencies, i.e.,  
 The presence of such structural inconsistencies may have a substantial impact on the structure of original networks, and prevent the effective application of the methods such as community detection to a variety of data mining problems.
 
 
+While a variety of graph embeddings, such as multidimensional scaling~\cite{mds}, are available in the literature, they aim to preserve (global) pairwise similarities and are not optimized to networks and the problem of anomaly detection.
+Hence, they cannot be directly used for the detection of structural inconsistencies proposed in this paper. Therefore, a novel embedding method will be developed, which is specifically designed to ferret out the anomalous nodes in large networks.
 
-We have adopted the idea in the process of dealing with large graphs in the study of anomaly detection in graph streams, when dealing with the matrix representation of a social graph, and  we have both theoretically and experimentally shown that simplifying the matrix by replacing a part of small entry values  with zero has few affects on the computation of eigenvectors~\cite{YuAMW13}.
 
+The embedding approach is  based on a model,
+in which each dimension of the embedding corresponds to a clustered
+region in the network.
+In other words, the similarity of different nodes along a particular dimension, indicates their similarity to a particular clustered region.
+Therefore, this embedding retains
+a very high level of interpretability in  terms of the original
+graph data, which is very useful from an application-specific perspective.
+The nature of  the embedding also  makes it  possible  to detect anomalous nodes, by examining the interaction of each node with the different regions in terms of the embedding.
+In particular, we measure the {\em level of anomalousness} of a node in terms of the embedding imposed on the node and its neighbors.
+
+
+
+Such an approach is however rather hard to apply to the case of large networks, because
+the complexity of the approach is in proportion to the square of the number of nodes when optimizing the embedding and
+because the noises in the embedding seriously impair the accuracy of detected anomalous nodes.
+Hence, we incorporate the sampling and  graph partitioning techniques, and, moreover, propose a novel dimension reduction technique to make the approach more scalable and effective for large networks.
+
+
+Using both real-life data and synthetic
+data , we conduct an extensive experimental study.
+We find that our embedding approach to network anomaly detection is both effective and efficient. (a) The modularity \cite{newman1} was increased about 2.9\% and 2.4\% for amazon, 4.9\% and 4.2\% for dblp and 6.3\% and 4.2\% for with our approach and oddball~\cite{akoglu14}, respectively; (b) The $F_1$ measure was about $88\%$ and $70\%$ for synthetic with our approach and oddball, respectively; And (c) the running time of our embedding approach increases reasonably with the increase of graph sizes, even with large number of communities, while traditional  multidimensional scaling approach~\cite{mds} ran out of memory.
 
 \stitle{(3) Ensemble Enabled Link Prediction~\cite{DuanAMHH16,DuanMAMH17}}. Link prediction is the task to predict the formation of future links in a dynamic and evolving network, and has been extensively studied due to its numerous applications, such as the recommendation of friends in a social network, images in a multimedia network, or
 collaborators in a scientific network.

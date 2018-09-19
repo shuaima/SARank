@@ -7,10 +7,10 @@ Query approximation deals with complex queries involved with big data analytic t
 The rationale behind query approximation lies in that inexact or approximate answers are sufficient or acceptable for many big data analytic tasks.
 On one hand, when the volume of data is extremely large, it may be impossible or not necessary to compute the exact answers.
 Observe that nobody would try each and every store to find a pair of shoes with the best cost-performance ratio.
-That is, inexact (approximate) solutions are good enough in this case.
+That is, inexact (approximate) solutions are good enough for certain cases.
 %
-On the other hand, when taking noises (common for big data) into account, it may not always be a good idea to compute exact answers
-for those data analytic tasks whose answers are rare or hard to identify, such as the detection of homegrown violent extremists (HVEs) who seek to commit acts of terrorism in the United States and abroad~\cite{HungJ16}, as exact solutions may have a high chance to miss possible candidates.
+On the other hand, when taking noises (very common for big data) into account, it may not always be a good idea to compute exact answers
+for those data analytic tasks whose answers are rare or hard to identify, such as the detection of homegrown violent extremists (HVEs) who seek to commit acts of terrorism in the United States and abroad~\cite{HungJ16}, as exact solutions may have a high chance to miss/ignore possible candidates.
 
 We next explain query approximation computation in more detail using three different data analytic tasks.
 
@@ -44,13 +44,13 @@ if there exists an edge $(f(u), f(u'))$ in $G_s$.
 
 The goodness of subgraph isomorphism is that all matched subgraphs  are exactly the same as the pattern graph, \ie completely preserving the  topology structure between the pattern graph and data graph. However, subgraph isomorphism is \NP-complete, and may return exponential many matched subgraphs.
 Further, subgraph isomorphism is too restrictive to find sensible matches in certain scenarios, as observed in~\cite{FanLMTWW10}. Even worse, online data in many cases only represents a partial world (\eg terrorist collaboration networks and homosexual networks often involve with a large amount of off-line data).
-Exact computations on such online data, whose accompanying off-line data is extremely hard to gather, typically decreases the chance of identifying candidate answers.
+Exact computations on such online data, whose off-line counterpart is extremely hard to gather, typically decreases the chance of identifying candidate answers.
 These hinder the usability of graph pattern matching in emerging applications.
 
 
 To lower the high complexity of subgraph isomorphism, substitutes for subgraph isomorphism \cite{FanLMTWW10,FanLMTW11}, which allow graph pattern matching to be conducted in cubic-time, have been proposed by extending graph simulation~\cite{infsimu95}. However, they fall short of capturing the topology of data graphs, i.e., graphs may have a structure drastically different from pattern graphs that they match, and the matches found are often too large to analyze.
 
-To rectify these problems, strong simulation, an ``approximate'' substitute for subgraph isomorphism, is proposed for graph pattern matching~\cite{tods-MaCFHW14}, such that strong simulation (a) theoretically preserves the key topology of pattern graphs and finds a bounded number of matches, (b) retains the same complexity as earlier extensions of graph simulation~\cite{FanLMTWW10,FanLMTW11}, by providing a cubic-time algorithm for computing strong simulation, and (c) has the locality property that allows us to develop an effective distributed algorithm to conduct graph pattern matching on distributed graphs.
+To rectify these problems, strong simulation, an ``approximate'' substitute for subgraph isomorphism, is proposed for graph pattern matching~\cite{tods-MaCFHW14}, which (a) theoretically preserves the key topology of pattern graphs and finds a bounded number of matches, (b) retains the same complexity as earlier extensions of graph simulation~\cite{FanLMTWW10,FanLMTW11}, by providing a cubic-time algorithm for strong simulation compuation, and (c) has the locality property that allows us to develop an effective distributed algorithm to conduct graph pattern matching on distributed graphs.
 
 Strong simulation is experimentally verified that it is able to identify sensible matches that are not found by subgraph isomorphism, and it finds high
 quality matches that retain graph topology. Indeed, 70\%-80\% of matches found by subgraph
@@ -62,7 +62,7 @@ isomorphism are retrieved by strong simulation. Further, strong simulation is ov
 
 The compression ratios of lossless methods are poor, and querying on the compressed data is time consuming due to the reconstruction of the original data \cite{Nibali:Trajic}. Hence, lossy techniques, which  provide approximate solutions with good compression ratios and bounded errors, are the mainstream.
 
-Piece-wise line simplification (\lsa) comes from computational geometry, whose target is to approximate a given finer piece-wise linear curve by another coarser piece-wise linear curve ({normally} a subset of the former), such that the maximum distance of the former from the later is bounded by a user specified constant. It is widely used due to its distinct advantages: (a) simple and easy to implement, (b) no need extra knowledge and suitable for freely  moving  objects, and (c) bounded errors with good compression ratios.
+Piece-wise line simplification (\lsa) comes from the computational geometry, whose target is to approximate a given finer piece-wise linear curve by another coarser piece-wise linear curve ({normally} a subset of the former), such that the maximum distance of the former from the later is bounded by a user specified constant (\ie error bound). It is widely used due to its distinct advantages: (a) simple and easy to implement, (b) no need extra knowledge and suitable for freely  moving  objects, and (c) bounded errors with good compression ratios.
 
 \lsa algorithms fall into two categories: {\em optimal} and {\em approximate}.
 Optimal methods\cite{Imai:Optimal} are to find the minimum number of points or segments to represent the original polygonal lines \wrt an error bound $\epsilon$. They have higher time and space complexities, and are not practical for large trajectory data.
