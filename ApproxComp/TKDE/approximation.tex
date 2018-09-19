@@ -1,0 +1,549 @@
+\documentclass[10pt,journal,compsoc]{IEEEtran}
+%\usepackage{algorithm}
+%\usepackage[noend]{algorithmic}
+\usepackage{latexsym}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{epsfig}
+\usepackage{xspace}
+\usepackage{graphicx}
+%\usepackage{times}
+\usepackage{subfigure}
+\usepackage{cite}
+\usepackage[english]{babel}
+\usepackage{balance}  % for  \balance command ON LAST PAGE  (only there!)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% DO NOT DELETE!!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage{tikz}
+%\usetikzlibrary{trees}
+
+\usepackage{epsfig}
+\usepackage{multirow}
+\usepackage{url}
+
+\newcommand{\imp}{\vdash_{\cal I}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Enumerate and Itemize modifications
+\usepackage{enumitem}
+\setlist{topsep=0pt,noitemsep} \setitemize[1]{label=$\circ$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\sloppy
+\newcommand{\rtable}[1]{\ensuremath{\mathsf{#1}}}
+\newcommand{\ratt}[1]{\ensuremath{\mathit{#1}}}
+\newcommand{\at}[1]{\protect\ensuremath{\mathsf{#1}}\xspace}
+\newcommand{\myhrule}{\rule[.5pt]{\hsize}{.5pt}}
+\newcommand{\oneurl}[1]{\texttt{#1}}
+\newcommand{\eat}[1]{}
+\newcommand{\stab}{\rule{0pt}{8pt}\\[-1.6ex]}
+\newcommand{\sttab}{\rule{0pt}{8pt}\\[-2ex]}
+\newcommand{\sstab}{\rule{0pt}{8pt}\\[-2.4ex]}
+\newcommand{\tabstrut}{\rule{0pt}{4pt}\vspace{-0.07in}}
+\newcommand{\vs}{\vspace{1ex}}
+\newcommand{\exa}[2]{{\tt\begin{tabbing}\hspace{#1}\=\+\kill #2\end{tabbing}}}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newenvironment{tbi}{\begin{itemize}
+        \setlength{\topsep}{1.5ex}\setlength{\itemsep}{0ex}\vspace{-0.5ex}}
+        {\end{itemize}\vspace{-0.5ex}}
+\newenvironment{tbe}{\begin{enumerate}
+        \setlength{\topsep}{0ex}\setlength{\itemsep}{-0.7ex}\vspace{-1ex}}
+        {\end{itemize}\vspace{-1ex}}
+
+\newcommand{\mat}[2]{{\begin{tabbing}\hspace{#1}\=\+\kill #2\end{tabbing}}}
+\newcommand{\m}{\hspace{0.05in}}
+\newcommand{\ls}{\hspace{0.1in}}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\beqn}{\begin{eqnarray*}}
+\newcommand{\eeqn}{\end{eqnarray*}}
+\newcommand{\card}[1]{\mid\! #1\!\mid}
+\newcommand{\fth}{\hfill $\Box$}
+\newcommand{\AND}{\displaystyle{\bigwedge_{i=1}^{n}}}
+\newcommand{\U}[1]{\displaystyle{\bigcup_{#1}}}
+\newcommand{\Sm}[1]{\displaystyle{\sum_{#1}}}
+\newcommand{\stitle}[1]{\vspace{1ex}\noindent{\bf #1}}
+\newcommand{\etitle}[1]{\vspace{0.8ex}\noindent{\em \underline{#1}}}
+\renewcommand{\t}{\tau}
+\newcommand{\Inh}[1]{\$#1}
+\renewcommand{\r}[1]{{\it rule}(#1)}
+\newcommand{\pa}{\parallel}
+\newcommand{\LHS}{\kw{{\small LHS}}}
+\newcommand{\RHS}{\kw{RHS}}
+\newcommand{\len}{\kw{len}}
+\newcommand{\kop}{\kw{op}}
+\newcommand{\ie}{\emph{i.e.,}\xspace}
+\newcommand{\eg}{\emph{e.g.,}\xspace}
+\newcommand{\wrt}{\emph{w.r.t.}\xspace}
+\newcommand{\aka}{\emph{a.k.a.}\xspace}
+\newcommand{\kwlog}{\emph{w.l.o.g.}\xspace}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                  Relation Algebra operators
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\RS}{{\small S}\xspace}
+\newcommand{\RP}{{\small P}\xspace}
+\newcommand{\RJ}{{\sc j}\xspace}
+\newcommand{\RC}{{\small C}\xspace}
+\newcommand{\RSJ}{{\small SJ}\xspace}
+\newcommand{\RSC}{{\small SC}\xspace}
+\newcommand{\RSP}{{\small SP}\xspace}
+\newcommand{\RPJ}{{\small PJ}\xspace}
+\newcommand{\RPC}{{\small PC}\xspace}
+\newcommand{\RSPJ}{{\sc spj}\xspace}
+\newcommand{\RSPC}{{\small SPC}\xspace}
+\newcommand{\RSPJU}{{\sc spju}\xspace}
+\newcommand{\RSPCU}{{\small SPCU}\xspace}
+\newcommand{\RSPJUN}{{\small SPJU$^N$}\xspace}
+\newcommand{\RSPCUN}{{\small SPCU$^N$}\xspace}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ALGORITHMS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\SELECT}{\mbox{{\bf select}}\ }
+\newcommand{\FROM}{\mbox{{\bf from}\ }}
+\newcommand{\WHERE}{\mbox{\bf where}\ }
+\newcommand{\SUM}{\mbox{{\bf sum}}\ }
+\newcommand{\GROUPBY}{\mbox{{\bf group by}}\ }
+\newcommand{\HAVING}{\mbox{{\bf having}}\ }
+\newcommand{\CASE}{\mbox{{\bf case}}\ }
+\newcommand{\END}{\mbox{{\bf end}}\ }
+\newcommand{\WHEN}{\mbox{{\bf when}}\ }
+\newcommand{\EXISTS}{\mbox{{\bf exists}}\ }
+\newcommand{\COUNT}{\mbox{\kw{count}}}
+\newcommand{\INSERTINTO}{\mbox{{\bf insert into}}\ }
+\newcommand{\UPDATE}{\mbox{{\bf update}}\ }
+\newcommand{\SET}{\mbox{{\bf set}}\ }
+\newcommand{\IN}{\mbox{{\bf in}}\ }
+\newcommand{\If}{\mbox{\bf if}\ }
+\newcommand{\Let}{\mbox{\bf let}\ }
+\newcommand{\Call}{\mbox{\bf call}\ }
+\newcommand{\Then}{\mbox{\bf then}\ }
+\newcommand{\To}{\mbox{\bf to}\ }
+\newcommand{\Else}{\mbox{\bf else}\ }
+\newcommand{\ElseIf}{\mbox{\bf elseif}\ }
+\newcommand{\While}{\mbox{\bf while}\ }
+\newcommand{\Begin}{\mbox{\bf begin}\ }
+\newcommand{\End}{\mbox{\bf end}\ }
+\newcommand{\Do}{\mbox{\bf do}\ }
+\newcommand{\Downto}{\mbox{\bf downto}\ }
+\newcommand{\Repeat}{\mbox{\bf repeat}\ }
+\newcommand{\Until}{\mbox{\bf until}\ }
+\newcommand{\For}{\mbox{\bf for}\ }
+\newcommand{\Each}{\mbox{\bf each}\ }
+
+\newcommand{\ForEach}{\mbox{\bf for each}\ }
+\newcommand{\Or}{\mbox{\bf or}\ }
+\renewcommand{\And}{\mbox{\bf and}\ }
+\newcommand{\Not}{\mbox{\bf not}\ }
+\newcommand{\Break}{\mbox{\bf break}\ }
+\newcommand{\Continue}{\mbox{\bf continue}\xspace}
+\newcommand{\Return}{\mbox{\bf return}\ }
+\newcommand{\Case}{\mbox{\bf case}\ }
+\newcommand{\Of}{\mbox{\bf of}\ }
+\newcommand{\EndCase}{\mbox{\bf end-case}\ }
+\newcommand{\NIL}{\mbox{\em nil}}
+\newcommand{\False}{\mbox{\em false}}
+\newcommand{\True}{\mbox{\em true}}
+\newcommand{\algAND}{{\sc and}\xspace}
+\newcommand{\OR}{{\sc or}\xspace}
+\newcommand{\NOT}{{\sc not}\xspace}
+\newcommand{\kw}[1]{{\ensuremath {\mathsf{#1}}}\xspace}
+
+\newcounter{ccc}
+\newcommand{\bcc}{\setcounter{ccc}{1}\theccc.}
+\newcommand{\icc}{\addtocounter{ccc}{1}\theccc.}
+\newcommand{\checking}{{\mbox{\small\sf Checking}\xspace}}
+\newcommand{\preProcessing}{{\mbox{\small\sf preProcessing}\xspace}}
+\newcommand{\CFDconsistency}{{\mbox{\s%\documentclass{vldb}
+\documentclass{sig}
+\usepackage{algorithm}
+\usepackage[noend]{algorithmic}
+\usepackage{latexsym}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{epsfig}
+\usepackage{xspace}
+\usepackage{graphicx}
+\usepackage{times}
+\usepackage{subfigure}mall\sf CFD\_Checking}\xspace}}
+\newcommand{\MCS} {\kw{MCS}}
+\newcommand{\templateDB}{{\mbox{\small\sf templateDB}\xspace}}
+\newcommand{\ChaseChecking}{{\mbox{\small\sf RandomChecking}\xspace}}
+\newcommand{\chase}{{\mbox{\small\sf Chase}\xspace}}
+\newcommand{\SAT}{{\mbox{\small\sf SAT}\xspace}}
+\newcommand{\kSAT}{{\mbox{\small 3SAT}\xspace}}
+\newcommand{\PropCFDSPC}{\kw{Prop{\small CFD\_SPC}}}
+\newcommand{\PropCFDSPCU}{\kw{Prop{\small CFD\_SPCU}}}
+\newcommand{\UnionEQs}{\kw{UnionEQs}}
+\newcommand{\UnionCFDs}{\kw{UnionCFDs}}
+\newcommand{\EQ}{\kw{EQ}}
+\newcommand{\eq}{\kw{eq}}
+\newcommand{\key}{\kw{key}}
+\newcommand{\rep}{\kw{rep}}
+\newcommand{\PEQ}{\kw{EQ2CFD}}
+\newcommand{\Drop}{\kw{Drop}}
+%\newcommand{\Res}{\kw{Res}}
+\newcommand{\CFD}{{\small CFD}\xspace}
+\newcommand{\CFDs}{{\small CFD}{\small s}\xspace}
+\newcommand{\CIND}{{\sc cind}\xspace}
+\newcommand{\cind}{{\small \sf CIND}}
+\newcommand{\cfd}{{\small \sf CFD}}
+\newcommand{\CINDp}{{\sc cind}$^+$\xspace}
+\newcommand{\CINDn}{{\sc cind}$^-$\xspace}
+\newcommand{\CINDs}{{\sc cind}{\small s}\xspace}
+\newcommand{\FD}{{\small FD}\xspace}
+\newcommand{\FDs}{{\small FD}{\small s}\xspace}
+\newcommand{\IND}{{\sc ind}\xspace}
+\newcommand{\INDs}{{\sc ind}{\small s}\xspace}
+\newcommand{\TGDs}{{\sc tgd}{\small s}\xspace}
+\newcommand{\NP}{{\sc np}\xspace}
+\newcommand{\DAGs}{{\sc dag}s\xspace}
+\newcommand{\NC}{{\sc nc}\xspace}
+\newcommand{\coNP}{co{\sc np}\xspace}
+\newcommand{\PTIME}{{\sc ptime}\xspace}
+\newcommand{\PSPACE}{{\sc pspace}\xspace}
+\newcommand{\EXPTIME}{{\sc exptime}\xspace}
+\newcommand{\NPSPACE}{{\sc npspace}\xspace}
+\newcommand{\dom}{\protect\ensuremath{\mathsf{dom}}\xspace}
+\newcommand{\atset}{\protect\ensuremath{\mathsf{attr}}\xspace}
+\newcommand{\attr}[1]{\protect\ensuremath{\mathsf{#1}}\xspace}
+\newcommand{\attrset}{\protect\ensuremath{\mathsf{attr}}\xspace}
+\newcommand{\finatset}{\protect\ensuremath{\mathsf{finattr}}\xspace}
+\newcommand{\pvar}{\protect\ensuremath{\mathsf{var\%}}\xspace}
+\newcommand{\lLHS}{\protect\ensuremath{\mathsf{{\small LHS}}}\xspace}
+\newcommand{\RA}{{\small RA}\xspace}
+\newcommand{\RBR}{\kw{RBR}}
+\newcommand{\SQL}{{\sc sql}\xspace}
+\newcommand{\XSLT}{{\sc xslt}\xspace}
+\newcommand{\DBMS}{{\sc dbms}\xspace}
+\newcommand{\ATG}{{\sc atg}\xspace}
+\newcommand{\ATGs}{{\sc atg}{\small s}\xspace}
+\newcommand{\EBI}{{\sc ebi}\xspace}
+\newcommand{\GO}{{\sc go}\xspace}
+\newcommand{\VEC}[1]{{\sc vec}(#1)}
+\newcommand{\DAG}{{\sc dag}\xspace}
+\newcommand{\XQ}{{\sc xq}\xspace}
+\newcommand{\XQwc}{{\sc xq}$^{\scriptscriptstyle[*]}$\xspace}
+\newcommand{\XQdes}{{\sc xq}$^{\scriptscriptstyle[//]}$\xspace}
+\newcommand{\XQfull}{{\sc xq}$^{\scriptscriptstyle[*,//]}$\xspace}
+\newcommand{\vect}[1]{$\langle$ #1 $\rangle$}
+\newcommand{\sem}[1]{[\![#1]\!]}
+\newcommand{\NN}[2]{#1\sem{#2}}
+\newcommand{\e}[2]{{\mathit (#1,#2)}}
+\newcommand{\ep}[2]{{\mathit (#1,#2)+}}
+\newcommand{\brname}{\ensuremath{{\mathsf{N}}}}
+\newcommand{\budrel}[1]{\ensuremath{{\brname_{#1}}}}
+\newcommand{\budgen}[2]{\ensuremath{Q^\brname_\e{#1}{#2}}}
+\newcommand{\budcut}[2]{\ensuremath{Q_\e{#1}{#2}}}
+\newcommand{\R}{{\cal R}}
+\newcommand{\G}{{\cal G}}
+\newcommand{\I}{{\cal I}}
+\newcommand{\V}{{\cal V}}
+\newcommand{\E}{{\cal E}}
+\newcommand{\eop}{\hspace*{\fill}\mbox{$\Box$}}     % End of proof
+\newcounter{example}
+\renewcommand{\theexample}{\arabic{example}}
+\newenvironment{example}{
+        \vspace{1.5ex}
+        \refstepcounter{example}
+        {\noindent\bf Example \theexample:}}{
+        \eop\vspace{1.5ex}}
+\def\copyrightspace{}
+\renewcommand{\ni}{\noindent}
+\newcommand{\comlore}[1]{\begin{minipage}{3in}\fbox{\fbox{\parbox[t]{3in}{{\vspace{2mm}\noindent \bf COMM(LORE):~
+{ #1}\hfill  END.}}}}\end{minipage}\\}
+\newcommand{\comwenfei}[1]{\begin{minipage}{3in}\fbox{\fbox{\parbox[t]{3in}{{\vspace{2mm}\noindent \bf COMM(WENFEI):~
+{ #1}\hfill  END.}}}}\end{minipage}\\}
+\newcommand{\comshuai}[1]{\begin{minipage}{3in}\fbox{\fbox{\parbox[t]{3in}{{\vspace{2mm}\noindent \bf COMM(SHUAI):~
+{ #1}\hfill  END.}}}}\end{minipage}\\}
+\newcommand{\nthesection}{\arabic{section}}
+\newcounter{theorem}
+\renewcommand{\thetheorem}{\arabic{theorem}}
+\newcounter{prop}
+\renewcommand{\theprop}{\arabic{theorem}}
+\newcounter{lemma}
+\renewcommand{\thelemma}{\arabic{theorem}}
+\newcounter{cor}
+\renewcommand{\thecor}{\arabic{theorem}}
+\newenvironment{theorem}{\begin{em}
+        \refstepcounter{theorem}
+        {\vspace{1.5ex} \noindent\bf  Theorem  \thetheorem:}}{
+        \end{em}\eop\vspace{1.5ex}} %\hspace*{\fill}\vspace*{1ex}}
+\newenvironment{prop}{\begin{em}
+        \refstepcounter{theorem}
+        {\vspace{1.5ex}\noindent \bf Proposition \theprop:}}{
+        \end{em}\eop\vspace{1.5ex}}%\hspace*{\fill}\vspace*{1ex}}
+\newenvironment{lemma}{\begin{em}
+        \refstepcounter{theorem}
+        {\vspace{1ex}\noindent\bf Lemma \thelemma:}}{
+        \end{em}\eop\vspace{1ex}} %\hspace*{\fill}\vspace*{1ex}}
+\newenvironment{cor}{\begin{em}
+        \refstepcounter{theorem}
+        {\vspace{1.5ex}\noindent\bf Corollary \thecor:}}{
+        \end{em}\eop\vspace{1.5ex}} %\hspace*{\fill}\vspace*{1ex}}
+\newcounter{definition}[section]
+\renewcommand{\thedefinition}{\nthesection.\arabic{definition}}
+\newenvironment{definition}{
+        \vspace{1.5ex}
+        \refstepcounter{definition}
+        {\noindent\bf Definition {\bf \thedefinition}:}}{\eop\vspace{1.5ex}
+}
+\newcounter{alg}[section]
+\renewcommand{\thealg}{\nthesection.\arabic{alg}}
+\newenvironment{alg}[1]{
+        \refstepcounter{alg}
+        {\vspace{1ex}\noindent\bf Algorithm \thealg:\, #1}}{
+        \vspace*{1ex}}
+\newcounter{arule}
+\renewcommand{\thearule}{\arabic{arule}}
+\newenvironment{arule}{
+        \vspace{0.6ex}
+        \refstepcounter{arule}
+        {\noindent \em Rule \thearule:}}{
+        }
+\newcounter{claim}
+\renewcommand{\theclaim}{\arabic{claim}}
+\newenvironment{claim}{
+        \vspace{0.6ex}
+        \refstepcounter{claim}
+        {\noindent\em Claim \theclaim:}}{%--{ Wenfei Fan}\\
+        }
+\newenvironment{proof}{
+        \vspace{1ex}
+        {\noindent\bf Proof:}}{\eop\vspace{1ex}}
+\newenvironment{proofS}{
+        \vspace{1ex}
+        {\noindent\bf Proof sketch:\ }}{\eop\vspace{1ex}}
+\newenvironment{property}{
+        \vspace{1ex}
+        {\noindent\bf Property:}}{\eop\vspace{1ex}}
+
+\newcommand{\SIM}{\ensuremath{\mathsf{mat}}}
+
+\newcommand{\SIMe}{\ensuremath{\mathsf{mat_e}}}
+
+\newcommand{\qual}{\kw{qual}}
+\newcommand{\MaxCard}{\kw{qualCard}}
+\newcommand{\MaxSim}{\kw{qualSim}}
+
+\newcommand{\Rees}{R_{(e,e)}}
+% \newcommand{\Reps}{R_{(e,p)}}
+% \newcommand{\Rpps}{R_{(p,p)}}
+% \newcommand{\ees}{\preceq_{(e,e)}}
+% \newcommand{\eps}{\preceq_{(e,p)}}
+% \newcommand{\nees}{\not\preceq_{e,e}}
+% \newcommand{\neps}{\not\preceq_{e,p}}
+% \newcommand{\pps}{\preceq_{(p,p)}}
+% \newcommand{\bees}{\preceq^\mathsf{bw}_{(e,e)}}
+% \newcommand{\nbees}{\not\preceq^\mathsf{bw}_{(e,e)}}
+% \newcommand{\beps}{\preceq^\mathsf{bw}_{(e,p)}}
+% \newcommand{\nbeps}{\not\preceq^\mathsf{bw}_{(e,p)}}
+
+% \newcommand{\iees}{\precsim^{1-1}_{(e,e)}}
+% \newcommand{\ieps}{\precsim^{1-1}_{(e,p)}}
+% \newcommand{\sees}{\precsim_{(e,e)}}
+% \newcommand{\seps}{\precsim^s_{(e,p)}}
+% \newcommand{\nseps}{\not\precsim^s_{(e,p)}}
+% \newcommand{\nieps}{\not\precsim^{1-1}_{(e,p)}}
+% \newcommand{\oees}{\precsim^{\kw{opt}}_{(e,e)}}
+% \newcommand{\oeps}{\precsim^{\kw{opt}}_{(e,p)}}
+% \newcommand{\bsees}{\precsim^\mathsf{bw}_{(e,e)}}
+% \newcommand{\bseps}{\precsim^\mathsf{bw}_{(e,p)}}
+% \newcommand{\compPSim}{\kw{compPSim}}
+
+%\newcommand{\URL} {\kw{URL}}
+%\newcommand{\URLs} {\kw{URLs}}
+\newcommand{\WIS} {\kw{WIS}}
+\newcommand{\IS} {\kw{IS}}
+\newcommand{\AFPR}{\kw{AFP}-\kw{reduction}}
+\newcommand{\AFPRs}{\kw{AFP}-\kw{reductions}}
+
+\newcommand{\OPT}{\kw{opt}}
+\newcommand{\obj}{\kw{obj}}
+\newcommand{\N} {{\cal N}}
+
+\newcommand{\maxCSPS} {\kw{compMaxCard^s}}
+\newcommand{\maxCSPI} {\kw{compMaxCard^{1-1}}}
+\newcommand{\maxSSPS} {\kw{compMaxSim^s}}
+\newcommand{\maxSSPI} {\kw{compMaxSim^{1-1}}}
+\newcommand{\subIso} {\kw{cdkMCS}}
+\newcommand{\combine} {\kw{combinedMaxSim}}
+
+
+%\newcommand{\pSim}{\kw{compSimilarity}}
+\newcommand{\gSim}{\kw{graphSimulation}}
+
+\newcommand{\maxWIS} {\kw{compMaxWIS}}
+\newcommand{\nei} {\kw{Neighbor}}
+\newcommand{\nonNei} {\kw{NonNeighbor}}
+\newcommand{\ramsey} {\kw{Ramsey}}
+\newcommand{\cRamsey} {\kw{ISRemoval}}
+\newcommand{\wis} {\kw{maxWIS}}
+\newcommand{\maxWeight} {\kw{maxWeight}}
+
+\newcommand{\naive} {\kw{Naive}}
+\newcommand{\good} {\kw{good}}
+\newcommand{\bad} {\kw{minus}}
+
+\newcommand{\static} {\kw{static}}
+\newcommand{\parent} {\kw{prev}}
+\newcommand{\child} {\kw{post}}
+\newcommand{\greedy} {\kw{greedyMatch}}
+\newcommand{\proNeighbor} {\kw{trimMatching}}
+
+\newcommand{\Pick}{\mbox{\bf pick}\ }
+
+\newcommand{\sizeof} {\kw{sizeof}}
+\newcommand{\genPG} {\kw{genPGraph}}
+\newcommand{\genSOL} {\kw{genSolution}}
+
+\renewcommand{\texttt}[1]{{\small\textsf{#1}}}
+
+\newcommand{\APSP}{\kw{APSP}}
+\newcommand{\APSPinc}{\kw{APSP_{inc}}}
+\newcommand{\aff}{\kw{AFF}}
+\newcommand{\ksim}{\kw{ksim}}
+\newcommand{\delupdate}{\kw{DelUpdate}}
+\newcommand{\insupdate}{\kw{InsUpdate}}
+\newcommand{\incdel}{\kw{IncDel}}
+\newcommand{\incins}{\kw{IncIns}}
+
+\newcommand{\dist}{\kw{dist}}
+\newcommand{\pSim}{\kw{Match}}
+
+\newcommand{\eps}{\prec}
+\newcommand{\deps}{\prec_{D}}
+\newcommand{\leps}{\prec_L}
+\newcommand{\dleps}{\prec_{D}^{L}}
+\newcommand{\iso}{\lhd}
+\newcommand{\bieps}{\sim}
+\newcommand{\embed}{\lessdot}
+\newcommand{\neps}{\ntrianglelefteq}
+\newcommand{\ees}{\preceq_{(e,e)}}
+\newcommand{\nees}{\not\preceq_{e,e}}
+\newcommand{\Reps}{S}
+\newcommand{\bcp}{{\sc bcp}\xspace}
+
+
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\newcommand{\added}[1]{\textcolor{blue}{#1}}
+\newcommand{\changed}[1]{\textcolor{red}{#1}}
+\newcommand{\removed}[1]{\textcolor{gray}{#1}}
+
+\newcommand{\ball}[1]{\hat{G}[#1]}
+\newcommand{\match}{\kw{Match}}
+\newcommand{\optmatch}{\kw{Match^+}}
+\newcommand{\dismatch}{\kw{dMatch}}
+\newcommand{\optdismatch}{\kw{dMatch^+}}
+\newcommand{\minq}{\kw{minQ}}
+\newcommand{\graphsim}{\kw{Sim}}
+\newcommand{\subiso}{\kw{SubIso}}
+\newcommand{\dissubiso}{\kw{dSubIso}}
+
+\newcommand{\lsa}{\kw{LS}}
+\newcommand{\operaa}{\kw{OPERB}}
+\newcommand{\operab}{\kw{OPERB}-\kw{A}}
+\newcommand{\operb}{\kw{OPERB}}
+\newcommand{\operba}{\kw{OPERB}-\kw{A}}
+\newcommand{\bqsa}{\kw{BQS}}
+\newcommand{\fbqsa}{\kw{FBQS}}
+\newcommand{\dpa}{\kw{DP}}
+
+
+
+\renewcommand{\path}[1]{{\sc path}${\kw{#1}}$}
+\renewcommand{\dist}[1]{{\sc dist}${\kw{#1}}$}
+\newcommand{\dra}{{\sc dra}\xspace}
+\newcommand{\dras}{{\sc dra}s\xspace}
+\newcommand{\compDRAs}{\kw{computeDRAs}\xspace}
+\newcommand{\ah}{{\sc ah}\xspace}
+\newcommand{\alt}{{\sc alt}\xspace}
+\newcommand{\tedi}{{\sc tedi}\xspace}
+\newcommand{\arcflag}{{\sc arcFlag}\xspace}
+\newcommand{\tnr}{{\sc tnr}\xspace}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\title{Structure Preserving Graph Simulation Queries}
+%\title{Bring Duality and Locality into Graph Simulation Queries}
+%\title{Structure Preserving Graph Queries}
+\title{Approximate Computation for Big Data Analytics}
+
+\author{Shuai~Ma, Jinpeng~Huai% <-this % stops a space
+
+\IEEEcompsocitemizethanks{\IEEEcompsocthanksitem \vspace{-1ex} S.~Ma and J.~Huai are with the SKLSDE Lab, School of Computer Science and Engineering, Beihang University, China.\protect\\
+% note need leading \protect in front of \\ to get a newline within \thanks as
+% \\ is fragile and will error, could use \hfil\break instead.
+E-mail: \{mashuai,  huaijp\}@buaa.edu.cn. \vspace{-1.5ex}}
+}
+
+\markboth{IEEE TRANSACTIONS ON KNOWLEDGE AND DATA ENGINEERING,~Vol.~X, No.~X, October~2018}%
+{\MakeLowercase{\textit{Shuai Ma and Jinpeng Huai}}: Approximate Computation for Big Data Analytics}
+
+\date{}
+\begin{document}
+
+
+
+\IEEEtitleabstractindextext{
+\begin{abstract}
+
+A fundamental issue in the big data era is the efficiency. In this article, we systematically introduce approximate computation (\ie query approximation and data approximation) for efficiency and effectiveness big data analytics in practice. We explain the idea and rationale of query approximation,  and show efficiency can be obtained with high effectiveness in practice by its embodiment for graph pattern matching, trajectory compression and dense subgraph computation. We explain the idea and rationale of data approximation,  and show efficiency can be obtained even without sacrificing for effectiveness in practice by its embodiment for shortest paths/distances and link prediction.
+\end{abstract}
+
+% Note that keywords are not normally used for peerreview papers.
+\begin{IEEEkeywords}
+Big data, query approximation, data approximation
+\end{IEEEkeywords}
+}
+
+
+
+\maketitle
+
+\input{sec-introduction}
+\input{sec-query}
+\input{sec-data}
+\input{sec-beyond}
+\input{sec-conclusion}
+
+
+
+\stitle{Acknowledgement}. This work is supported in part by 973 program ({\small 2014CB340300}), NSFC ({\small U1636210 \& 61421003}). % We would also thank our co-authors and all participants in the above 973 program  for their inspiring comments.
+
+
+\balance
+\bibliographystyle{abbrv}
+\vspace{-1ex}
+\begin{small}
+\bibliography{paper}
+\end{small}
+
+\vspace{-8ex}
+\begin{IEEEbiography}
+%[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{bio/shuai-ma.eps}}]
+{Shuai Ma} is a professor at the School of Computer Science and Engineering, Beihang University, China.
+He obtained his PhD degrees from University of Edinburgh in 2010, and from
+Peking University in 2004, respectively.
+He was a postdoctoral research fellow in the database group, University of Edinburgh, a summer intern at Bell labs, Murray Hill, USA and a visiting researcher of MRSA.
+He is a recipient of the best paper award for VLDB 2010 and the best challenge paper award for WISE 2013. His current research interests include database theory and systems, social data and graph analysis, and data intensive computing.
+\end{IEEEbiography}
+\vspace{-8ex}
+\begin{IEEEbiography}
+%[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{bio/jinpeng-huai.eps}}]
+{Jinpeng Huai} is a professor at the School of Computer Science and Engineering, Beihang University, China. He received his Ph.D. degree in computer science from Beihang University, China, in 1993. Prof. Huai is an academician of Chinese Academy of Sciences and the vice honorary chairman of China Computer Federation (CCF). His research interests include big data computing, distributed systems, virtual computing, service-oriented computing, trustworthiness and security.
+\end{IEEEbiography}
+
+%}%%%%%%%%%%%%%%%%EAT%%%%%%%%%%%%%%%
+
+\end{document}
