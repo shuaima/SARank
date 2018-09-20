@@ -70,7 +70,7 @@ Essentially, we propose a light-weight data reduction technique for speeding-up 
 
 \stitle{(2) Network Anomaly Detection~\cite{HuAMH16}}
 Anomaly (or outlier) detection aims at identifying those objects in a database that are unusual, i.e., different than the majority of the data and therefore suspicious resulting from a contamination, error, or fraud~\cite{Zimek2017}. Network anomaly detection has become very popular
-in recent years because of the importance of discovering key
+recently because of the importance of discovering key
 regions of structural inconsistency in the network. In addition
 to application-specific information carried by anomalies, the
 presence of such structural inconsistency is often an impediment
@@ -79,38 +79,27 @@ community detection and classification.
 
 
 Networks are inherently complex entities, and, hence, anomalies may be defined in a wide variety of ways.
-In this paper, our goal is to discover {\em  structural inconsistencies, i.e.,  the anomalous nodes that connect to a number of diverse influential communities}, inspired by the concept of social brokers across groups, which provide social capital in networks~\cite{s-hole04}.
-The presence of such structural inconsistencies may have a substantial impact on the structure of original networks, and prevent the effective application of the methods such as community detection to a variety of data mining problems.
-
-
+Our goal is to discover {\em  structural inconsistencies, i.e.,  the anomalous nodes that connect to a number of diverse influential communities}, inspired by the concept of social brokers across groups, which provide social capital in networks~\cite{s-hole04}.
 While a variety of graph embeddings, such as multidimensional scaling~\cite{mds}, are available in the literature, they aim to preserve (global) pairwise similarities and are not optimized to networks and the problem of anomaly detection.
-Hence, they cannot be directly used for the detection of structural inconsistencies proposed in this paper. Therefore, a novel embedding method will be developed, which is specifically designed to ferret out the anomalous nodes in large networks.
+Hence, they cannot be directly used for the detection of structural inconsistencies proposed in this paper. We propose a novel graph embedding method, specifically designed to ferret out the anomalous nodes in large networks.
 
 
-The embedding approach is  based on a model,
-in which each dimension of the embedding corresponds to a clustered
-region in the network.
+Our embedding approach is  based on a model, in which each dimension of the embedding corresponds to a clustered region in the network.
 In other words, the similarity of different nodes along a particular dimension, indicates their similarity to a particular clustered region.
-Therefore, this embedding retains
-a very high level of interpretability in  terms of the original
-graph data, which is very useful from an application-specific perspective.
-The nature of  the embedding also  makes it  possible  to detect anomalous nodes, by examining the interaction of each node with the different regions in terms of the embedding.
-In particular, we measure the {\em level of anomalousness} of a node in terms of the embedding imposed on the node and its neighbors.
+Therefore, this embedding retains a very high level of interpretability in  terms of the original graph data, which is very useful from an application-specific perspective. The nature of  the embedding also  makes it  possible  to detect anomalous nodes, by examining the interaction of each node with the different regions in terms of the embedding. In particular, we measure the {\em level of anomalousness} of a node in terms of the embedding imposed on the node and its neighbors.
 
 
+Dimensionality of embedding, each node is represented as a d-dimensional vector, can be large. Hence, such an approach is rather hard to apply to the case of large networks, because the complexity of the approach is in proportion to the square of the number of nodes when optimizing the embedding and because the noises in the embedding seriously impair the accuracy of detected anomalous nodes. Hence, we incorporate data approximation techniques (sampling, graph partitioning techniques, and, moreover, a novel dimension reduction technique) to make the approach more scalable and effective for large networks.
 
-Such an approach is however rather hard to apply to the case of large networks, because
-the complexity of the approach is in proportion to the square of the number of nodes when optimizing the embedding and
-because the noises in the embedding seriously impair the accuracy of detected anomalous nodes.
-Hence, we incorporate the sampling and  graph partitioning techniques, and, moreover, propose a novel dimension reduction technique to make the approach more scalable and effective for large networks.
+Essentially, in our graph embedding, $d$ represents the number of communities. As the anomalous nodes are only determined by influential communities and nodes typically connect to a limited number of communities, the complete d-dimensions are unnecessary, and a limited number of communities suffice to ascertain anomalies. Thus, our dimension reduction technique (referred to as ($k+\beta$ reduction) only maintains ($k + \beta$)-dimensions for embedding of each node, where k is the maximum number of communities to connect, $\beta$ is to tolerate mistakes when determining the $k$ communities and is removed after the computation process. Here $k \ll d$ and  $\ll d$, \eg $k = 10$ and $\beta = 2$ and $d=600$ for a network with $10^6$ nodes.
+
 
 
 Using both real-life data and synthetic
 data , we conduct an extensive experimental study.
-We find that our embedding approach to network anomaly detection is both effective and efficient. (a) The modularity \cite{newman1} was increased about 2.9\% and 2.4\% for amazon, 4.9\% and 4.2\% for dblp and 6.3\% and 4.2\% for with our approach and oddball~\cite{akoglu14}, respectively; (b) The $F_1$ measure was about $88\%$ and $70\%$ for synthetic with our approach and oddball, respectively; And (c) the running time of our embedding approach increases reasonably with the increase of graph sizes, even with large number of communities, while traditional  multidimensional scaling approach~\cite{mds} ran out of memory.
+ (a) The modularity \cite{newman1} was increased about 4.9\% and 3.6\% with our approach and oddball~\cite{akoglu14}, respectively; (b) The $F_1$ measure was about $88\%$ and $70\%$ for synthetic with our approach and oddball, respectively; (c) The running time of our embedding approach increases reasonably with the increase of graph sizes, even with large number of communities, while traditional  multidimensional scaling approach~\cite{mds} ran out of memory.
 
-\stitle{(3) Ensemble Enabled Link Prediction~\cite{DuanAMHH16,DuanMAMH17}}. Link prediction is the task to predict the formation of future links in a dynamic and evolving network, and has been extensively studied due to its numerous applications, such as the recommendation of friends in a social network, images in a multimedia network, or
-collaborators in a scientific network.
+\stitle{(3) Ensemble Enabled Link Prediction~\cite{DuanAMHH16,DuanMAMH17}}. Link prediction is the task to predict the formation of future links in a dynamic and evolving network, and has been extensively studied due to its numerous applications, such as the recommendation of friends in a social network, images in a multimedia network, or collaborators in a scientific network.
 
 
 Link prediction methods are often applied to very large and sparse networks, which have a large {\em search space} $O(n^2)$,
