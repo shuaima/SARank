@@ -21,6 +21,15 @@ However, it should be pointed out that there are data analytic tasks such that d
 
 We next explain data approximation computation in more detail using three different data analytic tasks.
 
+\begin{figure}[tb!]
+  %\vspace{-1ex}
+  \begin{center}
+  \includegraphics[scale=0.45]{./dataApprox.png}
+  \end{center}
+  %\vspace{-1ex}
+  \caption{Data approximation}\label{fig-tech-dataappro}
+  \vspace{-1ex}
+\end{figure}
 
 
 \stitle{(1) Proxies for Shortest Paths and Distances~\cite{MaFLWCH16,MaFLWCH17}}. Computing shortest paths and distances is one of the fundamental problems on graphs. We study the {\em node-to-node shortest path} ({\em distance}) problem on large graphs: given a weighted undirected graph $G(V, E)$ with non-negative edge weights, and two nodes of $G$, the source $s$ and the target $t$, find the shortest path (distance) from $s$ to $t$ in $G$. The Dijkstra's algorithm with Fibonacci heaps runs in $O(n\log n + m)$ due to Fredman \& Tarjan~\cite{CormenLRS01}, where $n$ and $m$ denote the numbers of nodes and edges in a graph, respectively, which remains asymptotically the fastest known solution on arbitrary undirected graphs with non-negative edge weights.
@@ -57,15 +66,6 @@ Essentially, we propose a light-weight data reduction technique for speeding-up 
 
 
 
-\begin{figure}[tb!]
-  %\vspace{-1ex}
-  \begin{center}
-  \includegraphics[scale=0.45]{./dataApprox.png}
-  \end{center}
-  %\vspace{-1ex}
-  \caption{Data approximation}\label{fig-tech-dataappro}
-  \vspace{-2ex}
-\end{figure}
 
 
 \stitle{(2) Network Anomaly Detection~\cite{HuAMH16}}
