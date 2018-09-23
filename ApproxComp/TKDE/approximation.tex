@@ -474,9 +474,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\title{Structure Preserving Graph Simulation Queries}
-%\title{Bring Duality and Locality into Graph Simulation Queries}
-%\title{Structure Preserving Graph Queries}
+\title{Approximate Computation Toward Big Data Analytics}
 \title{Approximate Computation for Big Data Analytics}
 
 \author{Shuai~Ma, Jinpeng~Huai% <-this % stops a space
@@ -498,7 +496,8 @@ E-mail: \{mashuai,  huaijp\}@buaa.edu.cn. \vspace{-1.5ex}}
 \IEEEtitleabstractindextext{
 \begin{abstract}
 Over the past a few years, research and development has made significant progresses on big data analytics.
-A fundamental issue for big data analytics is the efficiency. In this article, we systematically introduce approximate computation, \ie query approximation and data approximation, for efficiency and effectiveness big data analytics in practice. We first explain the idea and rationale of query approximation,  and show efficiency can be obtained with high effectiveness in practice by its embodiment for graph pattern matching, trajectory compression and dense subgraph computation. We then explain the idea and rationale of data approximation,  and show efficiency can be obtained even without sacrificing for effectiveness in practice by its embodiment for shortest paths/distances, network anomaly detection and link prediction.
+A fundamental issue for big data analytics is the efficiency. If the optimal solution is unable to attain or not required or has a price to high to pay, it is reasonable to sacrifice optimality with a ``good'' feasible solution that can be computed efficiently. Existing approximation techniques can be in general classified into approximation algorithms,  approximate query processing for aggregate SQL queries and approximation computing for multiple layers of the system stack.
+In this article, we systematically introduce approximate computation, \ie query approximation and data approximation, for efficiency and effectiveness big data analytics in practice. We first explain the idea and rationale of query approximation,  and show efficiency can be obtained with high effectiveness in practice by its embodiment for graph pattern matching, trajectory compression and dense subgraph computation. We then explain the idea and rationale of data approximation,  and show efficiency can be obtained even without sacrificing for effectiveness in practice by its embodiment for shortest paths/distances, network anomaly detection and link prediction.
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
@@ -519,10 +518,11 @@ Big data, query approximation, data approximation
 
 
 
-\stitle{Acknowledgement}. This work is supported in part by 973 program ({\small 2014CB340300}), NSFC ({\small U1636210 \& 61421003}). % We would also thank our co-authors and all participants in the above 973 program  for their inspiring comments.
+\stitle{Acknowledgement}. This work is supported in part by 973 program ({\small 2014CB340300}), NSFC ({\small U1636210 \& 61421003}). We would also thank our colleagues Charu Aggarwal, Gao Cong, Wenfei Fan, Chunming Hu, Xuelian Lin, Haixun Wang, Tianyu Wo and our students Yang Cao, Liang Duan, Kaiyu Feng, Renjun Hu, Han Zhang for their joined efforts.
 
 
 \newpage
+\balance
 \bibliographystyle{abbrv}
 \vspace{-1ex}
 \begin{small}
