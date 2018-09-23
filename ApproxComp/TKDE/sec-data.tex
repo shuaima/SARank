@@ -39,7 +39,7 @@ To speed-up shortest  path and distance queries, we propose {\em proxies} that h
 
 
 
-The framework for speeding-up shortest path and distance queries with proxies consists of modules preprocessing and query answering as follows.
+The framework for speeding-up shortest path and distance queries with proxies consists of two module, preprocessing and query answering, as follows.
 
 
 \ni(a) {\em Preprocessing}: Given graph $G(V, E)$, it first computes all \dras and their maximal proxies in linear time, then it computes and stores all the shortest paths and distances between any node and its proxy. It finally computes the reduced subgraph $G'$ by removing all \dras from graph $G$, \ie keeping the proxies only.
@@ -64,7 +64,7 @@ Essentially, we propose a light-weight data reduction technique for speeding-up 
   \end{center}
   %\vspace{-1ex}
   \caption{Data approximation}\label{fig-tech-dataappro}
-  \vspace{-1ex}
+  \vspace{-2ex}
 \end{figure}
 
 
@@ -126,9 +126,8 @@ collaborative filtering, but not link prediction in spite of the obvious
 similarity and
 the obvious effectiveness of latent factor models. One of the reasons why latent factor models are rarely used for
 link prediction is due to their complexity. In
-collaborative filtering applications, the item dimension is of the
-order of a few hundred thousand, whereas even the smallest  real-world networks contain more than a million nodes.
-Even worse, we also experientially find that the quality of link prediction for latent factor models decreases with the increase of data sparsity,
+collaborative filtering applications, items have a few hundred thousand dimensions, whereas even the smallest  real-world networks contain more than a million nodes.
+Even worse, we also experientially verify that the quality of link prediction for latent factor models decreases with the increase of data sparsity,
 and networks typically become sparser when their sizes grow larger.
 
 

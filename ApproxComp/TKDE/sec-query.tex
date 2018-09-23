@@ -10,7 +10,7 @@ Observe that nobody would try each and every store to find a pair of shoes with 
 That is, inexact (approximate) solutions are good enough for certain cases.
 %
 On the other hand, when taking noises (very common for big data) into account, it may not always be a good idea to compute exact answers
-for those data analytic tasks whose answers are rare or hard to identify, such as the detection of homegrown violent extremists (HVEs) who seek to commit acts of terrorism in the United States and abroad~\cite{HungJ16}, as exact solutions may have a high chance to miss/ignore possible candidates.
+for those data analytic tasks whose answers are rare or hard to identify, such as the detection of homegrown violent extremists (HVEs) who seek to commit acts of terrorism in the United States and abroad~\cite{HungJ16}, as finding exact solutions may have a high chance to miss/ignore possible candidates.
 
 We next explain query approximation computation in more detail using three different data analytic tasks.
 
@@ -23,7 +23,7 @@ We next explain query approximation computation in more detail using three diffe
   %\vspace{-1ex}
   \caption{Query approximation}\label{fig-tech-queryappro}
   \end{center}
-  \vspace{-1ex}
+  \vspace{-2ex}
 \end{figure}
 
 
@@ -42,9 +42,9 @@ and (b) there exists an edge $(u, u')$ in $Q$ if and only
 if there exists an edge $(f(u), f(u'))$ in $G_s$.
 
 
-The goodness of subgraph isomorphism is that all matched subgraphs  are exactly the same as the pattern graph, \ie completely preserving the  topology structure between the pattern graph and data graph. However, subgraph isomorphism is \NP-complete, and may return exponential many matched subgraphs.
-Further, subgraph isomorphism is too restrictive to find sensible matches in certain scenarios, as observed in~\cite{FanLMTWW10}. Even worse, online data in many cases only represents a partial world (\eg terrorist collaboration networks and homosexual networks often involve with a large amount of off-line data).
-Exact computations on such online data, whose off-line counterpart is extremely hard to gather, typically decreases the chance of identifying candidate answers.
+The goodness of subgraph isomorphism is that all matched subgraphs  are exactly the same as the pattern graph, \ie completely preserving the  topology structure between the pattern graph and data graph. However, subgraph isomorphism is \NP-complete, and may return exponentially many matched subgraphs.
+Further, subgraph isomorphism is too restrictive to find sensible matches in certain scenarios, as observed in~\cite{FanLMTWW10}. Even worse, online data in many cases only represents a partial world (\eg terrorist collaboration networks and homosexual networks are often accompanied with a large amount of offline data).
+Exact computations on online data, whose offline counterpart is extremely hard to collect, typically decreases the chance of identifying candidate answers.
 These hinder the usability of graph pattern matching in emerging applications.
 
 
@@ -78,7 +78,7 @@ Existing trajectory simplification algorithms (\eg \cite{Douglas:Peucker}) and o
 
 \stitle{(3) Dense Temporal Subgraph Computation~\cite{MaHWLH17}}.  We study dense subgraphs in {\em a special type of temporal networks} whose nodes and edges are kept fixed, but edge weights constantly and regularly vary with timestamps~\cite{MaHWLH17}.  Essentially, a temporal network with $T$ timestamps can be viewed as $T$ snapshots of a static network such that the network nodes and edges are kept the same among these $T$ snapshots, while the edge weights vary with network snapthots. Road traffic networks typically fall into this category of temporal networks, and dense subgraphs are used for road traffic analyses that are of particular importance for transportation management of large cities.
 
-Dense subgraphs are a general concept, and their concrete semantics highly depend on the studied problems and applications. Though  dense subgraphs have been widely studied in static networks, how to properly define their semantics over temporal networks is still in the early stage, not to mention effective and efficient analytic algorithms.
+Dense subgraphs are a general concept, and their concrete semantics highly depends on the studied problems and applications. Though  dense subgraphs have been widely studied in static networks, how to properly define their semantics over temporal networks is still in the early stage, not to mention effective and efficient analytic algorithms.
 
 We adopt the {\em form of dense temporal subgraphs} initially defined and studied in \cite{BogdanovMS11}, such that a temporal subgraph corresponds to a connected subgraph measured by the sum of all its edge weights in a time interval, \ie  a continuous sequence of timestamps. Intuitively, a dense subgraph that we consider  corresponds to a  collection of connected highly slow or jam roads (\ie  a jam area) in road networks, lasting for a continuous sequence of snapshots.
 
